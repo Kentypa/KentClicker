@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @font-face {
     font-family: 'Work Sans';
     src: url('assets/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf') format('truetype');
@@ -11,11 +12,6 @@
     --color-background: #E0E0E0;
     --color-surface: #FAFAFA;
     --font-worksans: 'Work Sans';
-}
-
-@font-face {
-    font-family: 'Work Sans';
-    src: url('assets/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf') format('truetype');
 }
 
 body {

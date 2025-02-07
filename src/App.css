@@ -10,12 +10,17 @@
     --color-subtle-2: #AFB1B6;
     --color-background: #E0E0E0;
     --color-surface: #FAFAFA;
-    --font-worksans: 'Work Sans', sans-serif;
+    --font-worksans: 'Work Sans';
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('assets/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf') format('truetype');
 }
 
 body {
-    font-family: 'Work Sans', sans-serif;
-    color: #121212;
+    font-family: var(--font-worksans), monospace, serif, sans-serif;
+    color: var(--color-primary);
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;

@@ -27,7 +27,7 @@ export const PasswordFormPart: React.FC<PasswordFormPartProps> = ({
         <img
           src={isPasswordVisible ? eyeOpened : eyeClosed}
           alt="eyeIcon"
-          className="size-6 m-3 absolute cursor-pointer"
+          className="size-6 absolute m-3 cursor-pointer"
           onClick={() => {
             setIsPasswordVisible(!isPasswordVisible);
           }}

@@ -2,10 +2,11 @@ import * as React from "react";
 import { Button } from "../Button";
 import { Divider } from "../Divider";
 import { WelcomeToClicker } from "../WelcomeToClicker";
-import { FormContent } from "../FormContent";
 import { ContinueGoogleButton } from "../ContinueGoogleButton";
 import { FormType } from "../../types/form-types.ts";
 import { Link } from "react-router";
+import { EmailFormPart } from "../EmailFormPart";
+import { PasswordFormPart } from "../PasswordFormPart";
 
 type AuthFormProps = {
   formType: FormType;
@@ -21,7 +22,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({ formType }) => {
     >
       <WelcomeToClicker />
       <p className="text-2xl/8 mb-8">{signText}</p>
-      <FormContent />
+      <div className={`container text-subtle-1`}>
+        <EmailFormPart className="mb-6" />
+        <PasswordFormPart className={isSignIn ? "mb-6" : "mb-8"} />
+      </div>
       {isSignIn && (
         <div className="container flex justify-end mb-8">
           <Link to="/" className="underline">

@@ -1,17 +1,19 @@
 import * as React from "react";
+import { Label } from "../Label";
+import { Input } from "../Input";
 
 type EmailFormPartProps = {
   className?: string;
 };
 
-export const EmailFormPart: React.FC<EmailFormPartProps> = ({ className }) => {
+export const Email: React.FC<EmailFormPartProps> = ({ className }) => {
   return (
     <div className={`${className} flex flex-col`}>
-      <label className="mb-2" htmlFor="email">
+      <Label className="mb-2" htmlFor="email">
         Email
-      </label>
-      <input
-        className="h-12 rounded-lg border border-subtle-2 p-3"
+      </Label>
+      <Input
+        className="p-3 rounded-lg border border-subtle-2"
         type="email"
         name="email"
         id="email"

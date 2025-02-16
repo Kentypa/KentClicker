@@ -1,15 +1,17 @@
 import * as React from "react";
 import { Route, Routes } from "react-router";
-import { SignInPage } from "../../components/SignInPage";
-import { HomePage } from "../../components/HomePage";
-import { SignUpPage } from "../../components/SignUpPage";
+import { HomePage } from "../HomePage";
+import { SignInPage } from "../SignInPage";
+import { SignUpPage } from "../SignUpPage";
+import { ProfilePage } from "../ProfilePage";
 
 export const ApplicationRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="signin" element={<SignInPage />} />
-      <Route path="signup" element={<SignUpPage />} />
+      <Route path="sign-in" element={<SignInPage />} />
+      <Route path="sign-up" element={<SignUpPage />} />
+      <Route path="profile" element={<ProfilePage />} />
     </Routes>
   );
 };

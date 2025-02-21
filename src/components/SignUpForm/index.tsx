@@ -9,7 +9,7 @@ import { FC } from "react";
 
 export const SignUpForm: FC = () => {
   return (
-    <div className={`container flex max-w-100 flex-col items-center`}>
+    <main className={`container flex max-w-100 flex-col items-center`}>
       <Title className="text-[2.5rem]/12 mb-12 font-normal text-nowrap">
         Welcome to KentClicker
       </Title>
@@ -41,6 +41,6 @@ export const SignUpForm: FC = () => {
       </div>
       <Divider className="mb-6">or</Divider>
       <ContinueGoogleButton />
-    </div>
+    </main>
   );
 };

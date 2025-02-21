@@ -8,7 +8,7 @@ export const UserProfile: FC = () => {
   const userInfo = useContext(UserContext);
 
   return (
-    <main className="flex px-30 pb-30 w-full">
+    <main className="flex justify-center px-30 pb-30 w-full">
       <div className="flex flex-col max-w-[1200px] pt-10 w-full relative">
         <UserInfo {...userInfo} className="pb-10" />
         <EditProfileButton className="absolute right-0" />

@@ -1,16 +1,20 @@
-import React from "react";
-import { Link } from "react-router";
+import { FC } from "react";
 import Moon from "../../assets/icons/moon.svg";
+import { Navigation } from "../Navigation";
 
-export const Footer: React.FC = () => {
+const menu = [
+  { link: "/about-game", name: "About Game" },
+  { link: "/help-center", name: "Help Center" },
+  { link: "rules", name: "Rules" },
+];
+
+export const Footer: FC = () => {
   return (
-    <footer className="flex justify-between items-center py-4 px-30 w-full bg-subtle-1 mt-auto">
+    <footer className="flex justify-between items-center py-4 px-30 w-full bg-subtle-dark mt-auto">
       <div className="flex font-normal w-full justify-between items-center max-w-[422px] m-auto text-white">
-        <Link to="/about-game">About game</Link>
-        <Link to="/help-center">Help center</Link>
-        <Link to="/rules">Rules</Link>
+        <Navigation menuItems={menu} />
       </div>
-      <div className="flex justify-center size-10 items-center rounded-xl border border-subtle-2">
+      <div className="flex justify-center size-10 items-center rounded-xl border border-subtle-light">
         <img src={Moon} alt="moon" className="size-5" />
       </div>
     </footer>

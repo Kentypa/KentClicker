@@ -1,29 +1,33 @@
-import React from "react";
+import { FC } from "react";
 import { FeatureItem } from "../../types/feature-item.ts";
-import { UserStatisticElement } from "../UserStatisticElement";
+import { FeatureInfo } from "../FeatureInfo";
+import { textFormatter } from "../../utils/text-formatter.ts";
 
 type UserStatsProps = {
   totalCoins: FeatureItem;
   totalClicks: FeatureItem;
 };
 
-export const UserStats: React.FC<UserStatsProps> = ({
-  totalCoins,
-  totalClicks,
-}) => {
+export const UserStats: FC<UserStatsProps> = ({ totalCoins, totalClicks }) => {
   return (
     <div className={"flex justify-between w-full max-w-[608px]"}>
-      <UserStatisticElement
-        img={totalCoins.img}
-        name={totalCoins.name}
-        description={totalCoins.description}
-        className="rounded-l-[10px]"
+      <FeatureInfo
+        main={textFormatter(totalCoins.name)}
+        description={textFormatter(totalCoins.description)}
+        icon={totalCoins.img}
+        className={`rounded-l-[10px] max-w-[303.5px] bg-background-dark border px-6 py-4`}
+        mainClassName="text-white text-2xl/6"
+        iconClassName="pr-3"
+        descriptionClassName="text-background"
       />
-      <UserStatisticElement
-        img={totalClicks.img}
-        name={totalClicks.name}
-        description={totalClicks.description}
-        className="rounded-r-[10px]"
+      <FeatureInfo
+        main={textFormatter(totalClicks.name)}
+        description={textFormatter(totalClicks.description)}
+        icon={totalClicks.img}
+        className={`rounded-r-[10px] max-w-[303.5px] bg-background-dark border px-6 py-4`}
+        mainClassName="text-white text-2xl/6"
+        iconClassName="pr-3"
+        descriptionClassName="text-background"
       />
     </div>
   );

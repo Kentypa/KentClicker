@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { Route, Routes } from "react-router";
 import { HomePage } from "../HomePage";
 import { SignInPage } from "../SignInPage";
@@ -67,7 +67,7 @@ const user = {
   },
 };
 
-export const ApplicationRoutes: React.FC = () => {
+export const ApplicationRoutes: FC = () => {
   return (
     <UserContext value={user}>
       <Routes>

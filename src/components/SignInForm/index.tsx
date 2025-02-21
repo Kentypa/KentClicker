@@ -1,22 +1,32 @@
-import React from "react";
+import { FC } from "react";
 import { Title } from "../Title";
-import { Email } from "../Email";
-import { Password } from "../Password";
 import { Link } from "react-router";
 import { Button } from "../Button";
 import { Divider } from "../Divider";
 import { ContinueGoogleButton } from "../ContinueGoogleButton";
+import { Input } from "../Input";
+import { PasswordInput } from "../PasswordInput";
 
-export const SignInForm: React.FC = () => {
+export const SignInForm: FC = () => {
   return (
     <div className="container flex max-w-100 flex-col items-center">
       <Title className="text-[2.5rem]/12 mb-12 font-normal text-nowrap">
         Welcome to KentClicker
       </Title>
       <p className="text-2xl/8 mb-8">Sign in</p>
-      <form className="container text-subtle-1 mb-6">
-        <Email className="mb-6" />
-        <Password />
+      <form className="container text-subtle-dark mb-6">
+        <div className={`mb-6 flex flex-col`}>
+          <Input
+            className="p-3 rounded-lg border border-subtle-light"
+            type="email"
+            name="email"
+            id="email"
+            autoComplete="on"
+            label="Email"
+            labelClassName="mb-2"
+          />
+        </div>
+        <PasswordInput className="relative flex flex-col" />
       </form>
       <div className="container flex justify-end mb-8">
         <Link to="/" className="underline">

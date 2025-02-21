@@ -7,10 +7,11 @@
 
 @theme {
     --color-primary: #121212;
-    --color-subtle-1: #61646B;
-    --color-subtle-2: #AFB1B6;
+    --color-subtle-dark: #61646B;
+    --color-subtle-light: #AFB1B6;
     --color-background: #E0E0E0;
     --color-surface: #FAFAFA;
+    --color-background-dark: #43464D;
     --font-worksans: 'Work Sans';
 }
 

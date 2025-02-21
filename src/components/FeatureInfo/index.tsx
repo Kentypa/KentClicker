@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 type FeatureInfoProps = {
   icon: string;
@@ -10,7 +10,7 @@ type FeatureInfoProps = {
   className?: string;
 };
 
-export const FeatureInfo: React.FC<FeatureInfoProps> = ({
+export const FeatureInfo: FC<FeatureInfoProps> = ({
   icon,
   iconClassName,
   description,

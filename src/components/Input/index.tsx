@@ -1,4 +1,5 @@
-import { ComponentWithChildren } from "../../types/component-with-children.ts";
+import { Label } from "../Label";
+import { FC } from "react";
 
 type AutoComplete = "on" | "off";
 
@@ -9,27 +10,35 @@ type InputProps = {
   placeholder?: string;
   id?: string;
   autoComplete?: AutoComplete;
+  label?: string;
+  labelClassName?: string;
 };
 
-export const Input: ComponentWithChildren<InputProps> = ({
+export const Input: FC<InputProps> = ({
   className,
-  children,
   type,
   id,
   autoComplete,
   name,
   placeholder,
+  label,
+  labelClassName,
 }) => {
   return (
-    <input
-      className={className}
-      type={type}
-      name={name}
-      id={id}
-      autoComplete={autoComplete}
-      placeholder={placeholder}
-    >
-      {children}
-    </input>
+    <>
+      {label && (
+        <Label className={labelClassName} htmlFor={id}>
+          {label}
+        </Label>
+      )}
+      <input
+        className={className}
+        type={type}
+        name={name}
+        id={id}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+      />
+    </>
   );
 };

@@ -1,8 +1,8 @@
 import { Button } from "../Button";
 import GoogleIcon from "../../assets/icons/google-icon.svg";
-import * as React from "react";
+import { FC } from "react";
 
-export const ContinueGoogleButton: React.FC = () => {
+export const ContinueGoogleButton: FC = () => {
   return (
     <Button className="container flex justify-center items-center p-3 bg-background text-primary font-medium rounded-2xl cursor-pointer">
       <div className="flex items-center justify-center size-6 mr-1.5">

@@ -16,7 +16,7 @@ export const Header: FC = () => {
       <Link to="/">
         <Logo className="h-10 w-[93.75px]" />
       </Link>
-      <div className="flex font-normal w-full justify-between items-center max-w-[401px] text-subtle-dark">
+      <div className="flex text-body-large w-full justify-between items-center max-w-[401px] text-subtle-dark">
         <Navigation menuItems={menu} />
       </div>
       <UserPanel />

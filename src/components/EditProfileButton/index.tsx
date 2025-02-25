@@ -10,7 +10,9 @@ export const EditProfileButton: FC<EditProfileButtonProps> = ({
   className,
 }) => {
   return (
-    <Button className={`bg-background rounded-2xl font-medium ${className}`}>
+    <Button
+      className={`bg-background rounded-2xl text-label-large ${className}`}
+    >
       <div className="flex flex-row px-5 py-3">
         <div className="flex items-center justify-center size-6 mr-1.5">
           <img

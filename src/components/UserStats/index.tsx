@@ -16,18 +16,18 @@ export const UserStats: FC<UserStatsProps> = ({ totalCoins, totalClicks }) => {
         description={textFormatter(totalCoins.description)}
         icon={totalCoins.img}
         className={`rounded-l-[10px] max-w-[303.5px] bg-background-dark border px-6 py-4`}
-        mainClassName="text-white text-2xl/6"
+        mainClassName="text-white text-headline-small"
         iconClassName="pr-3"
-        descriptionClassName="text-background"
+        descriptionClassName="text-background text-body-large"
       />
       <FeatureInfo
         main={textFormatter(totalClicks.name)}
         description={textFormatter(totalClicks.description)}
         icon={totalClicks.img}
         className={`rounded-r-[10px] max-w-[303.5px] bg-background-dark border px-6 py-4`}
-        mainClassName="text-white text-2xl/6"
+        mainClassName="text-white text-headline-small"
         iconClassName="pr-3"
-        descriptionClassName="text-background"
+        descriptionClassName="text-background text-body-large"
       />
     </div>
   );

@@ -10,10 +10,10 @@ import { FC } from "react";
 export const SignUpForm: FC = () => {
   return (
     <main className={`container flex max-w-100 flex-col items-center`}>
-      <Title className="text-[2.5rem]/12 mb-12 font-normal text-nowrap">
+      <Title className="text-display-small mb-12 font-normal text-nowrap">
         Welcome to KentClicker
       </Title>
-      <p className="text-2xl/8 mb-8">Sign up</p>
+      <p className="text-headline-small mb-8">Sign up</p>
       <form className="container text-subtle-dark mb-8">
         <div className={`mb-6 flex flex-col`}>
           <Input
@@ -28,10 +28,10 @@ export const SignUpForm: FC = () => {
         </div>
         <PasswordInput className="relative flex flex-col" />
       </form>
-      <Button className="container p-3 bg-primary text-white font-medium gap-1.5 rounded-2xl mb-6 cursor-pointer">
+      <Button className="container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 cursor-pointer">
         Sign up
       </Button>
-      <div className="container flex justify-center mb-8">
+      <div className="text-body-large container flex justify-center mb-8">
         <p>
           Don’t have account yet?{" "}
           <Link to={`/sign-in`} className="underline">
@@ -39,7 +39,7 @@ export const SignUpForm: FC = () => {
           </Link>
         </p>
       </div>
-      <Divider className="mb-6">or</Divider>
+      <Divider className="mb-6 text-body-medium">or</Divider>
       <ContinueGoogleButton />
     </main>
   );

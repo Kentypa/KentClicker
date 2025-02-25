@@ -20,7 +20,7 @@ export const FeatureInfo: FC<FeatureInfoProps> = ({
   className,
 }) => {
   return (
-    <div
+    <li
       className={`flex justify-between items-center w-full border ${className}`}
     >
       <img className={`size-14 ${iconClassName}`} src={icon} alt="stat-icon" />
@@ -28,6 +28,6 @@ export const FeatureInfo: FC<FeatureInfoProps> = ({
         <p className={`${mainClassName}`}>{main}</p>
         <p className={descriptionClassName}>{description}</p>
       </div>
-    </div>
+    </li>
   );
 };

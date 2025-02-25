@@ -11,7 +11,7 @@ const menu = [
 export const Footer: FC = () => {
   return (
     <footer className="flex justify-between items-center py-4 px-30 w-full bg-subtle-dark mt-auto">
-      <div className="flex font-normal w-full justify-between items-center max-w-[422px] m-auto text-white">
+      <div className="flex text-body-large w-full justify-between items-center max-w-[422px] m-auto text-white">
         <Navigation menuItems={menu} />
       </div>
       <div className="flex justify-center size-10 items-center rounded-xl border border-subtle-light">

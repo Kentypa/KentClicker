@@ -1,4 +1,5 @@
 import { FeatureItem } from "./feature-item.ts";
+import { ClickerUpgrade } from "./clicker-upgrade.ts";
 
 export type UserData = {
   name: string;
@@ -7,4 +8,5 @@ export type UserData = {
   achievements: FeatureItem[];
   totalCoins: FeatureItem;
   totalClicks: FeatureItem;
+  upgradesList: ClickerUpgrade[];
 };

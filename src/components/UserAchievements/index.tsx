@@ -12,21 +12,21 @@ export const UserAchievements: FC<UserAchievementProps> = ({
 }) => {
   return (
     <div className="flex flex-col max-w-[1200px] w-full">
-      <div className="text-[22px]/7 pb-6">Achievements</div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="text-title-large pb-6">Achievements</div>
+      <ul className="grid grid-cols-3 gap-6">
         {achievements.map((achievement) => (
           <FeatureInfo
             className="rounded-[10px] border border-subtle-light w-full max-w-[384px] p-6"
             main={textFormatter(achievement.name)}
-            mainClassName="text-medium"
+            mainClassName="text-label-large"
             description={textFormatter(achievement.description)}
-            descriptionClassName="text-subtle-dark truncate"
+            descriptionClassName="text-subtle-dark text-body-large truncate"
             icon={achievement.img}
             iconClassName="mr-4"
             key={achievement.name}
           />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

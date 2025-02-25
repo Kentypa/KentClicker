@@ -10,10 +10,12 @@ export const UserPanel: FC = () => {
     <div className="flex flex-row justify-between items-center w-[143px]">
       <img src={userInfo.iconSmall} alt={"user-logo-light"} />
       <div className="">
-        <p className="text-subtle-dark mb-0.5">{userInfo.name}</p>
+        <p className="text-body-large text-subtle-dark mb-0.5">
+          {userInfo.name}
+        </p>
         <div className="flex justify-between items-center w-full gap-0.5">
           <img src={SmallCoin} className="size-5 m-0.5" alt={"small-coin"} />
-          <p className="font-medium">
+          <p className="text-label-large">
             {textFormatter(userInfo.totalCoins.name)}
           </p>
         </div>

@@ -16,7 +16,7 @@ export const UserInfo: FC<UserInfoProps> = ({
     <div className={`flex justify-between items-center ${className}`}>
       <img src={iconBig} alt={"user-logo"} />
       <div className="flex flex-col max-w-[1016px] w-full">
-        <Title className="text-2xl/8 mb-6">{name}</Title>
+        <Title className="text-headline-small mb-6">{name}</Title>
         <UserStats totalCoins={totalCoins} totalClicks={totalClicks} />
       </div>
     </div>

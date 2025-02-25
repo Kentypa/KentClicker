@@ -8,8 +8,9 @@ import { UserContext } from "../../contexts/user-context.ts";
 import UndefinedIcon from "../../assets/icons/undefined.svg";
 import UserSmallIcon from "../../assets/icons/user-light.svg";
 import UserBigIcon from "../../assets/icons/user-dark.svg";
+import { UserData } from "../../types/user-data.ts";
 
-const user = {
+const user: UserData = {
   name: "Tony Stark",
   iconBig: UserBigIcon,
   iconSmall: UserSmallIcon,
@@ -65,6 +66,14 @@ const user = {
     img: UndefinedIcon,
     description: "Total Clicks",
   },
+  upgradesList: [
+    {
+      img: UndefinedIcon,
+      name: "Click Accelerator",
+      description: "speed of earning x10",
+      price: 40000,
+    },
+  ],
 };
 
 export const ApplicationRoutes: FC = () => {
@@ -75,6 +84,7 @@ export const ApplicationRoutes: FC = () => {
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />
         <Route path="profile" element={<ProfilePage />} />
+        <Route path="home" element={<HomePage />} />
       </Routes>
     </UserContext>
   );

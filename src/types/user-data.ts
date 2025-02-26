@@ -8,5 +8,6 @@ export type UserData = {
   achievements: FeatureItem[];
   totalCoins: FeatureItem;
   totalClicks: FeatureItem;
+  passiveIncome: FeatureItem;
   upgradesList: ClickerUpgrade[];
 };

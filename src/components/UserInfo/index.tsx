@@ -12,12 +12,18 @@ export const UserInfo: FC<UserInfoProps> = ({
   iconBig,
   name,
 }) => {
+  const userStats = { userStats: [totalClicks, totalCoins] };
+
   return (
     <div className={`flex justify-between items-center ${className}`}>
       <img src={iconBig} alt={"user-logo"} />
       <div className="flex flex-col max-w-[1016px] w-full">
         <Title className="text-headline-small mb-6">{name}</Title>
-        <UserStats totalCoins={totalCoins} totalClicks={totalClicks} />
+        <UserStats
+          {...userStats}
+          className="max-w-[608px] gap-x-0.25"
+          itemClassName="py-4 px-6"
+        />
       </div>
     </div>
   );

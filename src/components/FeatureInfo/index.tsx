@@ -20,9 +20,7 @@ export const FeatureInfo: FC<FeatureInfoProps> = ({
   className,
 }) => {
   return (
-    <li
-      className={`flex justify-between items-center w-full border ${className}`}
-    >
+    <li className={`flex justify-between items-center w-full ${className}`}>
       <img className={`size-14 ${iconClassName}`} src={icon} alt="stat-icon" />
       <div className="grid gap-0.5 w-full h-full">
         <p className={`${mainClassName}`}>{main}</p>

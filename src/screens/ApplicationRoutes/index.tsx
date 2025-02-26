@@ -66,6 +66,11 @@ const user: UserData = {
     img: UndefinedIcon,
     description: "Total Clicks",
   },
+  passiveIncome: {
+    name: "1 /sec",
+    img: UndefinedIcon,
+    description: "Passive Income",
+  },
   upgradesList: [
     {
       img: UndefinedIcon,

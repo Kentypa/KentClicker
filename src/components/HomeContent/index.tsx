@@ -1,8 +1,9 @@
-import { FC, useContext } from "react";
-import { UpgradesList } from "../UpgradesList";
-import { UserContext } from "../../contexts/user-context.ts";
-import { UserStats } from "../UserStats/index.tsx";
-import styles from "./HomeContent.module.css";
+import { FC, useContext } from 'react';
+import { UserContext } from '../../contexts/user-context.ts';
+import { UserStats } from '../UserStats/index.tsx';
+import { TapButton } from '../TapButton/index.tsx';
+import { ScrollableUpgradeList } from '../ScrollableUpgradeList/index.tsx';
+import styles from './HomeContent.module.css';
 
 type HomeContentProps = {
   className?: string;
@@ -11,27 +12,22 @@ type HomeContentProps = {
 export const HomeContent: FC<HomeContentProps> = ({ className }) => {
   const userInfo = useContext(UserContext);
   const userStats = {
-    userStats: [
-      userInfo.totalClicks,
-      userInfo.totalCoins,
-      userInfo.passiveIncome,
-    ],
+    userStats: [userInfo.totalClicks, userInfo.totalCoins, userInfo.passiveIncome],
   };
 
   return (
     <main className={`${className} flex w-full px-30 justify-between`}>
-      <div className="flex flex-col max-w-[384px] w-full">
-        <UpgradesList
-          className="max-w-[384px]"
-          upgradesList={userInfo.upgradesList}
-        />
-      </div>
-      <div className="flex flex-col max-w-[792px] w-full">
+      <ScrollableUpgradeList upgradesList={userInfo.upgradesList} />
+      <div className='ml-6 flex flex-col w-full'>
         <UserStats
           {...userStats}
-          className="gap-x-0.25"
+          className='gap-x-0.25'
           itemClassName={`p-6 ${styles.customLetter}`}
           itemMainClassName={styles.customLetter}
+        />
+        <TapButton
+          handleClick={() => {}}
+          className='self-center mt-[110px] size-100'
         />
       </div>
     </main>

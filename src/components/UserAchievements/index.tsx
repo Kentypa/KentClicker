@@ -1,28 +1,26 @@
-import { FeatureItem } from "../../types/feature-item.ts";
-import { FC } from "react";
-import { FeatureInfo } from "../FeatureInfo";
-import { textFormatter } from "../../utils/text-formatter.ts";
+import { FeatureItem } from '../../types/feature-item.ts';
+import { FC } from 'react';
+import { FeatureInfo } from '../FeatureInfo';
+import { textFormatter } from '../../utils/text-formatter.ts';
 
 type UserAchievementProps = {
   achievements: FeatureItem[];
 };
 
-export const UserAchievements: FC<UserAchievementProps> = ({
-  achievements,
-}) => {
+export const UserAchievements: FC<UserAchievementProps> = ({ achievements }) => {
   return (
-    <div className="flex flex-col max-w-[1200px] w-full">
-      <div className="text-title-large pb-6">Achievements</div>
-      <ul className="grid grid-cols-3 gap-6">
+    <div className='flex flex-col max-w-[1200px] w-full'>
+      <div className='text-title-large pb-6'>Achievements</div>
+      <ul className='grid grid-cols-3 gap-6'>
         {achievements.map((achievement) => (
           <FeatureInfo
-            className="rounded-[10px] border border-subtle-light w-full max-w-[384px] p-6"
+            className='rounded-[10px] border border-subtle-light w-full max-w-[384px] p-6'
             main={textFormatter(achievement.name)}
-            mainClassName="text-label-large"
+            mainClassName='text-label-large'
             description={textFormatter(achievement.description)}
-            descriptionClassName="text-subtle-dark text-body-large truncate"
+            descriptionClassName='text-subtle-dark text-body-large truncate'
             icon={achievement.img}
-            iconClassName="mr-4"
+            iconClassName='mr-4'
             key={achievement.name}
           />
         ))}

@@ -1,5 +1,5 @@
-import { FeatureItem } from "./feature-item.ts";
-import { ClickerUpgrade } from "./clicker-upgrade.ts";
+import { FeatureItem } from './feature-item.ts';
+import { ClickerUpgrade } from './clicker-upgrade.ts';
 
 export type UserData = {
   name: string;

@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { FeatureItem } from "../../types/feature-item.ts";
-import { FeatureInfo } from "../FeatureInfo";
-import { textFormatter } from "../../utils/text-formatter.ts";
+import { FC } from 'react';
+import { FeatureItem } from '../../types/feature-item.ts';
+import { FeatureInfo } from '../FeatureInfo';
+import { textFormatter } from '../../utils/text-formatter.ts';
 
 type UserStatsProps = {
   userStats: FeatureItem[];

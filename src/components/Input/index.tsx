@@ -1,7 +1,7 @@
-import { Label } from "../Label";
-import { FC } from "react";
+import { Label } from '../Label';
+import { FC } from 'react';
 
-type AutoComplete = "on" | "off";
+type AutoComplete = 'on' | 'off';
 
 type InputProps = {
   className?: string;
@@ -27,7 +27,10 @@ export const Input: FC<InputProps> = ({
   return (
     <>
       {label && (
-        <Label className={labelClassName} htmlFor={id}>
+        <Label
+          className={labelClassName}
+          htmlFor={id}
+        >
           {label}
         </Label>
       )}

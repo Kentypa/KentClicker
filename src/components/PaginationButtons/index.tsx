@@ -22,9 +22,9 @@ export const PaginationButtons: FC<PaginationButtonsProps> = ({
     if (page < 1 || page > totalPages) {
       return;
     }
-    const path = location.pathname.replace(/\d+$/, '');
+    const path = location.pathname.replace(/\/\d+$/, '');
     setPage(page);
-    nav(`${path}${page}`);
+    nav(`${path}/${page}`);
   }
 
   return (

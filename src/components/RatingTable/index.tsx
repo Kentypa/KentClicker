@@ -16,7 +16,7 @@ export const PlayerTable: FC<PlayerTableProps> = ({ users }) => {
         {TableData.map((item) => (
           <div
             key={item}
-            className={`py-2.25 px-2.5 bg-white text-label-large text-subtle-dark text-left first:text-center`}
+            className={`p-2.25 bg-white text-label-large text-subtle-dark text-left first:text-center`}
           >
             {item}
           </div>
@@ -27,13 +27,13 @@ export const PlayerTable: FC<PlayerTableProps> = ({ users }) => {
             key={user.name}
             className='contents'
           >
-            <div className='flex py-2 px-2.5 bg-white justify-center items-center'>
+            <div className='flex py-2 px-2.25 bg-white justify-center items-center'>
               <div className='text-body-large relative flex flex-row items-center justify-center w-full'>
                 <RatingIcon rating={user.rating ?? 0} />
                 {user.rating}
               </div>
             </div>
-            <div className='py-2 px-2.5 bg-white text-left text-body-large flex items-center'>
+            <div className='py-2 px-2.25 bg-white text-left text-body-large flex items-center'>
               <img
                 src={user.avatar}
                 alt={user.name}
@@ -41,10 +41,10 @@ export const PlayerTable: FC<PlayerTableProps> = ({ users }) => {
               />
               {user.name}
             </div>
-            <div className='py-2 px-2.5 bg-white text-left text-label-large pb-4.5'>
+            <div className='py-2 px-2.25 bg-white text-left text-label-large pb-4.5'>
               {numberFormatter(user.balance)}
             </div>
-            <div className='py-2 px-2.5 bg-white text-left text-body-large pb-4.5'>
+            <div className='py-2 px-2.25 bg-white text-left text-body-large pb-4.5'>
               {numberFormatter(user.upgrades)}
             </div>
           </div>

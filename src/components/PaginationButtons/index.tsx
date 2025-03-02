@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Button } from '../Button';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import ArrowLeft from '../../assets/icons/arrow-left.svg';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
 
@@ -16,13 +16,15 @@ export const PaginationButtons: FC<PaginationButtonsProps> = ({
   setPage,
 }) => {
   const nav = useNavigate();
+  const location = useLocation();
 
   function handleSetPage(page: number) {
     if (page < 1 || page > totalPages) {
       return;
     }
+    const path = location.pathname.replace(/\d+$/, '');
     setPage(page);
-    nav(`/rating/${page}`);
+    nav(`${path}${page}`);
   }
 
   return (

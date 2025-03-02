@@ -16,7 +16,7 @@ export const HomeContent: FC<HomeContentProps> = ({ className }) => {
   };
 
   return (
-    <main className={`${className} flex w-full px-30 justify-between`}>
+    <main className={`${className} flex w-full px-30 max-w-[1440px] justify-between`}>
       <ScrollableUpgradeList upgradesList={userInfo.upgradesList} />
       <div className='ml-6 flex flex-col w-full'>
         <UserStats

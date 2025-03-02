@@ -16,7 +16,7 @@ export const PasswordInput: FC<PasswordInputProps> = ({ className }) => {
       <Label className='mb-2'>Password</Label>
       <div className='flex justify-end items-center'>
         <Input
-          className='rounded-lg border border-subtle-light container p-3'
+          className='rounded-lg border border-subtle-light container p-2.75'
           id='password'
           name='password'
           type={isPasswordVisible ? 'text' : 'password'}

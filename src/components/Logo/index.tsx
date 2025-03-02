@@ -1,4 +1,4 @@
-import logo from '../../assets/images/Logo.jpeg';
+import logo from '../../assets/images/logo-main.jpeg';
 import { FC } from 'react';
 
 type LogoProps = {

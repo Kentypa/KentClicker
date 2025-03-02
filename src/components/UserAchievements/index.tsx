@@ -14,7 +14,7 @@ export const UserAchievements: FC<UserAchievementProps> = ({ achievements }) => 
       <ul className='grid grid-cols-3 gap-6'>
         {achievements.map((achievement) => (
           <FeatureInfo
-            className='rounded-[10px] border border-subtle-light w-full max-w-[384px] p-6'
+            className='rounded-[10px] border border-subtle-light w-full p-5.75'
             main={textFormatter(achievement.name)}
             mainClassName='text-label-large'
             description={textFormatter(achievement.description)}

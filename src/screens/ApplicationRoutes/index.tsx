@@ -4,11 +4,12 @@ import { HomePage } from '../HomePage';
 import { SignInPage } from '../SignInPage';
 import { SignUpPage } from '../SignUpPage';
 import { ProfilePage } from '../ProfilePage';
+import { UserData } from '../../types/user-data.ts';
+import { RatingPage } from '../RatingPage/index.tsx';
 import { UserContext } from '../../contexts/user-context.ts';
 import UndefinedIcon from '../../assets/icons/undefined.svg';
 import UserSmallIcon from '../../assets/icons/user-light.svg';
 import UserBigIcon from '../../assets/icons/user-dark.svg';
-import { UserData } from '../../types/user-data.ts';
 
 const user: UserData = {
   name: 'Tony Stark',
@@ -117,7 +118,7 @@ const user: UserData = {
     {
       img: UndefinedIcon,
       name: 'Gnome Party',
-      description: 'automated clicks for 24 hours',
+      description: 'gnomes clicks 24 hours',
       price: 1000000,
     },
   ],
@@ -144,8 +145,8 @@ export const ApplicationRoutes: FC = () => {
           element={<ProfilePage />}
         />
         <Route
-          path='home'
-          element={<HomePage />}
+          path='rating/:page?'
+          element={<RatingPage />}
         />
       </Routes>
     </UserContext>

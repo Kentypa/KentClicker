@@ -46,18 +46,18 @@ export const ScrollableUpgradeList: FC<ScrollableUpgradeListProps> = ({ upgrades
         arrowIcon={ArrowUp}
         scrollDirection={scrollUp}
         visable={scrollPositon === ScrollPosition.BOTTOM}
-        buttonClassName='bottom-0'
-        gradientClassName='bg-gradient-to-b bottom-0'
+        buttonClassName='top-0'
+        gradientClassName='bg-gradient-to-t top-0'
       />
       <GradientScrollButton
         arrowIcon={ArrowDown}
         scrollDirection={scrollDown}
         visable={scrollPositon === ScrollPosition.TOP}
-        buttonClassName='top-0'
-        gradientClassName='bg-gradient-to-t top-0'
+        buttonClassName='bottom-0'
+        gradientClassName='bg-gradient-to-b bottom-0'
       />
       <UpgradesList
-        className='[scrollbar-width:none] scroll-smooth max-w-[384px] w-full flex flex-col gap-3 max-h-[726px] overflow-y-auto box-border'
+        className='[scrollbar-width:none] scroll-smooth max-w-[384px] w-full flex flex-col gap-3 max-h-[726px] overflow-y-auto'
         upgradesList={upgradesList}
         listRef={listRef}
         onScroll={checkScrollPosition}

@@ -10,7 +10,7 @@ type UpgradeItemProps = {
 
 export const UpgradeItem: FC<UpgradeItemProps> = ({ upgrade }) => {
   return (
-    <li className='flex justify-between w-full px-6 py-4 rounded-[10px] border border-subtle-light hover:border-primary'>
+    <li className='flex justify-between w-full px-6 py-3.75 rounded-[10px] border border-subtle-light hover:border-primary'>
       <img
         className='size-12 border border-subtle-light rounded-lg'
         src={upgrade.img}

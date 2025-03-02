@@ -6,8 +6,8 @@ import { Navigation } from '../Navigation';
 
 const menu = [
   { link: '/', name: 'Home' },
-  { link: '/about', name: 'About Us' },
-  { link: '/contact', name: 'Contact' },
+  { link: '/market', name: 'Market' },
+  { link: '/rating', name: 'Rating' },
 ];
 
 export const Header: FC = () => {

@@ -17,7 +17,7 @@ export const SignUpForm: FC = () => {
       <form className='container text-subtle-dark mb-8'>
         <div className={`mb-6 flex flex-col`}>
           <Input
-            className='p-3 rounded-lg border border-subtle-light'
+            className='p-2.75 rounded-lg border border-subtle-light'
             type='email'
             name='email'
             id='email'
@@ -42,7 +42,7 @@ export const SignUpForm: FC = () => {
           </Link>
         </p>
       </div>
-      <Divider className='mb-6 text-body-medium'>or</Divider>
+      <Divider className='mb-8 text-body-medium'>or</Divider>
       <ContinueGoogleButton />
     </main>
   );

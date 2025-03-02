@@ -1,6 +1,6 @@
-import "./App.css";
-import { BrowserRouter } from "react-router";
-import { ApplicationRoutes } from "./screens/ApplicationRoutes";
+import { BrowserRouter } from 'react-router';
+import { ApplicationRoutes } from './screens/ApplicationRoutes';
+import './App.css';
 
 function App() {
   return (

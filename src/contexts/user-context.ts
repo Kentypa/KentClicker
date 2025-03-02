@@ -1,7 +1,7 @@
-import React from 'react';
+import { createContext } from 'react';
 import { UserData } from '../types/user-data.ts';
 
-export const UserContext = React.createContext<UserData>({
+export const UserContext = createContext<UserData>({
   achievements: [],
   iconBig: '',
   iconSmall: '',

@@ -8,8 +8,8 @@ export const UserProfile: FC = () => {
   const userInfo = useContext(UserContext);
 
   return (
-    <main className='flex justify-center px-30 pb-30 w-full'>
-      <div className='flex flex-col max-w-[1200px] pt-10 w-full relative'>
+    <main className='flex justify-center px-30 pb-30 mt-10 w-full'>
+      <div className='flex flex-col max-w-[1200px] w-full relative'>
         <UserInfo
           {...userInfo}
           className='pb-10'

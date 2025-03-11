@@ -7,6 +7,7 @@ import { ProfilePage } from '../ProfilePage';
 import { UserData } from '../../types/user-data.ts';
 import { RatingPage } from '../RatingPage/index.tsx';
 import { UserContext } from '../../contexts/user-context.ts';
+import { MarketPage } from '../MarketPage/index.tsx';
 import UndefinedIcon from '../../assets/icons/undefined.svg';
 import UserSmallIcon from '../../assets/icons/user-light.svg';
 import UserBigIcon from '../../assets/icons/user-dark.svg';
@@ -147,6 +148,10 @@ export const ApplicationRoutes: FC = () => {
         <Route
           path='rating/:page?'
           element={<RatingPage />}
+        />
+        <Route
+          path='market/:page?'
+          element={<MarketPage />}
         />
       </Routes>
     </UserContext>

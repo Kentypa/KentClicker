@@ -25,7 +25,7 @@ export const PasswordInput: FC<PasswordInputProps> = ({ className }) => {
         <img
           src={isPasswordVisible ? eyeOpened : eyeClosed}
           alt='eyeIcon'
-          className='absolute mr-3 size-6 cursor-pointer'
+          className='absolute mr-3 size-6 '
           onClick={() => {
             setIsPasswordVisible(!isPasswordVisible);
           }}

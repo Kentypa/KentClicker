@@ -34,7 +34,7 @@ export const SignInForm: FC = () => {
           Forgot password?
         </Link>
       </div>
-      <Button className='container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 cursor-pointer'>
+      <Button className='container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 '>
         Sign in
       </Button>
       <div className='text-body-large container flex justify-center mb-8'>

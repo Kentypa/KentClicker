@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { UserProfile } from '../../components/UserProfile';
-import { PageWithContent } from '../../components/PageWithContent';
+import { MainContentWrapper } from '../../components/MainContentWrapper';
 
 export const ProfilePage: FC = () => {
   return (
-    <PageWithContent>
+    <MainContentWrapper>
       <UserProfile />
-    </PageWithContent>
+    </MainContentWrapper>
   );
 };

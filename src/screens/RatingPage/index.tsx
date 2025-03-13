@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { RatingContent } from '../../components/RatingContent';
-import { PageWithContent } from '../../components/PageWithContent';
+import { MainContentWrapper } from '../../components/MainContentWrapper';
 
 export const RatingPage: FC = () => {
   return (
-    <PageWithContent>
+    <MainContentWrapper>
       <RatingContent />
-    </PageWithContent>
+    </MainContentWrapper>
   );
 };

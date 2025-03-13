@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { MarketContent } from '../../components/MarketContent';
-import { PageWithContent } from '../../components/PageWithContent';
+import { MainContentWrapper } from '../../components/MainContentWrapper';
 
 export const MarketPage: FC = () => {
   return (
-    <PageWithContent>
+    <MainContentWrapper>
       <MarketContent />
-    </PageWithContent>
+    </MainContentWrapper>
   );
 };

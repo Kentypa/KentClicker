@@ -5,18 +5,14 @@ import { TapButton } from '../TapButton/index.tsx';
 import { ScrollableUpgradeList } from '../ScrollableUpgradeList/index.tsx';
 import styles from './HomeContent.module.css';
 
-type HomeContentProps = {
-  className?: string;
-};
-
-export const HomeContent: FC<HomeContentProps> = ({ className }) => {
+export const HomeContent: FC = () => {
   const userInfo = useContext(UserContext);
   const userStats = {
     userStats: [userInfo.totalClicks, userInfo.totalCoins, userInfo.passiveIncome],
   };
 
   return (
-    <main className={`${className} flex w-full px-30 max-w-[1440px] justify-between`}>
+    <main className='my-10 flex w-full px-30 max-w-[1440px] justify-between'>
       <ScrollableUpgradeList upgradesList={userInfo.upgradesList} />
       <div className='ml-6 flex flex-col w-full'>
         <UserStats

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { HomeContent } from '../../components/HomeContent';
-import { PageWithContent } from '../../components/PageWithContent';
+import { MainContentWrapper } from '../../components/MainContentWrapper';
 
 export const HomePage: FC = () => {
   return (
-    <PageWithContent>
-      <HomeContent className='my-10' />
-    </PageWithContent>
+    <MainContentWrapper>
+      <HomeContent />
+    </MainContentWrapper>
   );
 };

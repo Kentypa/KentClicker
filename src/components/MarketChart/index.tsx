@@ -22,9 +22,13 @@ const labels = [
 
 const prices = [10, 40, 70, 100, 130, 160];
 
-export const MarketChart: FC = () => {
+type MarketChartProps = {
+  className?: string;
+};
+
+export const MarketChart: FC<MarketChartProps> = ({ className }) => {
   return (
-    <div className='flex flex-col'>
+    <div className={`flex flex-col ${className}`}>
       <h2 className='text-headline-small mb-4'>Average prices trendline</h2>
       <div className='flex h-[438px]'>
         <D3TicksMarks

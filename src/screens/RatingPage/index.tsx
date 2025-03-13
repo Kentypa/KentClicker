@@ -1,14 +1,11 @@
 import { FC } from 'react';
-import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
 import { RatingContent } from '../../components/RatingContent';
+import { PageWithContent } from '../../components/PageWithContent';
 
 export const RatingPage: FC = () => {
   return (
-    <div className='flex flex-col items-center min-h-screen'>
-      <Header />
+    <PageWithContent>
       <RatingContent />
-      <Footer />
-    </div>
+    </PageWithContent>
   );
 };

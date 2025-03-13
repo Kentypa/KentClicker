@@ -1,9 +1,17 @@
 import { FC } from 'react';
+import { OffersFiltering } from '../OffersFiltering';
+import { OffersList } from '../OffersList';
+import { UserOffer } from '../../types/user-offer';
 
-export const OffersContent: FC = () => {
+type OffersContentProps = {
+  offers: UserOffer[];
+};
+
+export const OffersContent: FC<OffersContentProps> = ({ offers }) => {
   return (
-    <div>
-      <div></div>
+    <div className='flex flex-col'>
+      <OffersFiltering className='mb-8' />
+      <OffersList offers={offers} />
     </div>
   );
 };

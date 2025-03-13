@@ -1,9 +1,9 @@
 import { Label } from '../Label';
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 type AutoComplete = 'on' | 'off';
 
-type InputProps = {
+export type InputProps = {
   className?: string;
   type?: string;
   name?: string;
@@ -12,6 +12,8 @@ type InputProps = {
   autoComplete?: AutoComplete;
   label?: string;
   labelClassName?: string;
+  handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
 };
 
 export const Input: FC<InputProps> = ({
@@ -23,6 +25,8 @@ export const Input: FC<InputProps> = ({
   placeholder,
   label,
   labelClassName,
+  handleChange,
+  value,
 }) => {
   return (
     <>
@@ -41,6 +45,8 @@ export const Input: FC<InputProps> = ({
         id={id}
         autoComplete={autoComplete}
         placeholder={placeholder}
+        onChange={handleChange}
+        value={value}
       />
     </>
   );

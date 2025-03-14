@@ -1,6 +1,6 @@
 import { ClickerUpgrade } from '../../types/clicker-upgrade.ts';
 import { FC } from 'react';
-import { UpgradeItem } from '../UpgradeItem';
+import { UpgradeItem } from '../ui/UpgradeItem/index.tsx';
 
 type UpgradesListProps = {
   upgradesList: ClickerUpgrade[];
@@ -19,8 +19,7 @@ export const UpgradesList: FC<UpgradesListProps> = ({
     <ul
       ref={listRef}
       className={className}
-      onScroll={onScroll}
-    >
+      onScroll={onScroll}>
       {upgradesList.map((item) => (
         <UpgradeItem
           upgrade={item}

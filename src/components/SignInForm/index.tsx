@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { Title } from '../Title';
+import { Title } from '../ui/Title';
 import { Link } from 'react-router';
 import { Button } from '../Button';
-import { Divider } from '../Divider';
-import { ContinueGoogleButton } from '../ContinueGoogleButton';
-import { Input } from '../Input';
-import { PasswordInput } from '../PasswordInput';
+import { Divider } from '../ui/Divider';
+import { ContinueGoogleButton } from '../ui/ContinueGoogleButton';
+import { Input } from '../ui/Input';
+import { PasswordInput } from '../ui/PasswordInput';
 
 export const SignInForm: FC = () => {
   return (
@@ -29,8 +29,7 @@ export const SignInForm: FC = () => {
       <div className='container flex justify-end mb-8'>
         <Link
           to='/'
-          className='text-body-large underline'
-        >
+          className='text-body-large underline'>
           Forgot password?
         </Link>
       </div>
@@ -42,8 +41,7 @@ export const SignInForm: FC = () => {
           Already have an account?{' '}
           <Link
             to={`/sign-up`}
-            className='underline'
-          >
+            className='underline'>
             Sign up
           </Link>
         </p>

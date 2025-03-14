@@ -1,4 +1,4 @@
-import { Title } from '../Title';
+import { Title } from '../ui/Title';
 import { UserStats } from '../UserStats';
 import { UserData } from '../../types/user-data.ts';
 import { FC } from 'react';

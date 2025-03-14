@@ -2,7 +2,7 @@ import { FC, useContext } from 'react';
 import { UserInfo } from '../UserInfo';
 import { UserAchievements } from '../UserAchievements';
 import { UserContext } from '../../contexts/user-context.ts';
-import { EditProfileButton } from '../EditProfileButton';
+import { EditProfileButton } from '../ui/EditProfileButton/index.tsx';
 
 export const UserProfile: FC = () => {
   const userInfo = useContext(UserContext);
@@ -12,7 +12,7 @@ export const UserProfile: FC = () => {
       <div className='flex flex-col max-w-[1200px] w-full relative'>
         <UserInfo
           {...userInfo}
-          className='pb-10'
+          className='mb-10'
         />
         <EditProfileButton className='absolute right-0' />
         <UserAchievements achievements={userInfo.achievements} />

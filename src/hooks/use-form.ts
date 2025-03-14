@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 export function useForm(
   initialState: Record<string, string | number>,
-  onSubmit?: (formState: Record<string, string | number>) => void,
+  onSubmit?: (formState: Record<string, string | number>) => void
 ) {
   const [formState, setFormState] = useState(initialState);
 
@@ -19,5 +19,12 @@ export function useForm(
     onSubmit?.(formState);
   }
 
-  return { formState, handleChange, handleSubmit };
+  function handleChangeByValue(name: string, value: string | number) {
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }
+
+  return { formState, handleChange, handleChangeByValue, handleSubmit };
 }

@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Logo } from '../Logo';
+import { Logo } from '../ui/Logo';
 import { Link } from 'react-router';
 import { UserPanel } from '../UserPanel';
-import { Navigation } from '../Navigation';
+import { Navigation } from '../ui/Navigation';
 
 const menu = [
   { link: '/', name: 'Home' },

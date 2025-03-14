@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Input } from '../Input';
+import { Input } from '../ui/Input';
 import { Button } from '../Button';
 // import { useForm } from '../../hooks/use-form';
 
@@ -33,8 +33,7 @@ export const FilterForm: FC = () => {
       </div>
       <Button
         type='submit'
-        className='w-full text-label-large rounded-2xl border border-subtle-light py-2.75 px-4.75'
-      >
+        className='w-full text-label-large rounded-2xl border border-subtle-light py-2.75 px-4.75'>
         Apply filters
       </Button>
     </form>

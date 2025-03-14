@@ -1,9 +1,9 @@
 import { FC, useRef, useState } from 'react';
 import { UpgradesList } from '../UpgradesList';
 import { ClickerUpgrade } from '../../types/clicker-upgrade';
+import { GradientScrollButton } from '../ui/GradientScrollButton';
 import ArrowDown from '../../assets/icons/arrow-down.svg';
 import ArrowUp from '../../assets/icons/arrow-up.svg';
-import { GradientScrollButton } from '../GradientScrollButton';
 
 type ScrollableUpgradeListProps = {
   upgradesList: ClickerUpgrade[];

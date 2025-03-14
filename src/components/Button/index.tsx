@@ -1,11 +1,9 @@
 import { ComponentWithChildren } from '../../types/component-with-children.tsx';
 
-type buttonTypes = 'submit' | 'button' | 'reset';
-
 type ButtonProps = {
   handleClick?: () => void;
   className?: string;
-  type?: buttonTypes;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 };
 
 export const Button: ComponentWithChildren<ButtonProps> = ({
@@ -18,8 +16,7 @@ export const Button: ComponentWithChildren<ButtonProps> = ({
     <button
       className={className}
       onClick={handleClick}
-      type={type ?? 'button'}
-    >
+      type={type ?? 'button'}>
       {children}
     </button>
   );

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { D3Chart } from '../D3Chart';
-import { D3AxisTicks } from '../D3AxisTicks';
-import { D3TicksMarks } from '../D3TicksMarks';
+import { D3Chart } from '../ui/D3Chart';
+import { D3AxisTicks } from '../ui/D3AxisTicks';
+import { D3TicksMarks } from '../ui/D3TicksMarks';
 
 const labels = [
   'Nov 23',

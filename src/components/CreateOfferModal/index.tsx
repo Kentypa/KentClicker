@@ -1,18 +1,17 @@
 import { FC } from 'react';
-import { NumericInput } from '../NumericInput';
+import { NumericInput } from '../ui/NumericInput';
 import { useForm } from '../../hooks/use-form';
 import { Button } from '../Button';
 
 type CreateOfferModalProps = {
-  setVisable: (newState: boolean) => void;
+  toggleModal: () => void;
 };
 
-export const CreateOfferModal: FC<CreateOfferModalProps> = ({ setVisable }) => {
-  const { formState, handleChange } = useForm({ amountOfCoinsToSell: 0, pricePerCoin: 0 });
-
-  function handleClose() {
-    setVisable(false);
-  }
+export const CreateOfferModal: FC<CreateOfferModalProps> = ({ toggleModal }) => {
+  const { formState, handleChangeByValue } = useForm({
+    amountOfCoinsToSell: 0,
+    pricePerCoin: 0,
+  });
 
   return (
     <form className='flex flex-col max-w-[320px] w-full gap-6 rounded-lg border border-subtle-light p-5.75 bg-white'>
@@ -25,7 +24,7 @@ export const CreateOfferModal: FC<CreateOfferModalProps> = ({ setVisable }) => {
             className='text-center text-body-large p-2.75 border border-subtle-light rounded-lg w-full'
             name='amountOfCoinsToSell'
             value={formState.amountOfCoinsToSell}
-            handleChange={handleChange}
+            handleChangeByValue={handleChangeByValue}
           />
           <NumericInput
             label='Amount of coins to sell'
@@ -33,19 +32,18 @@ export const CreateOfferModal: FC<CreateOfferModalProps> = ({ setVisable }) => {
             className='text-center text-body-large p-2.75 border border-subtle-light rounded-lg w-full'
             name='pricePerCoin'
             value={formState.pricePerCoin}
-            handleChange={handleChange}
+            handleChangeByValue={handleChangeByValue}
           />
         </div>
       </div>
       <div className='flex justify-end gap-4'>
         <Button
           className='bg-background py-2.5 px-4 rounded-xl'
-          handleClick={handleClose}
-        >
-          <p className='text-primary text-label-medium w-[49px]'>Cancel</p>
+          handleClick={toggleModal}>
+          <span className='text-primary text-label-medium w-[49px]'>Cancel</span>
         </Button>
         <Button className='bg-primary py-2.5 px-4 rounded-xl'>
-          <p className='text-white text-label-medium w-[48px]'>Create</p>
+          <span className='text-white text-label-medium w-[48px]'>Create</span>
         </Button>
       </div>
     </form>

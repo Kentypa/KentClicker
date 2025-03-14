@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { MockUser } from '../../types/mock-user';
-import { RatingIcon } from '../RatingIcon';
+import { RatingIcon } from '../ui/RatingIcon';
 import { numberFormatter } from '../../utils/number-formatter';
 
 type PlayerTableProps = {
@@ -16,8 +16,7 @@ export const PlayerTable: FC<PlayerTableProps> = ({ users }) => {
         {TableData.map((item) => (
           <div
             key={item}
-            className={`p-2.25 bg-white text-label-large text-subtle-dark text-left first:text-center`}
-          >
+            className={`p-2.25 bg-white text-label-large text-subtle-dark text-left first:text-center`}>
             {item}
           </div>
         ))}
@@ -25,8 +24,7 @@ export const PlayerTable: FC<PlayerTableProps> = ({ users }) => {
         {users.map((user) => (
           <div
             key={user.name}
-            className='contents'
-          >
+            className='contents'>
             <div className='flex py-2 px-2.25 bg-white justify-center items-center'>
               <div className='text-body-large relative flex flex-row items-center justify-center w-full'>
                 <RatingIcon rating={user.rating ?? 0} />

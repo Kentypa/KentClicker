@@ -1,10 +1,10 @@
-import { Title } from '../Title';
+import { Title } from '../ui/Title';
 import { Link } from 'react-router';
 import { Button } from '../Button';
-import { Divider } from '../Divider';
-import { ContinueGoogleButton } from '../ContinueGoogleButton';
-import { Input } from '../Input';
-import { PasswordInput } from '../PasswordInput';
+import { Divider } from '../ui/Divider';
+import { ContinueGoogleButton } from '../ui/ContinueGoogleButton';
+import { Input } from '../ui/Input';
+import { PasswordInput } from '../ui/PasswordInput';
 import { FC } from 'react';
 
 export const SignUpForm: FC = () => {
@@ -36,8 +36,7 @@ export const SignUpForm: FC = () => {
           Don’t have account yet?{' '}
           <Link
             to={`/sign-in`}
-            className='underline'
-          >
+            className='underline'>
             Sign in
           </Link>
         </p>

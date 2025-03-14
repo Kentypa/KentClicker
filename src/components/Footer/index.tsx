@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Moon from '../../assets/icons/moon.svg';
-import { Navigation } from '../Navigation';
+import { Navigation } from '../ui/Navigation';
 
 const menu = [
   { link: '/about-game', name: 'About Game' },

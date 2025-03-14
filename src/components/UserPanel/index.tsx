@@ -14,8 +14,7 @@ export const UserPanel: FC = () => {
       <Button
         handleClick={() => {
           nav('/profile');
-        }}
-      >
+        }}>
         <img
           src={userInfo.iconSmall}
           alt={'user-logo-light'}

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { UserOffer } from '../../types/user-offer';
-import { UserOfferItem } from '../UserOfferItem';
+import { UserOfferItem } from '../ui/UserOfferItem';
 
 type OffersListProps = {
   offers: UserOffer[];

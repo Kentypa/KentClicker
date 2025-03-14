@@ -29,9 +29,9 @@ export const UserStats: FC<UserStatsProps> = ({
             description={textFormatter(feature.description)}
             icon={feature.img}
             key={feature.description}
-            className={`first:rounded-l-[10px] last:rounded-r-[10px] w-full bg-background-dark ${itemClassName}`}
+            className={`gap-3 first:rounded-l-[10px] last:rounded-r-[10px] w-full bg-background-dark ${itemClassName}`}
             mainClassName={`text-white text-headline-small ${itemMainClassName}`}
-            iconClassName={`pr-3 ${itemIconClassName}`}
+            iconClassName={`${itemIconClassName}`}
             descriptionClassName={`text-background text-body-large ${itemDescriptionClassName}`}
           />
         );

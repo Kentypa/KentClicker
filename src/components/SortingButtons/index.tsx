@@ -6,7 +6,7 @@ type SortingButtonsProps = {
   className?: string;
   sortingType: SortingType;
   setSortingType: (sortingType: SortingType) => void;
-  sortingTypes: string[];
+  sortingTypes: SortingType[];
   buttonClassName?: string;
 };
 
@@ -22,11 +22,12 @@ export const SortingButtons: FC<SortingButtonsProps> = ({
       {sortingTypes.map((item) => (
         <Button
           handleClick={() => {
-            setSortingType(item as SortingType);
+            setSortingType(item);
           }}
-          className={`${buttonClassName} ${item === sortingType ? 'bg-background border-primary' : 'border-subtle-light'}`}
-          key={item}
-        >
+          className={`${buttonClassName} ${
+            item === sortingType ? 'bg-background border-primary' : 'border-subtle-light'
+          }`}
+          key={item}>
           <div className='w-[100.75px] h-[20px]'>{item}</div>
         </Button>
       ))}

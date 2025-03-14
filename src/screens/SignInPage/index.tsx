@@ -1,4 +1,4 @@
-import { Logo } from '../../components/Logo';
+import { Logo } from '../../components/ui/Logo';
 import { SignInForm } from '../../components/SignInForm';
 import { FC } from 'react';
 

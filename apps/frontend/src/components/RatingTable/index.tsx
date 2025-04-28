@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MockUser } from "../../types/mock-user";
-import { RatingIcon } from "../ui/RatingIcon";
+import { RatingIcon } from "../UI/RatingIcon";
 import { numberFormatter } from "../../utils/number-formatter";
 
 type PlayerTableProps = {

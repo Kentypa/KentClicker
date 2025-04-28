@@ -1,4 +1,4 @@
-import { Title } from "../ui/Title/index.tsx";
+import { Title } from "../UI/Title/index.tsx";
 import { UserStats } from "../UserStats/index.tsx";
 import { UserData } from "../../types/user-data.ts";
 import { FC } from "react";
@@ -16,7 +16,10 @@ export const UserInfo: FC<UserInfoProps> = ({
 
   return (
     <div className={`flex justify-between items-center ${className}`}>
-      <img src={iconBig} alt={"user-logo"} />
+      <img
+        src={iconBig}
+        alt={"user-logo"}
+      />
       <div className="flex flex-col max-w-[1016px] w-full">
         <Title className="text-headline-small mb-6">{name}</Title>
         <UserStats

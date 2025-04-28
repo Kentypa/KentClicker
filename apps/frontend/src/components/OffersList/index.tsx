@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { UserOffer } from '../../types/user-offer';
-import { UserOfferItem } from '../ui/UserOfferItem';
+import { FC } from "react";
+import { UserOffer } from "../../types/user-offer";
+import { UserOfferItem } from "../UI/UserOfferItem";
 
 type OffersListProps = {
   offers: UserOffer[];
@@ -8,7 +8,7 @@ type OffersListProps = {
 
 export const OffersList: FC<OffersListProps> = ({ offers }) => {
   return (
-    <ul className='grid grid-cols-3 gap-6'>
+    <ul className="grid grid-cols-3 gap-6">
       {offers.map((offer, index) => (
         <UserOfferItem
           offer={offer}

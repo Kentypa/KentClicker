@@ -1,11 +1,11 @@
 import { FC, useEffect } from "react";
-import { Title } from "../ui/Title";
+import { Title } from "../UI/Title";
 import { Link, useNavigate } from "react-router";
 import { Button } from "../Button";
-import { Divider } from "../ui/Divider";
-import { ContinueGoogleButton } from "../ui/ContinueGoogleButton";
-import { Input } from "../ui/Input";
-import { PasswordInput } from "../ui/PasswordInput";
+import { Divider } from "../UI/Divider";
+import { ContinueGoogleButton } from "../UI/ContinueGoogleButton";
+import { Input } from "../UI/Input";
+import { PasswordInput } from "../UI/PasswordInput";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { PagesEndponts } from "../../enums/pagesEndpoints";
 import { Queries } from "../../enums/queriesKeys";

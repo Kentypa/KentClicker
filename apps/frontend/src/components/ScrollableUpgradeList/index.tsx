@@ -1,9 +1,9 @@
-import { FC, useRef, useState } from 'react';
-import { UpgradesList } from '../UpgradesList';
-import { ClickerUpgrade } from '../../types/clicker-upgrade';
-import { GradientScrollButton } from '../ui/GradientScrollButton';
-import ArrowDown from '../../assets/icons/arrow-down.svg';
-import ArrowUp from '../../assets/icons/arrow-up.svg';
+import { FC, useRef, useState } from "react";
+import { UpgradesList } from "../UpgradesList";
+import { ClickerUpgrade } from "../../types/clicker-upgrade";
+import { GradientScrollButton } from "../UI/GradientScrollButton";
+import ArrowDown from "../../assets/icons/arrow-down.svg";
+import ArrowUp from "../../assets/icons/arrow-up.svg";
 
 type ScrollableUpgradeListProps = {
   upgradesList: ClickerUpgrade[];
@@ -15,9 +15,13 @@ enum ScrollPosition {
   BOTTOM,
 }
 
-export const ScrollableUpgradeList: FC<ScrollableUpgradeListProps> = ({ upgradesList }) => {
+export const ScrollableUpgradeList: FC<ScrollableUpgradeListProps> = ({
+  upgradesList,
+}) => {
   const listRef = useRef<HTMLUListElement>(null);
-  const [scrollPositon, setScrollPosition] = useState<ScrollPosition>(ScrollPosition.TOP);
+  const [scrollPositon, setScrollPosition] = useState<ScrollPosition>(
+    ScrollPosition.TOP,
+  );
 
   const checkScrollPosition = () => {
     if (listRef.current) {
@@ -41,23 +45,23 @@ export const ScrollableUpgradeList: FC<ScrollableUpgradeListProps> = ({ upgrades
   };
 
   return (
-    <div className='relative flex flex-col max-w-[384px] w-full justify-center'>
+    <div className="relative flex flex-col max-w-[384px] w-full justify-center">
       <GradientScrollButton
         arrowIcon={ArrowUp}
         scrollDirection={scrollUp}
         visable={scrollPositon === ScrollPosition.BOTTOM}
-        buttonClassName='top-0'
-        gradientClassName='bg-gradient-to-t top-0'
+        buttonClassName="top-0"
+        gradientClassName="bg-gradient-to-t top-0"
       />
       <GradientScrollButton
         arrowIcon={ArrowDown}
         scrollDirection={scrollDown}
         visable={scrollPositon === ScrollPosition.TOP}
-        buttonClassName='bottom-0'
-        gradientClassName='bg-gradient-to-b bottom-0'
+        buttonClassName="bottom-0"
+        gradientClassName="bg-gradient-to-b bottom-0"
       />
       <UpgradesList
-        className='[scrollbar-width:none] scroll-smooth max-w-[384px] w-full flex flex-col gap-3 max-h-[726px] overflow-y-auto'
+        className="[scrollbar-width:none] scroll-smooth max-w-[384px] w-full flex flex-col gap-3 max-h-[726px] overflow-y-auto"
         upgradesList={upgradesList}
         listRef={listRef}
         onScroll={checkScrollPosition}

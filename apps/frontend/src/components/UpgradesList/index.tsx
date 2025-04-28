@@ -1,6 +1,6 @@
-import { ClickerUpgrade } from '../../types/clicker-upgrade.ts';
-import { FC } from 'react';
-import { UpgradeItem } from '../ui/UpgradeItem/index.tsx';
+import { ClickerUpgrade } from "../../types/clicker-upgrade.ts";
+import { FC } from "react";
+import { UpgradeItem } from "../UI/UpgradeItem/index.tsx";
 
 type UpgradesListProps = {
   upgradesList: ClickerUpgrade[];

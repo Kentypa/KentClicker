@@ -1,0 +1,55 @@
+Table user {
+    id serial [pk]
+    email varchar(255) [unique]
+    password varchar(255)
+    avatar_path varchar(255)
+    refresh_token varchar(1024)
+}
+
+Table user_stats {
+    user_id integer [pk, ref: > user.id]
+    total_clickcoins bigint
+    total_clicks bigint
+    coins_per_click integer
+    passive_coins_income integer
+}
+
+Table user_offer {
+    id serial [pk]
+    user_id integer [ref: > user.id]
+    coin_count integer
+    price_per_coin integer
+}
+
+Table achievement_user {
+    user_id integer [pk, ref: > user.id]
+    achievement_id integer [pk, ref: > achievement.id]
+
+    indexes {
+        (user_id, achievement_id) [pk]
+    }
+}
+
+Table upgrade_user {
+    user_id integer [pk, ref: > user.id]
+    upgrade_id integer [pk, ref: > upgrade.id]
+    
+    indexes {
+        (user_id, upgrade_id) [pk]
+    }
+}
+
+Table achievement {
+    id smallserial [pk]
+    title varchar(32)
+    description varchar(128)
+    icon_path varchar(255)
+}
+
+Table upgrade {
+    id smallserial [pk]
+    title varchar(32)
+    description varchar(128)
+    icon_path varchar(255)
+    price integer
+}

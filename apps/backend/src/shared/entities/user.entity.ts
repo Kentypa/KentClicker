@@ -34,7 +34,7 @@ export class User {
     description: "Hashed refresh token",
     type: "string",
   })
-  @Column({ nullable: true })
+  @Column({ type: "varchar", length: 1024 })
   @Exclude()
   refreshToken: string;
 }

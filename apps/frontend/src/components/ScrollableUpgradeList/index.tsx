@@ -18,6 +18,7 @@ enum ScrollPosition {
 export const ScrollableUpgradeList: FC<ScrollableUpgradeListProps> = ({
   upgradesList,
 }) => {
+  const BUTTON_SHOW_OFFSET = 10;
   const listRef = useRef<HTMLUListElement>(null);
   const [scrollPositon, setScrollPosition] = useState<ScrollPosition>(
     ScrollPosition.TOP,
@@ -26,9 +27,13 @@ export const ScrollableUpgradeList: FC<ScrollableUpgradeListProps> = ({
   const checkScrollPosition = () => {
     if (listRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listRef.current;
-      if (scrollTop === 0) {
+
+      if (scrollTop <= BUTTON_SHOW_OFFSET) {
         setScrollPosition(ScrollPosition.TOP);
-      } else if (scrollTop + clientHeight >= scrollHeight) {
+      } else if (
+        scrollTop + clientHeight + BUTTON_SHOW_OFFSET >=
+        scrollHeight
+      ) {
         setScrollPosition(ScrollPosition.BOTTOM);
       } else {
         setScrollPosition(ScrollPosition.MIDDLE);

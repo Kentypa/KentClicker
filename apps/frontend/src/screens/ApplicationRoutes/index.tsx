@@ -5,46 +5,47 @@ import { SignInPage } from "../SignInPage/index.tsx";
 import { SignUpPage } from "../SignUpPage/index.tsx";
 import { ProfilePage } from "../ProfilePage/index.tsx";
 import { RatingPage } from "../RatingPage/index.tsx";
-import { UserContext } from "../../contexts/user-context.ts";
 import { MarketPage } from "../MarketPage/index.tsx";
-import { user } from "./user.mock.ts";
 import { ProtectedRoute } from "../../components/UI/ProtectedRoute/index.tsx";
+import { useAppSelector } from "../../hooks/redux.ts";
+import { userSelector } from "../../stores/selectors/userSelector.ts";
+import { WelcomePage } from "../WelcomePage/index.tsx";
 
 export const ApplicationRoutes: FC = () => {
+  const { isAuthenticated } = useAppSelector(userSelector);
+
   return (
-    <UserContext value={user}>
-      <Routes>
+    <Routes>
+      <Route
+        path="/"
+        element={isAuthenticated ? <HomePage /> : <WelcomePage />}
+      />
+      <Route
+        path="sign-in"
+        element={<SignInPage />}
+      />
+      <Route
+        path="sign-up"
+        element={<SignUpPage />}
+      />
+      <Route element={<ProtectedRoute />}>
         <Route
-          path="/"
-          element={<HomePage />}
+          path="profile"
+          element={<ProfilePage />}
         />
-        <Route
-          path="sign-in"
-          element={<SignInPage />}
-        />
-        <Route
-          path="sign-up"
-          element={<SignUpPage />}
-        />
-        <Route element={<ProtectedRoute />}>
-          <Route
-            path="profile"
-            element={<ProfilePage />}
-          />
-        </Route>
-        <Route
-          path="rating/:page?"
-          element={<RatingPage />}
-        />
-        <Route
-          path="market/:page?"
-          element={<MarketPage />}
-        />
-        <Route
-          path="market/:page?"
-          element={<MarketPage />}
-        />
-      </Routes>
-    </UserContext>
+      </Route>
+      <Route
+        path="rating/:page?"
+        element={<RatingPage />}
+      />
+      <Route
+        path="market/:page?"
+        element={<MarketPage />}
+      />
+      <Route
+        path="market/:page?"
+        element={<MarketPage />}
+      />
+    </Routes>
   );
 };

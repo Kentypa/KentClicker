@@ -4,8 +4,7 @@ import type { UserData } from "../../types/user-data";
 
 const initialState: UserData = {
   name: "",
-  iconBig: "",
-  iconSmall: "",
+  avatar: "",
   achievements: [],
   totalCoins: {
     img: "",
@@ -22,7 +21,7 @@ const initialState: UserData = {
     name: "",
     description: "",
   },
-  upgradesList: [],
+  isAuthenticated: false,
 };
 
 export const userSlice = createSlice({

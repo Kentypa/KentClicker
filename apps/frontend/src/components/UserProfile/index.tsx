@@ -1,11 +1,12 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { UserInfo } from "../UserInfo/index.tsx";
 import { UserAchievements } from "../UserAchievements/index.tsx";
-import { UserContext } from "../../contexts/user-context.ts";
 import { EditProfileButton } from "../UI/EditProfileButton/index.tsx";
+import { useAppSelector } from "../../hooks/redux.ts";
+import { userSelector } from "../../stores/selectors/userSelector.ts";
 
 export const UserProfile: FC = () => {
-  const userInfo = useContext(UserContext);
+  const userInfo = useAppSelector(userSelector);
 
   return (
     <main className="flex justify-center px-30 pb-30 mt-10 w-full">

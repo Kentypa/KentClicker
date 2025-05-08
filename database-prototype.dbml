@@ -1,24 +1,24 @@
 Table user {
     id serial [pk]
-    email varchar(255) [unique]
-    password varchar(255)
+    email varchar(255) [unique, not null]
+    password varchar(255) [not null]
     avatar_path varchar(255)
     refresh_token varchar(1024)
 }
 
 Table user_stats {
     user_id integer [pk, ref: > user.id]
-    total_clickcoins bigint
-    total_clicks bigint
-    coins_per_click integer
-    passive_coins_income integer
+    total_clickcoins bigint [default: 0]
+    total_clicks bigint [default: 0]
+    coins_per_click integer [default: 1]
+    passive_coins_income integer [default: 0]
 }
 
 Table user_offer {
     id serial [pk]
     user_id integer [ref: > user.id]
-    coin_count integer
-    price_per_coin integer
+    coin_count integer [not null]
+    price_per_coin integer [not null]
 }
 
 Table achievement_user {
@@ -53,3 +53,4 @@ Table upgrade {
     icon_path varchar(255)
     price integer
 }
+    

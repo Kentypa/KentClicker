@@ -19,6 +19,7 @@ import { JwtPayload } from "./types/jwt-payload.type";
 import { RegisterUserDto } from "./dto/register-user.dto";
 import { SuccessResponseDto } from "./dto/success.dto";
 import { calculateTokenExpires } from "./functions/calculate-token-expires.function";
+import { UserAccountService } from "src/user/user-account.service";
 
 @Injectable()
 export class AuthService {
@@ -28,6 +29,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private userService: UserService,
+    private userAccountService: UserAccountService,
     private encryptionService: EncryptionService,
   ) {}
 
@@ -169,17 +171,12 @@ export class AuthService {
 
     const passwordHash = await this.encryptionService.hashData(user.password);
 
-    const newUser = this.authRepository.create({
-      email: user.email,
-      password: passwordHash,
-    });
-
-    const result = plainToInstance(
-      User,
-      await this.authRepository.save(newUser),
+    const newUser = await this.userAccountService.createUserWithStats(
+      user.email,
+      passwordHash,
     );
 
-    return result;
+    return plainToInstance(User, newUser);
   }
 
   async getById(id: number): Promise<User> {

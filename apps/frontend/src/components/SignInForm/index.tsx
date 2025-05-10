@@ -12,11 +12,15 @@ import { Queries } from "../../enums/queriesKeys";
 import { ServiceNames } from "../../enums/serviceNames";
 import { useForm } from "../../hooks/use-form";
 import { authService } from "../../services/authService";
+import { useAppDispatch } from "../../hooks/redux";
+import { changeIsAuthenticated } from "../../stores/user/userSlice";
+import { userService } from "../../services/userService";
 
 export const SignInForm: FC = () => {
   const navigate = useNavigate();
 
   const { signInUser } = authService(ServiceNames.AUTH);
+  const { getUser } = userService(ServiceNames.USER);
 
   const queryClient = useQueryClient();
 
@@ -37,11 +41,24 @@ export const SignInForm: FC = () => {
     },
   );
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // const userData = (await getUser()).data;
+        // dispatch(changeByData({ ...userData, isAuthenticated: true }));
+        dispatch(changeIsAuthenticated(true));
+        navigate(PagesEndponts.PROFILE);
+      } catch (error) {
+        console.error("Cant get user:", error);
+      }
+    };
+
     if (signInMutation.isSuccess) {
-      navigate(PagesEndponts.PROFILE);
+      fetchUserData();
     }
-  }, [signInMutation.isSuccess, navigate]);
+  }, [signInMutation.isSuccess, dispatch, navigate, getUser]);
 
   return (
     <main className="container flex max-w-100 flex-col items-center">

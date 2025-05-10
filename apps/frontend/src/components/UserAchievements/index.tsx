@@ -1,10 +1,11 @@
-import { FeatureItem } from "../../types/feature-item.ts";
 import { FC } from "react";
 import { FeatureInfo } from "../FeatureInfo/index.tsx";
 import { textFormatter } from "../../utils/text-formatter.ts";
+import { UserAchievement } from "../../types/user-achievement.ts";
+import undefinedIcon from "../../assets/icons/undefined.svg";
 
 type UserAchievementProps = {
-  achievements: FeatureItem[];
+  achievements: UserAchievement[];
 };
 
 export const UserAchievements: FC<UserAchievementProps> = ({
@@ -17,13 +18,13 @@ export const UserAchievements: FC<UserAchievementProps> = ({
         {achievements.map((achievement) => (
           <FeatureInfo
             className="rounded-lgx border border-subtle-light w-full p-5.75"
-            main={textFormatter(achievement.name)}
+            main={textFormatter(achievement.title)}
             mainClassName="text-label-large"
             description={textFormatter(achievement.description)}
             descriptionClassName="text-subtle-dark text-body-large truncate"
-            icon={achievement.img}
+            icon={undefinedIcon}
             iconClassName="mr-4"
-            key={achievement.name}
+            key={achievement.title}
           />
         ))}
       </ul>

@@ -1,11 +1,12 @@
-import { FeatureItem } from "./feature-item.ts";
+import { UserAchievement } from "./user-achievement.ts";
+import { UserStats } from "./user-stats.ts";
 
 export type UserData = {
-  name: string;
-  avatar: string;
-  achievements: FeatureItem[];
-  totalCoins: FeatureItem;
-  totalClicks: FeatureItem;
-  passiveIncome: FeatureItem;
-  isAuthenticated: boolean;
+  name?: string;
+  email: string;
+  avatar?: string;
+  achievements?: UserAchievement[];
+  userStats: UserStats;
+  isAuthenticated: boolean | null;
+  authLoading: boolean;
 };

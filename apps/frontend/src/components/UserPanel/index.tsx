@@ -5,37 +5,40 @@ import { Button } from "../Button/index.tsx";
 import { useNavigate } from "react-router";
 import { useAppSelector } from "../../hooks/redux.ts";
 import { userSelector } from "../../stores/selectors/userSelector.ts";
+import undefinedAvatar from "../../assets/icons/user-light.svg";
 
 export const UserPanel: FC = () => {
   const userInfo = useAppSelector(userSelector);
   const nav = useNavigate();
 
   return (
-    <div className="flex flex-row justify-between items-center w-[143px]">
-      <Button
-        handleClick={() => {
-          nav("/profile");
-        }}>
+    <Button
+      handleClick={() => {
+        nav("/profile");
+      }}>
+      <div className="flex flex-row justify-between items-center">
         <img
-          src={userInfo.avatar}
+          src={userInfo.avatar || undefinedAvatar}
           alt={"user-logo-light"}
+          className="size-12 rounded-full object-cover mr-3"
         />
-      </Button>
-      <div>
-        <p className="text-body-large text-subtle-dark mb-0.5">
-          {userInfo.name}
-        </p>
-        <div className="flex justify-between items-center w-full gap-0.5">
-          <img
-            src={SmallCoin}
-            className="size-5 m-0.5"
-            alt={"small-coin"}
-          />
-          <p className="text-label-large">
-            {textFormatter(userInfo.totalCoins.name)}
+
+        <div>
+          <p className="text-body-large text-subtle-dark mb-0.5">
+            {userInfo.name || userInfo.email}
           </p>
+          <div className="flex justify-end items-center w-full gap-0.5">
+            <img
+              src={SmallCoin}
+              className="size-5 m-0.5 mr-2"
+              alt={"small-coin"}
+            />
+            <p className="text-label-large">
+              {textFormatter(userInfo.userStats.totalClickCoins)}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </Button>
   );
 };

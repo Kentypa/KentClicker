@@ -4,11 +4,14 @@ import { User } from "../shared/entities/user.entity";
 import { UserService } from "./user.service";
 import { EncryptionService } from "src/shared/services/encryption.service";
 import { UserController } from "./user.controller";
+import { UserAccountService } from "./user-account.service";
+import { UserStats } from "src/shared/entities/user-stats.entity";
+import { UserFactory } from "./user.factory";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User, UserStats])],
   controllers: [UserController],
-  providers: [UserService, EncryptionService],
-  exports: [UserService],
+  providers: [UserService, EncryptionService, UserAccountService, UserFactory],
+  exports: [UserService, UserAccountService],
 })
 export class UserModule {}

@@ -1,5 +1,6 @@
 Table user {
     id serial [pk]
+    username varchar(255) [unique]
     email varchar(255) [unique, not null]
     password varchar(255) [not null]
     avatar_path varchar(255)
@@ -43,14 +44,12 @@ Table achievement {
     id smallserial [pk]
     title varchar(32)
     description varchar(128)
-    icon_path varchar(255)
 }
 
 Table upgrade {
     id smallserial [pk]
     title varchar(32)
     description varchar(128)
-    icon_path varchar(255)
     price integer
 }
     

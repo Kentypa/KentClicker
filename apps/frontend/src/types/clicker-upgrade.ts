@@ -1,6 +1,8 @@
 export type ClickerUpgrade = {
+  id: number;
   img: string;
-  name: string;
+  title: string;
   description: string;
+  iconPath: string;
   price: number;
 };

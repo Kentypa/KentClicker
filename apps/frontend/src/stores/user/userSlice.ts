@@ -6,34 +6,39 @@ const initialState: UserData = {
   name: "",
   avatar: "",
   achievements: [],
-  totalCoins: {
-    img: "",
-    name: "",
-    description: "",
+  email: "",
+  userStats: {
+    id: 0,
+    totalClickCoins: 0,
+    totalClicks: 0,
+    coinsPerClick: 0,
+    passiveCoinsIncome: 0,
   },
-  totalClicks: {
-    img: "",
-    name: "",
-    description: "",
-  },
-  passiveIncome: {
-    img: "",
-    name: "",
-    description: "",
-  },
-  isAuthenticated: false,
+  isAuthenticated: null,
+  authLoading: true,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    changeByData: (state, action: PayloadAction<UserData>) => {
-      state = action.payload;
+    changeByData: (_, action: PayloadAction<UserData>) => {
+      return {
+        ...action.payload,
+        isAuthenticated: action.payload.name !== "",
+        authLoading: false,
+      };
+    },
+    changeIsAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
+    },
+    changeIsAuthLoading: (state, action: PayloadAction<boolean>) => {
+      state.authLoading = action.payload;
     },
   },
 });
 
-export const { changeByData } = userSlice.actions;
+export const { changeByData, changeIsAuthenticated, changeIsAuthLoading } =
+  userSlice.actions;
 
 export default userSlice.reducer;

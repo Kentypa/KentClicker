@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { BaseUserDto } from "./base-user.dto";
+import { UserStats } from "src/shared/entities/user-stats.entity";
 
 export class GetUserDto extends BaseUserDto {
   @IsNumber()
@@ -12,4 +13,23 @@ export class GetUserDto extends BaseUserDto {
     minimum: 1,
   })
   id: number;
+
+  @ApiProperty({
+    example: ".Kent",
+    description: "User name",
+    type: "string",
+  })
+  @IsString()
+  username: string;
+
+  @ApiProperty({
+    example: "/usr/bin/backend/public/images/avatars/174364236-343243image.png",
+    description: "Path to user avatar",
+    type: "string",
+  })
+  @IsString()
+  avatarPath: string;
+
+  @ApiProperty({ type: UserStats })
+  userStats: UserStats;
 }

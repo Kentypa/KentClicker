@@ -1,29 +1,33 @@
 import { Title } from "../UI/Title/index.tsx";
 import { UserStats } from "../UserStats/index.tsx";
-import { UserData } from "../../types/user-data.ts";
 import { FC } from "react";
+import { FeatureItem } from "../../types/feature-item.ts";
+import undefinedAvatar from "../../assets/icons/user-dark.svg";
 
-type UserInfoProps = UserData & { className?: string };
+type UserInfoProps = {
+  userCoinsInfo: FeatureItem[];
+  className?: string;
+  name: string;
+  avatar?: string;
+};
 
 export const UserInfo: FC<UserInfoProps> = ({
-  totalClicks,
-  totalCoins,
   className,
-  iconBig,
   name,
+  userCoinsInfo,
+  avatar,
 }) => {
-  const userStats = { userStats: [totalClicks, totalCoins] };
-
   return (
     <div className={`flex justify-between items-center ${className}`}>
       <img
-        src={iconBig}
+        src={avatar || undefinedAvatar}
         alt={"user-logo"}
+        className="size-40 rounded-full object-cover"
       />
       <div className="flex flex-col max-w-[1016px] w-full">
         <Title className="text-headline-small mb-6">{name}</Title>
         <UserStats
-          {...userStats}
+          userStats={userCoinsInfo}
           className="max-w-[608px] gap-x-0.25"
           itemClassName="py-4 px-6"
         />

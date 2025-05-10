@@ -23,9 +23,17 @@ export function authService(url: string) {
     });
   };
 
+  const validateUser = async () => {
+    return api.get(`${url}/validate`).catch((error) => {
+      console.log(error.toJSON());
+      throw new Error(error.message);
+    });
+  };
+
   return {
     logoutUser,
     signInUser,
     signUpUser,
+    validateUser,
   };
 }

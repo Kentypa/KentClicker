@@ -28,7 +28,7 @@ export class GetUserDto extends BaseUserDto {
     type: "string",
   })
   @IsString()
-  avatarPath: string;
+  avatarUrl: string;
 
   @ApiProperty({ type: UserStats })
   userStats: UserStats;

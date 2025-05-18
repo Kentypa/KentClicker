@@ -4,7 +4,15 @@ import { User } from "../shared/entities/user.entity";
 import { plainToInstance } from "class-transformer";
 import { GetUserDto } from "./dto/get-user.dto";
 import { EncryptionService } from "src/shared/services/encryption.service";
-import { Injectable, NotFoundException } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from "@nestjs/common";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import * as fs from "fs";
+import * as path from "path";
 
 @Injectable()
 export class UserService {
@@ -13,6 +21,8 @@ export class UserService {
     private userRepository: Repository<User>,
     private encryptionService: EncryptionService,
   ) {}
+
+  private readonly logger = new Logger(UserService.name);
 
   async getSafeUser(id: number): Promise<GetUserDto> {
     return plainToInstance(User, await this.getById(id));
@@ -47,5 +57,40 @@ export class UserService {
     });
 
     return this.userRepository.save(updatedUser);
+  }
+
+  async update(id: number, dto: UpdateUserDto, avatar?: Express.Multer.File) {
+    const user = await this.getById(id);
+
+    if (dto.email) user.email = dto.email;
+    if (dto.username) user.username = dto.username;
+
+    if (dto.oldPassword && dto.newPassword) {
+      const isOldPasswordValid = await this.encryptionService.compare(
+        dto.oldPassword,
+        user.password,
+      );
+      if (!isOldPasswordValid) {
+        throw new BadRequestException("Incorrect old password");
+      }
+      user.password = await this.encryptionService.hashData(dto.newPassword);
+    }
+
+    if (avatar && avatar.path) {
+      this.logger.log("In first if");
+      if (user.avatarUrl) {
+        this.logger.log("User have paths");
+
+        const oldPath = path.resolve(user.avatarUrl);
+        if (fs.existsSync(oldPath)) {
+          fs.unlinkSync(oldPath);
+        }
+      }
+
+      user.avatarUrl = path.join(avatar.path);
+      this.logger.log(user.avatarUrl);
+    }
+
+    return this.userRepository.save(user);
   }
 }

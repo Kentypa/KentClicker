@@ -1,4 +1,4 @@
-import { ComponentWithChildren } from "../../types/component-with-children.ts";
+import { ComponentWithChildren } from "../../../types/component-with-children.ts";
 
 type ButtonProps = {
   handleClick?: () => void;
@@ -13,7 +13,10 @@ export const Button: ComponentWithChildren<ButtonProps> = ({
   type,
 }) => {
   return (
-    <button className={className} onClick={handleClick} type={type ?? "button"}>
+    <button
+      className={className}
+      onClick={handleClick}
+      type={type ?? "button"}>
       {children}
     </button>
   );

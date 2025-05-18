@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MainContentWrapper } from "../../components/UI/MainContentWrapper";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/UI/Button";
 
 export const WelcomePage: FC = () => {
   return (

@@ -5,7 +5,7 @@ import { UserPanel } from "../UserPanel";
 import { Navigation } from "../UI/Navigation";
 import { useAppSelector } from "../../hooks/redux";
 import { userSelector } from "../../stores/selectors/userSelector";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 
 const menu = [
   { link: "/", name: "Home" },

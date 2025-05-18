@@ -1,20 +1,24 @@
 import { FC, useEffect } from "react";
 import { Title } from "../UI/Title";
 import { Link, useNavigate } from "react-router";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 import { Divider } from "../UI/Divider";
 import { ContinueGoogleButton } from "../UI/ContinueGoogleButton";
 import { Input } from "../UI/Input";
 import { PasswordInput } from "../UI/PasswordInput";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { PagesEndponts } from "../../enums/pagesEndpoints";
 import { Queries } from "../../enums/queriesKeys";
 import { ServiceNames } from "../../enums/serviceNames";
 import { useForm } from "../../hooks/use-form";
 import { authService } from "../../services/authService";
 import { useAppDispatch } from "../../hooks/redux";
-import { changeIsAuthenticated } from "../../stores/user/userSlice";
+import {
+  changeByData,
+  changeIsAuthenticated,
+} from "../../stores/user/userSlice";
 import { userService } from "../../services/userService";
+import { Popup } from "../UI/PopUp";
 
 export const SignInForm: FC = () => {
   const navigate = useNavigate();
@@ -24,11 +28,26 @@ export const SignInForm: FC = () => {
 
   const queryClient = useQueryClient();
 
-  const signInMutation = useMutation({
+  const {
+    error,
+    isError,
+    isSuccess: authIsSuccess,
+    mutate,
+  } = useMutation({
     mutationFn: signInUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [Queries.AUTH] });
     },
+  });
+
+  const {
+    data,
+    isSuccess: getUserIsSuccess,
+    isLoading,
+  } = useQuery({
+    queryKey: [Queries.USER],
+    queryFn: getUser,
+    enabled: authIsSuccess,
   });
 
   const { handleChange, handleSubmit } = useForm(
@@ -37,7 +56,7 @@ export const SignInForm: FC = () => {
       password: "",
     },
     (formState) => {
-      signInMutation.mutate(formState);
+      mutate(formState);
     },
   );
 
@@ -46,8 +65,6 @@ export const SignInForm: FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // const userData = (await getUser()).data;
-        // dispatch(changeByData({ ...userData, isAuthenticated: true }));
         dispatch(changeIsAuthenticated(true));
         navigate(PagesEndponts.PROFILE);
       } catch (error) {
@@ -55,13 +72,28 @@ export const SignInForm: FC = () => {
       }
     };
 
-    if (signInMutation.isSuccess) {
+    if (authIsSuccess) {
       fetchUserData();
     }
-  }, [signInMutation.isSuccess, dispatch, navigate, getUser]);
+  }, [authIsSuccess, dispatch, navigate, getUser]);
+
+  useEffect(() => {
+    if (getUserIsSuccess) {
+      if (data) {
+        dispatch(changeByData(data.data));
+      }
+    }
+  }, [data, dispatch, isLoading, getUserIsSuccess]);
 
   return (
     <main className="container flex max-w-100 flex-col items-center">
+      {isError && (
+        <Popup>
+          <h2 className="text-body-medium text-red-500">
+            Can`t sign-in, error: {error.message}
+          </h2>
+        </Popup>
+      )}
       <Title className="text-display-small mb-12 text-nowrap">
         Welcome to KentClicker
       </Title>

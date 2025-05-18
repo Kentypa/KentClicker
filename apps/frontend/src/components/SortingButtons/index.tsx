@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { Button } from '../Button';
-import { SortingType } from '../../types/sorting-types';
+import { FC } from "react";
+import { Button } from "../UI/Button";
+import { SortingType } from "../../types/sorting-types";
 
 type SortingButtonsProps = {
   className?: string;
@@ -25,10 +25,12 @@ export const SortingButtons: FC<SortingButtonsProps> = ({
             setSortingType(item);
           }}
           className={`${buttonClassName} ${
-            item === sortingType ? 'bg-background border-primary' : 'border-subtle-light'
+            item === sortingType
+              ? "bg-background border-primary"
+              : "border-subtle-light"
           }`}
           key={item}>
-          <div className='w-[100.75px] h-[20px]'>{item}</div>
+          <div className="w-[100.75px] h-[20px]">{item}</div>
         </Button>
       ))}
     </ul>

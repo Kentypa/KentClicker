@@ -3,75 +3,86 @@ import { store } from "../store";
 import { changeByData } from "../stores/user/userSlice";
 import { ServiceNames } from "../enums/serviceNames";
 
-interface FailedRequest {
-  resolve: () => void;
+interface QueuedRequest {
+  resolve: (value: AxiosResponse) => void;
   reject: (error: unknown) => void;
+  config: AxiosRequestConfig;
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BE_URL ?? "http://localhost:3000",
+  baseURL: import.meta.env.VITE_BE_URL
+    ? String(import.meta.env.VITE_BE_URL)
+    : "http://localhost:3000",
   withCredentials: true,
 });
 
 let isRefreshing = false;
-let failedQueue: FailedRequest[] = [];
+let failedQueue: QueuedRequest[] = [];
 
-const processQueue = (error: unknown, success: boolean) => {
-  failedQueue.forEach(({ resolve, reject }) => {
-    if (success) resolve();
-    else reject(error);
+const processQueue = (error?: unknown) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      api(prom.config).then(prom.resolve).catch(prom.reject);
+    }
   });
   failedQueue = [];
 };
 
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & {
       _retry?: boolean;
     };
 
-    if (error.response?.status !== 401 || originalRequest._retry) {
+    if (
+      error.response?.status !== 401 ||
+      originalRequest._retry ||
+      originalRequest.url?.includes(`${ServiceNames.AUTH}/refresh`)
+    ) {
       return Promise.reject(error);
     }
 
-    originalRequest._retry = true;
-
     if (isRefreshing) {
-      return new Promise<void>((resolve, reject) => {
-        failedQueue.push({ resolve, reject });
-      }).then(() => api(originalRequest));
+      return new Promise<AxiosResponse>((resolve, reject) => {
+        failedQueue.push({ resolve, reject, config: originalRequest });
+      });
     }
 
+    originalRequest._retry = true;
     isRefreshing = true;
 
-    return api
-      .post(`${ServiceNames.AUTH}/refresh`)
-      .then(() => {
-        store.dispatch(
-          changeByData({
-            ...store.getState().user,
-            isAuthenticated: true,
-            authLoading: false,
-          }),
-        );
-        processQueue(null, true);
-        return api(originalRequest);
-      })
-      .catch((refreshError) => {
-        store.dispatch(
-          changeByData({
-            ...store.getState().user,
-            isAuthenticated: false,
-            authLoading: false,
-          }),
-        );
-        processQueue(refreshError, false);
-        return Promise.reject(refreshError);
-      })
-      .finally(() => {
-        isRefreshing = false;
-      });
+    try {
+      await api.post(`${ServiceNames.AUTH}/refresh`);
+
+      store.dispatch(
+        changeByData({
+          ...store.getState().user,
+          isAuthenticated: true,
+          authLoading: false,
+        }),
+      );
+
+      processQueue();
+
+      return api(originalRequest);
+    } catch (refreshError) {
+      store.dispatch(
+        changeByData({
+          ...store.getState().user,
+          isAuthenticated: false,
+          authLoading: false,
+        }),
+      );
+
+      processQueue(refreshError);
+
+      return Promise.reject(refreshError);
+    } finally {
+      isRefreshing = false;
+    }
   },
 );
 

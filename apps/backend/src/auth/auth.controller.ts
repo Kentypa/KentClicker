@@ -5,7 +5,6 @@ import {
   Post,
   UseFilters,
   UseGuards,
-  ValidationPipe,
   Res,
   Get,
 } from "@nestjs/common";
@@ -40,7 +39,7 @@ export class AuthController {
     description: "User information",
   })
   @HttpCode(201)
-  async register(@Body(new ValidationPipe()) registeredUser: RegisterUserDto) {
+  async register(@Body() registeredUser: RegisterUserDto) {
     return this.authService.register(registeredUser);
   }
 
@@ -58,7 +57,7 @@ export class AuthController {
   })
   @HttpCode(201)
   async login(
-    @Body(new ValidationPipe()) user: LoginUserDto,
+    @Body() user: LoginUserDto,
     @Res({ passthrough: true }) response: Response,
   ) {
     return await this.authService.login(user.email, user.password, response);

@@ -1,7 +1,7 @@
 import { ClickerUpgrade } from "../../../types/clicker-upgrade.ts";
 import { FC } from "react";
 import { numberFormatter } from "../../../utils/number-formatter.ts";
-import { Button } from "../../Button/index.tsx";
+import { Button } from "../Button/index.tsx";
 import CoinIcon from "../../../assets/icons/coin-small.svg";
 
 type UpgradeItemProps = {

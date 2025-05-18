@@ -15,6 +15,7 @@ import { Queries } from "../../enums/queriesKeys.ts";
 import { ServiceNames } from "../../enums/serviceNames.ts";
 import { userService } from "../../services/userService.ts";
 import { changeByData } from "../../stores/user/userSlice.ts";
+import { EditProfilePage } from "../EditProfilePage/index.tsx";
 
 export const ApplicationRoutes: FC = () => {
   const { getUser } = userService(ServiceNames.USER);
@@ -54,6 +55,10 @@ export const ApplicationRoutes: FC = () => {
         <Route
           path="profile"
           element={<ProfilePage />}
+        />
+        <Route
+          path="edit-profile"
+          element={<EditProfilePage />}
         />
       </Route>
       <Route

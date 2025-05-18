@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { NumericInput } from "../UI/NumericInput";
 import { useForm } from "../../hooks/use-form";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 
 type CreateOfferModalProps = {
   toggleModal: () => void;

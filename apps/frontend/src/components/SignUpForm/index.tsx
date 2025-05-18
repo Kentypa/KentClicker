@@ -1,6 +1,6 @@
 import { Title } from "../UI/Title";
 import { Link, useNavigate } from "react-router";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 import { Divider } from "../UI/Divider";
 import { ContinueGoogleButton } from "../UI/ContinueGoogleButton";
 import { Input } from "../UI/Input";
@@ -12,6 +12,7 @@ import { Queries } from "../../enums/queriesKeys";
 import { authService } from "../../services/authService";
 import { ServiceNames } from "../../enums/serviceNames";
 import { PagesEndponts } from "../../enums/pagesEndpoints";
+import { Popup } from "../UI/PopUp";
 
 export const SignUpForm: FC = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export const SignUpForm: FC = () => {
 
   const queryClient = useQueryClient();
 
-  const signInMutation = useMutation({
+  const { error, isError, isSuccess, mutate } = useMutation({
     mutationFn: signUpUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [Queries.AUTH] });
@@ -33,18 +34,25 @@ export const SignUpForm: FC = () => {
       password: "",
     },
     (formState) => {
-      signInMutation.mutate(formState);
+      mutate(formState);
     },
   );
 
   useEffect(() => {
-    if (signInMutation.isSuccess) {
+    if (isSuccess) {
       navigate(PagesEndponts.SIGN_IN);
     }
-  }, [signInMutation.isSuccess, navigate]);
+  }, [isSuccess, navigate]);
 
   return (
     <main className={`container flex max-w-100 flex-col items-center`}>
+      {isError && (
+        <Popup>
+          <h2 className="text-body-medium text-red-500">
+            Can`t sign-up, error: {error.message}
+          </h2>
+        </Popup>
+      )}
       <Title className="text-display-small mb-12 font-normal text-nowrap">
         Welcome to KentClicker
       </Title>

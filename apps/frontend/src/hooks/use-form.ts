@@ -1,11 +1,10 @@
-import { ChangeEvent, FormEvent, useState, useCallback } from "react";
-import { formObject } from "../types/form-object";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 
-export function useForm(
-  initialState: formObject,
-  onSubmit?: (formState: formObject) => void,
+export function useForm<T extends Record<string, unknown>>(
+  initialState: T,
+  onSubmit?: (formState: T) => void,
 ) {
-  const [formState, setFormState] = useState(initialState);
+  const [formState, setFormState] = useState<T>(initialState);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,13 +23,11 @@ export function useForm(
   );
 
   const handleChangeByValue = useCallback(
-    (name: string, value: string | number) => {
-      setFormState((prevState) => {
-        if (prevState[name] !== value) {
-          return { ...prevState, [name]: value };
-        }
-        return prevState;
-      });
+    (name: keyof T, value: T[keyof T]) => {
+      setFormState((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
     },
     [],
   );

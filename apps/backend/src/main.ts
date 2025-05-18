@@ -6,10 +6,16 @@ import { DocumentBuilder } from "@nestjs/swagger/dist/document-builder";
 import { SwaggerModule } from "@nestjs/swagger";
 import cookieParser from "cookie-parser";
 import { HttpExceptionFilter } from "./shared/filters/http-exception.filter";
+import { ValidationPipe } from "@nestjs/common";
+import { join } from "path";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const configService = app.get(ConfigService);
+
+  app.useStaticAssets(join(__dirname, "..", "uploads"), {
+    prefix: "/uploads/",
+  });
 
   app.enableCors({
     origin: `http://localhost:${configService.get("project.frontend.port") as number}`,
@@ -29,6 +35,8 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.useGlobalFilters(new HttpExceptionFilter());
+
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(configService.getOrThrow<number>("project.backend.port"));
 }

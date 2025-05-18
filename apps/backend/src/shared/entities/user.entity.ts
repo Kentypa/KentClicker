@@ -50,7 +50,7 @@ export class User {
     type: "string",
   })
   @Column({ type: "varchar", nullable: true })
-  avatarPath: string;
+  avatarUrl: string;
 
   @ApiProperty({
     example: "2353reaswdEvc@#W3vAWv4AW$#ca4cAW$caw4vaWEcVAWC3a#Aw3c",

@@ -17,7 +17,7 @@ export const UserProfile: FC = () => {
           userCoinsInfo={userStatistic}
           className="mb-10"
           name={userInfo.email}
-          avatar={userInfo.avatar}
+          avatar={userInfo.avatarUrl}
         />
         <EditProfileButton className="absolute right-0" />
         {userInfo.achievements && (

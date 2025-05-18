@@ -8,7 +8,15 @@ export function userService(url: string) {
     });
   };
 
+  const updateUserData = async (data: FormData) => {
+    return api.patch(`${url}/update`, data).catch((error) => {
+      console.log(error.toJSON());
+      throw new Error(error.message);
+    });
+  };
+
   return {
     getUser,
+    updateUserData,
   };
 }

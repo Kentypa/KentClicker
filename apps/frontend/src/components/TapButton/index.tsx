@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { Button } from '../Button';
-import TapButtonIcon from '../../assets/icons/tap-button-image.svg';
+import { FC } from "react";
+import { Button } from "../UI/Button";
+import TapButtonIcon from "../../assets/icons/tap-button-image.svg";
 
 type TapButtonProps = {
   handleClick: () => void;
@@ -11,11 +11,10 @@ export const TapButton: FC<TapButtonProps> = ({ handleClick, className }) => {
   return (
     <Button
       handleClick={handleClick}
-      className={className}
-    >
+      className={className}>
       <img
         src={TapButtonIcon}
-        alt='TabButtonIcon'
+        alt="TabButtonIcon"
       />
     </Button>
   );

@@ -1,7 +1,7 @@
 import SmallCoin from "../../assets/icons/coin-small.svg";
 import { FC } from "react";
 import { textFormatter } from "../../utils/text-formatter.ts";
-import { Button } from "../Button/index.tsx";
+import { Button } from "../UI/Button/index.tsx";
 import { useNavigate } from "react-router";
 import { useAppSelector } from "../../hooks/redux.ts";
 import { userSelector } from "../../stores/selectors/userSelector.ts";
@@ -18,14 +18,14 @@ export const UserPanel: FC = () => {
       }}>
       <div className="flex flex-row justify-between items-center">
         <img
-          src={userInfo.avatar || undefinedAvatar}
+          src={userInfo.avatarUrl || undefinedAvatar}
           alt={"user-logo-light"}
           className="size-12 rounded-full object-cover mr-3"
         />
 
         <div>
           <p className="text-body-large text-subtle-dark mb-0.5">
-            {userInfo.name || userInfo.email}
+            {userInfo.username || userInfo.email}
           </p>
           <div className="flex justify-end items-center w-full gap-0.5">
             <img

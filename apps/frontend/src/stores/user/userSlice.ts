@@ -3,8 +3,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { UserData } from "../../types/user-data";
 
 const initialState: UserData = {
-  name: "",
-  avatar: "",
+  username: "",
+  avatarUrl: "",
   achievements: [],
   email: "",
   userStats: {
@@ -23,9 +23,14 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     changeByData: (_, action: PayloadAction<UserData>) => {
+      const avatarUrl = action.payload.avatarUrl
+        ? `http://localhost:3000/${action.payload.avatarUrl}`
+        : "";
+
       return {
         ...action.payload,
-        isAuthenticated: action.payload.name !== "",
+        avatarUrl,
+        isAuthenticated: action.payload.email !== "",
         authLoading: false,
       };
     },

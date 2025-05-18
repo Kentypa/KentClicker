@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Input } from "../UI/Input";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 // import { useForm } from '../../hooks/use-form';
 
 export const FilterForm: FC = () => {

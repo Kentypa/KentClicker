@@ -1,10 +1,10 @@
-import { ChangeEvent, FC } from 'react';
-import { Input, InputProps } from '../Input';
-import { Button } from '../../Button';
-import { Label } from '../Label';
-import { validateNumbers } from '../../../utils/number-validator';
-import LeftArrow from '../../../assets/icons/simple-arrow-left.svg';
-import RightArrow from '../../../assets/icons/simple-arrow-right.svg';
+import { ChangeEvent, FC } from "react";
+import { Input, InputProps } from "../Input";
+import { Button } from "../Button";
+import { Label } from "../Label";
+import { validateNumbers } from "../../../utils/number-validator";
+import LeftArrow from "../../../assets/icons/simple-arrow-left.svg";
+import RightArrow from "../../../assets/icons/simple-arrow-right.svg";
 
 type NumericInputProps = InputProps & {
   handleChangeByValue: (name: string, value: string | number) => void;
@@ -45,9 +45,9 @@ export const NumericInput: FC<NumericInputProps> = ({
   }
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Label className={labelClassName}>{label}</Label>
-      <div className='relative'>
+      <div className="relative">
         <Input
           autoComplete={autoComplete}
           className={className}
@@ -60,20 +60,20 @@ export const NumericInput: FC<NumericInputProps> = ({
         />
         <Button
           handleClick={decrementValue}
-          className='absolute left-1 top-1/2 transform -translate-y-1/2'>
+          className="absolute left-1 top-1/2 transform -translate-y-1/2">
           <img
             src={LeftArrow}
-            alt='arrow-left'
-            className='rounded-xl bg-background p-2.5'
+            alt="arrow-left"
+            className="rounded-xl bg-background p-2.5"
           />
         </Button>
         <Button
           handleClick={incrementValue}
-          className='absolute right-1 top-1/2 transform -translate-y-1/2'>
+          className="absolute right-1 top-1/2 transform -translate-y-1/2">
           <img
             src={RightArrow}
-            alt='arrow-right'
-            className='rounded-xl bg-background p-2.5'
+            alt="arrow-right"
+            className="rounded-xl bg-background p-2.5"
           />
         </Button>
       </div>

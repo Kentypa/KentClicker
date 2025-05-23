@@ -1,4 +1,5 @@
 import { UserAchievement } from "./user-achievement.ts";
+import { UserCharacteristics } from "./user-characteristics.ts";
 import { UserStats } from "./user-stats.ts";
 
 export type UserData = {
@@ -7,6 +8,7 @@ export type UserData = {
   avatarUrl?: string;
   achievements?: UserAchievement[];
   userStats: UserStats;
+  userCharacteristics: UserCharacteristics;
   isAuthenticated: boolean | null;
   authLoading: boolean;
 };

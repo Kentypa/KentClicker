@@ -1,28 +1,27 @@
 import { Button } from "../Button";
 import { FC } from "react";
-import LogoutIcon from "../../../assets/icons/logout.svg";
-
-type LogoutButtonProps = {
+import DeleteAccountIcon from "../../../assets/icons/delete-account.svg";
+type DeleteAccountButtonProps = {
   className?: string;
   handleClick: () => void;
 };
 
-export const LogoutButton: FC<LogoutButtonProps> = ({
+export const DeleteAccountButton: FC<DeleteAccountButtonProps> = ({
   className,
   handleClick,
 }) => {
   return (
     <Button
       handleClick={handleClick}
-      className={`w-fit bg-background rounded-2xl text-label-large ${className}`}>
+      className={`w-fit bg-dangerous rounded-2xl text-label-large ${className}`}>
       <div className="flex flex-row px-5 py-3">
         <div className="flex items-center justify-center size-6 mr-1.5">
           <img
-            src={LogoutIcon}
-            alt="account-logout"
+            src={DeleteAccountIcon}
+            alt="delete-account"
           />
         </div>
-        Logout
+        Delete account
       </div>
     </Button>
   );

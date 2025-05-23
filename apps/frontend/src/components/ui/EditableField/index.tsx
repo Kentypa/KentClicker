@@ -7,8 +7,8 @@ import EditIcon from "../../../assets/icons/edit.svg";
 type EditableFieldProps = {
   label: string;
   name: string;
-  value: string;
-  isEditing: boolean;
+  value?: string;
+  isEditing?: boolean;
   onToggle: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -24,13 +24,14 @@ export const EditableField: FC<EditableFieldProps> = ({
   <div className="flex justify-between items-center gap-2">
     {!isEditing ? (
       <Label>
-        {label}: {value || `No ${label.toLowerCase()}`}
+        {label}: {value}
       </Label>
     ) : (
       <Input
         name={name}
-        value={value}
+        value={value || ""}
         handleChange={onChange}
+        className="p-1 border rounded-xl border-subtle-light"
       />
     )}
     <Button

@@ -5,14 +5,26 @@ Table user {
     password varchar(255) [not null]
     avatar_url varchar(255)
     refresh_token varchar(1024)
+    created_at timestamp [default: `now()`]
+    updated_at timestamp
 }
 
 Table user_stats {
     user_id integer [pk, ref: > user.id]
     total_clickcoins bigint [default: 0]
     total_clicks bigint [default: 0]
+}
+
+Table user_characteristics {
+    user_id integer [pk, ref: > user.id]
     coins_per_click integer [default: 1]
     passive_coins_income integer [default: 0]
+}
+
+enum offer_status {
+  active
+  completed
+  cancelled
 }
 
 Table user_offer {
@@ -20,11 +32,14 @@ Table user_offer {
     user_id integer [ref: > user.id]
     coin_count integer [not null]
     price_per_coin integer [not null]
+    status offer_status [default: offer_status.active]
+    created_at timestamp [default: `now()`]
 }
 
 Table achievement_user {
     user_id integer [pk, ref: > user.id]
     achievement_id integer [pk, ref: > achievement.id]
+    obtained_at timestamp [not null, default: `now()`]
 
     indexes {
         (user_id, achievement_id) [pk]
@@ -34,6 +49,7 @@ Table achievement_user {
 Table upgrade_user {
     user_id integer [pk, ref: > user.id]
     upgrade_id integer [pk, ref: > upgrade.id]
+    obtained_at timestamp [not null, default: `now()`]
     
     indexes {
         (user_id, upgrade_id) [pk]
@@ -52,4 +68,3 @@ Table upgrade {
     description varchar(128)
     price integer
 }
-    

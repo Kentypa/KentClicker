@@ -6,8 +6,11 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   OneToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { UserStats } from "./user-stats.entity";
+import { UserCharacteristics } from "./user-characteristics.entity";
 
 @Entity()
 export class User {
@@ -64,4 +67,26 @@ export class User {
   @OneToOne(() => UserStats, { eager: true, cascade: true })
   @JoinColumn()
   userStats: UserStats;
+
+  @OneToOne(() => UserCharacteristics, { eager: true, cascade: true })
+  @JoinColumn()
+  userCharacteristics: UserCharacteristics;
+
+  @ApiProperty({
+    example: "2353reaswdEvc@#W3vAWv4AW$#ca4cAW$caw4vaWEcVAWC3a#Aw3c",
+    description: "Hashed refresh token",
+    type: "string",
+  })
+  @CreateDateColumn()
+  @Exclude()
+  createdAt: Date;
+
+  @ApiProperty({
+    example: "2353reaswdEvc@#W3vAWv4AW$#ca4cAW$caw4vaWEcVAWC3a#Aw3c",
+    description: "Hashed refresh token",
+    type: "string",
+  })
+  @UpdateDateColumn()
+  @Exclude()
+  updatedAt: Date;
 }

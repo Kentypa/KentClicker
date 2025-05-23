@@ -1,10 +1,20 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 export function useForm<T extends Record<string, unknown>>(
   initialState: T,
   onSubmit?: (formState: T) => void,
 ) {
   const [formState, setFormState] = useState<T>(initialState);
+
+  useEffect(() => {
+    setFormState(initialState);
+  }, [initialState]);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

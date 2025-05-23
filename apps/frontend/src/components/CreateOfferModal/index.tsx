@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { NumericInput } from "../UI/NumericInput";
 import { useForm } from "../../hooks/use-form";
 import { Button } from "../UI/Button";
+import { OfferFormFields } from "../../types/offer-form-fields";
 
 type CreateOfferModalProps = {
   toggleModal: () => void;
@@ -10,10 +11,15 @@ type CreateOfferModalProps = {
 export const CreateOfferModal: FC<CreateOfferModalProps> = ({
   toggleModal,
 }) => {
-  const { formState, handleChangeByValue } = useForm({
-    amountOfCoinsToSell: 0,
-    pricePerCoin: 0,
-  });
+  const initialState = useMemo(
+    () => ({
+      amountOfCoinsToSell: 0,
+      pricePerCoin: 0,
+    }),
+    [],
+  );
+  const { formState, handleChangeByValue } =
+    useForm<OfferFormFields>(initialState);
 
   return (
     <form className="flex flex-col max-w-[320px] w-full gap-6 rounded-lg border border-subtle-light p-5.75 bg-white">

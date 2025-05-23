@@ -5,7 +5,7 @@ import { Divider } from "../UI/Divider";
 import { ContinueGoogleButton } from "../UI/ContinueGoogleButton";
 import { Input } from "../UI/Input";
 import { PasswordInput } from "../UI/PasswordInput";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { useForm } from "../../hooks/use-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Queries } from "../../enums/queriesKeys";
@@ -28,15 +28,10 @@ export const SignUpForm: FC = () => {
     },
   });
 
-  const { handleChange, handleSubmit } = useForm(
-    {
-      email: "",
-      password: "",
-    },
-    (formState) => {
-      mutate(formState);
-    },
-  );
+  const initialState = useMemo(() => ({ email: "", password: "" }), []);
+  const { handleChange, handleSubmit } = useForm(initialState, (formState) => {
+    mutate(formState);
+  });
 
   useEffect(() => {
     if (isSuccess) {

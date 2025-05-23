@@ -1,15 +1,24 @@
 import { Navigate, Outlet } from "react-router";
 import { LoadingWheel } from "../LoadingWheel";
+import { FC } from "react";
 import { useAppSelector } from "../../../hooks/redux";
 import { userSelector } from "../../../stores/selectors/userSelector";
-import { FC } from "react";
 
 export const ProtectedRoute: FC = () => {
-  const { isAuthenticated, authLoading } = useAppSelector(userSelector);
-
+  const { authLoading, isAuthenticated } = useAppSelector(userSelector);
+  
   if (authLoading) {
     return <LoadingWheel />;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/sign-in" />;
+  if (!isAuthenticated) {
+    return (
+      <Navigate
+        to="/sign-in"
+        replace
+      />
+    );
+  }
+
+  return <Outlet />;
 };

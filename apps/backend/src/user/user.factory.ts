@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { UserCharacteristics } from "src/shared/entities/user-characteristics.entity";
 import { UserStats } from "src/shared/entities/user-stats.entity";
 import { User } from "src/shared/entities/user.entity";
 
@@ -9,6 +10,7 @@ export class UserFactory {
     user.email = email;
     user.password = hashedPassword;
     user.userStats = new UserStats();
+    user.userCharacteristics = new UserCharacteristics();
     return user;
   }
 }

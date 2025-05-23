@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { UserData } from "../../types/user-data";
 
 const initialState: UserData = {
@@ -8,42 +7,48 @@ const initialState: UserData = {
   achievements: [],
   email: "",
   userStats: {
-    id: 0,
     totalClickCoins: 0,
     totalClicks: 0,
-    coinsPerClick: 0,
+  },
+  userCharacteristics: {
+    coinsPerClick: 1,
     passiveCoinsIncome: 0,
   },
-  isAuthenticated: null,
   authLoading: true,
+  isAuthenticated: null,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    changeByData: (_, action: PayloadAction<UserData>) => {
-      const avatarUrl = action.payload.avatarUrl
+    changeByData: (state, action: PayloadAction<UserData>) => {
+      state.username = action.payload.username;
+      state.avatarUrl = action.payload.avatarUrl
         ? `http://localhost:3000/${action.payload.avatarUrl}`
         : "";
-
-      return {
-        ...action.payload,
-        avatarUrl,
-        isAuthenticated: action.payload.email !== "",
-        authLoading: false,
-      };
+      state.achievements = action.payload.achievements;
+      state.email = action.payload.email;
+      state.userStats = action.payload.userStats;
+      state.userCharacteristics = action.payload.userCharacteristics;
     },
     changeIsAuthenticated: (state, action: PayloadAction<boolean>) => {
       state.isAuthenticated = action.payload;
     },
-    changeIsAuthLoading: (state, action: PayloadAction<boolean>) => {
+    changeAuthLoading: (state, action: PayloadAction<boolean>) => {
       state.authLoading = action.payload;
+    },
+    logout: () => {
+      return { ...initialState, authLoading: false, isAuthenticated: false };
     },
   },
 });
 
-export const { changeByData, changeIsAuthenticated, changeIsAuthLoading } =
-  userSlice.actions;
+export const {
+  changeByData,
+  logout,
+  changeAuthLoading,
+  changeIsAuthenticated,
+} = userSlice.actions;
 
 export default userSlice.reducer;

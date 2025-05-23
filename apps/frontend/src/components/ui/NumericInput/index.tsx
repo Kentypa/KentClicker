@@ -5,9 +5,12 @@ import { Label } from "../Label";
 import { validateNumbers } from "../../../utils/number-validator";
 import LeftArrow from "../../../assets/icons/simple-arrow-left.svg";
 import RightArrow from "../../../assets/icons/simple-arrow-right.svg";
+import { OfferFormFields } from "../../../types/offer-form-fields";
 
 type NumericInputProps = InputProps & {
-  handleChangeByValue: (name: string, value: string | number) => void;
+  name: keyof OfferFormFields;
+  value: number;
+  handleChangeByValue: (name: keyof OfferFormFields, value: number) => void;
 };
 
 export const NumericInput: FC<NumericInputProps> = ({
@@ -22,27 +25,14 @@ export const NumericInput: FC<NumericInputProps> = ({
   type,
   value,
 }) => {
-  function incrementValue() {
-    if (name) {
-      const newValue = Number(value) + 1;
-      handleChangeByValue(name, newValue);
-    }
-  }
+  const incrementValue = () => handleChangeByValue(name, value + 1);
+  const decrementValue = () =>
+    handleChangeByValue(name, Math.max(value - 1, 0));
 
-  function decrementValue() {
-    if (name) {
-      const newValue = Math.max(Number(value) - 1, 0);
-      handleChangeByValue(name, newValue);
-    }
-  }
-
-  function validateInput(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    if (name && value) {
-      const newValue = validateNumbers(value);
-      handleChangeByValue(name, newValue);
-    }
-  }
+  const validateInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = validateNumbers(event.target.value);
+    handleChangeByValue(name, +newValue);
+  };
 
   return (
     <div className="flex flex-col gap-2">
@@ -64,7 +54,6 @@ export const NumericInput: FC<NumericInputProps> = ({
           <img
             src={LeftArrow}
             alt="arrow-left"
-            className="rounded-xl bg-background p-2.5"
           />
         </Button>
         <Button
@@ -73,7 +62,6 @@ export const NumericInput: FC<NumericInputProps> = ({
           <img
             src={RightArrow}
             alt="arrow-right"
-            className="rounded-xl bg-background p-2.5"
           />
         </Button>
       </div>

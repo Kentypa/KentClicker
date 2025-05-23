@@ -5,8 +5,8 @@ import { Label } from "../Label";
 import EditIcon from "../../../assets/icons/edit.svg";
 
 type EditablePasswordProps = {
-  oldPassword: string;
-  newPassword: string;
+  oldPassword?: string;
+  newPassword?: string;
   isEditing: boolean;
   onToggle: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -28,15 +28,17 @@ export const EditablePassword: FC<EditablePasswordProps> = ({
           name="oldPassword"
           type="password"
           placeholder="Current password"
-          value={oldPassword}
+          value={oldPassword || ""}
           handleChange={onChange}
+          className="p-1 border rounded-xl border-subtle-light"
         />
         <Input
           name="newPassword"
           type="password"
           placeholder="New password"
-          value={newPassword}
+          value={newPassword || ""}
           handleChange={onChange}
+          className="p-1 border rounded-xl border-subtle-light"
         />
       </div>
     )}

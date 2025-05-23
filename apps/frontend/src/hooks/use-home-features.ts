@@ -5,7 +5,8 @@ import { FeatureItem } from "../types/feature-item";
 
 export const useHomeFeatures = () => {
   const {
-    userStats: { totalClickCoins, coinsPerClick, passiveCoinsIncome },
+    userStats: { totalClickCoins },
+    userCharacteristics: { coinsPerClick, passiveCoinsIncome },
   } = useAppSelector(userSelector);
 
   return [

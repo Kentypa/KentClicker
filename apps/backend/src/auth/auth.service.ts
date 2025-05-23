@@ -10,7 +10,6 @@ import { Repository } from "typeorm";
 import { compare } from "bcrypt";
 import { JwtService, JwtSignOptions } from "@nestjs/jwt";
 import { User } from "src/shared/entities/user.entity";
-import { plainToInstance } from "class-transformer";
 import { ConfigService } from "@nestjs/config";
 import { Response } from "express";
 import { UserService } from "src/user/user.service";
@@ -176,7 +175,7 @@ export class AuthService {
       passwordHash,
     );
 
-    return plainToInstance(User, newUser);
+    return newUser;
   }
 
   async getById(id: number): Promise<User> {

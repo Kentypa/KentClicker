@@ -1,6 +1,14 @@
 import api from "../config/axios";
+import { DeleteAccountFormData } from "../types/delete-account-form-data";
 
 export function userService(url: string) {
+  const deleteAccount = async (data: DeleteAccountFormData) => {
+    return api.delete(`${url}/delete`, { data }).catch((error) => {
+      console.log(error.toJSON());
+      throw new Error(error.message);
+    });
+  };
+
   const getUser = async () => {
     return api.get(`${url}/me`).catch((error) => {
       console.log(error.toJSON());
@@ -18,5 +26,6 @@ export function userService(url: string) {
   return {
     getUser,
     updateUserData,
+    deleteAccount,
   };
 }

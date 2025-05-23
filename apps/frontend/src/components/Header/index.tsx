@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { Logo } from "../UI/Logo";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { UserPanel } from "../UserPanel";
 import { Navigation } from "../UI/Navigation";
 import { useAppSelector } from "../../hooks/redux";
 import { userSelector } from "../../stores/selectors/userSelector";
 import { Button } from "../UI/Button";
+import { PagesEndponts } from "../../enums/pagesEndpoints";
 
 const menu = [
   { link: "/", name: "Home" },
@@ -15,6 +16,12 @@ const menu = [
 
 export const Header: FC = () => {
   const { isAuthenticated } = useAppSelector(userSelector);
+
+  const nav = useNavigate();
+
+  const handleClick = () => {
+    nav(PagesEndponts.SIGN_IN);
+  };
 
   return (
     <header className="flex justify-between items-center py-4 px-30 w-full bg-background">
@@ -34,7 +41,11 @@ export const Header: FC = () => {
       {isAuthenticated ? (
         <UserPanel />
       ) : (
-        <Button className="bg-subtle-light p-2 rounded-xl">Sign in</Button>
+        <Button
+          className="bg-subtle-light p-2 rounded-xl"
+          handleClick={handleClick}>
+          Sign in
+        </Button>
       )}
     </header>
   );

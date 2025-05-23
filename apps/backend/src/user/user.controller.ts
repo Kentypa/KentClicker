@@ -5,7 +5,6 @@ import {
   Get,
   HttpCode,
   HttpStatus,
-  Logger,
   ParseFilePipeBuilder,
   Patch,
   UploadedFile,
@@ -30,18 +29,12 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Express } from "express";
 import { avatarStorage } from "src/config/multer.config";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { FileMimeTypes } from "src/shared/enums/file-mime-types.enum";
 import { FileMimeTypeValidator } from "src/shared/validators/file-mime-type.validator";
-import { existsSync, unlinkSync } from "fs";
 import { ValidationFilePipe } from "src/shared/pipes/validation-file.pipe";
-
-const MAX_USER_AVATAR_SIZE_IN_BYTES = 2097152;
-const VALID_UPLOADS_MIME_TYPES = [
-  FileMimeTypes.GIF,
-  FileMimeTypes.JPEG,
-  FileMimeTypes.JPG,
-  FileMimeTypes.PNG,
-];
+import {
+  MAX_USER_AVATAR_SIZE_IN_BYTES,
+  VALID_UPLOADS_MIME_TYPES,
+} from "./constants/validation-settings.constant";
 
 @ApiBearerAuth()
 @ApiTags("user")
@@ -50,8 +43,6 @@ const VALID_UPLOADS_MIME_TYPES = [
 @UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private userService: UserService) {}
-
-  private readonly logger = new Logger(UserController.name);
 
   @Get("me")
   @ApiOperation({ summary: "Get user by session ID" })
@@ -107,12 +98,6 @@ export class UserController {
     @Body() updatedInfo: UpdateUserDto,
     @UserDecorator() user: User,
   ) {
-    try {
-      return this.userService.update(user.id, updatedInfo, file);
-    } catch {
-      if (existsSync(file.path)) {
-        unlinkSync(file.path);
-      }
-    }
+    return this.userService.update(user.id, updatedInfo, file);
   }
 }

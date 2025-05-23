@@ -1,4 +1,4 @@
-import { NestFactory } from "@nestjs/core";
+import { NestFactory, Reflector } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { NestExpressApplication } from "@nestjs/platform-express/interfaces/nest-express-application.interface";
 import { ConfigService } from "@nestjs/config/dist/config.service";
@@ -6,7 +6,7 @@ import { DocumentBuilder } from "@nestjs/swagger/dist/document-builder";
 import { SwaggerModule } from "@nestjs/swagger";
 import cookieParser from "cookie-parser";
 import { HttpExceptionFilter } from "./shared/filters/http-exception.filter";
-import { ValidationPipe } from "@nestjs/common";
+import { ClassSerializerInterceptor, ValidationPipe } from "@nestjs/common";
 import { join } from "path";
 
 async function bootstrap() {
@@ -37,6 +37,8 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   app.useGlobalPipes(new ValidationPipe());
+
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   await app.listen(configService.getOrThrow<number>("project.backend.port"));
 }

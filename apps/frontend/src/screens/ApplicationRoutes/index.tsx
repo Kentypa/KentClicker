@@ -31,22 +31,20 @@ export const ApplicationRoutes: FC = () => {
         element={<SignUpPage />}
       />
       <Route element={<ProtectedRoute />}>
-        <Route
-          path="profile"
-          element={<ProfilePage />}
-        />
-        <Route
-          path="edit-profile"
-          element={<EditProfilePage />}
-        />
+        <Route path="profile">
+          <Route
+            path=""
+            element={<ProfilePage />}
+          />
+          <Route
+            path="edit"
+            element={<EditProfilePage />}
+          />
+        </Route>
       </Route>
       <Route
         path="rating/:page?"
         element={<RatingPage />}
-      />
-      <Route
-        path="market/:page?"
-        element={<MarketPage />}
       />
       <Route
         path="market/:page?"

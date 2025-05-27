@@ -1,43 +1,26 @@
 import { Title } from "../UI/Title";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "../UI/Button";
 import { Divider } from "../UI/Divider";
 import { ContinueGoogleButton } from "../UI/ContinueGoogleButton";
 import { Input } from "../UI/Input";
 import { PasswordInput } from "../UI/PasswordInput";
-import { FC, useEffect, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { useForm } from "../../hooks/use-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Queries } from "../../enums/queriesKeys";
-import { authService } from "../../services/authService";
-import { ServiceNames } from "../../enums/serviceNames";
 import { PagesEndponts } from "../../enums/pagesEndpoints";
 import { Popup } from "../UI/PopUp";
+import { useSignUp } from "../../hooks/use-sign-up";
+import { useNavigateOnSuccess } from "../../hooks/use-navigate-on-success";
 
 export const SignUpForm: FC = () => {
-  const navigate = useNavigate();
-
-  const { signUpUser } = authService(ServiceNames.AUTH);
-
-  const queryClient = useQueryClient();
-
-  const { error, isError, isSuccess, mutate } = useMutation({
-    mutationFn: signUpUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [Queries.AUTH] });
-    },
-  });
+  const { isSuccess, mutate, isError, error } = useSignUp();
 
   const initialState = useMemo(() => ({ email: "", password: "" }), []);
   const { handleChange, handleSubmit } = useForm(initialState, (formState) => {
     mutate(formState);
   });
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate(PagesEndponts.SIGN_IN);
-    }
-  }, [isSuccess, navigate]);
+  useNavigateOnSuccess(isSuccess, PagesEndponts.SIGN_IN);
 
   return (
     <main className={`container flex max-w-100 flex-col items-center`}>

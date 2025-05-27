@@ -1,53 +1,32 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { Title } from "../UI/Title";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "../UI/Button";
 import { Divider } from "../UI/Divider";
 import { ContinueGoogleButton } from "../UI/ContinueGoogleButton";
 import { Input } from "../UI/Input";
 import { PasswordInput } from "../UI/PasswordInput";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { PagesEndponts } from "../../enums/pagesEndpoints";
-import { Queries } from "../../enums/queriesKeys";
-import { ServiceNames } from "../../enums/serviceNames";
 import { useForm } from "../../hooks/use-form";
-import { authService } from "../../services/authService";
 import { Popup } from "../UI/PopUp";
 import { useUserData } from "../../hooks/use-user-data";
 import { useUserVerify } from "../../hooks/use-user-validate";
+import { useNavigateOnSuccess } from "../../hooks/use-navigate-on-success";
+import { useSignIn } from "../../hooks/use-sign-in";
 
 export const SignInForm: FC = () => {
-  const navigate = useNavigate();
-
-  const { signInUser } = authService(ServiceNames.AUTH);
-
-  const queryClient = useQueryClient();
-
-  const {
-    error,
-    isError,
-    isSuccess: authIsSuccess,
-    mutate,
-  } = useMutation({
-    mutationFn: signInUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [Queries.AUTH] });
-    },
-  });
+  const { error, isError, isSuccess: authIsSuccess, mutate } = useSignIn();
 
   const initialState = useMemo(() => ({ email: "", password: "" }), []);
   const { handleChange, handleSubmit } = useForm(initialState, (formState) => {
     mutate(formState);
   });
+
   const { isSuccess: userVerifyIsSuccess } = useUserVerify(authIsSuccess);
   const { isSuccess: userDataFetchedSuccess } =
     useUserData(userVerifyIsSuccess);
 
-  useEffect(() => {
-    if (userDataFetchedSuccess === true) {
-      navigate(PagesEndponts.PROFILE);
-    }
-  }, [userDataFetchedSuccess, navigate]);
+  useNavigateOnSuccess(userDataFetchedSuccess, PagesEndponts.PROFILE);
 
   return (
     <main className="container flex max-w-100 flex-col items-center">

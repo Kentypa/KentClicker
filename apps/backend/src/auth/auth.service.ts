@@ -16,7 +16,6 @@ import { UserService } from "src/user/user.service";
 import { EncryptionService } from "src/shared/services/encryption.service";
 import { JwtPayload } from "./types/jwt-payload.type";
 import { RegisterUserDto } from "./dto/register-user.dto";
-import { SuccessResponseDto } from "./dto/success.dto";
 import { calculateTokenExpires } from "./functions/calculate-token-expires.function";
 import { UserAccountService } from "src/user/user-account.service";
 
@@ -111,7 +110,7 @@ export class AuthService {
     email: string,
     password: string,
     response: Response,
-  ): Promise<SuccessResponseDto> {
+  ): Promise<void> {
     const user = await this.validateUser(email, password);
 
     if (!user) {
@@ -135,9 +134,7 @@ export class AuthService {
       tokens.expiresRefreshToken,
     );
 
-    return {
-      success: true,
-    };
+    return;
   }
 
   async verifyUserRefreshToken(
@@ -188,7 +185,7 @@ export class AuthService {
     return user;
   }
 
-  logout(response: Response): SuccessResponseDto {
+  logout(response: Response): void {
     response.clearCookie("Authentication", {
       httpOnly: true,
       secure: false,
@@ -201,10 +198,10 @@ export class AuthService {
       sameSite: "lax",
     });
 
-    return { success: true };
+    return;
   }
 
-  async refresh(user: User, response: Response): Promise<SuccessResponseDto> {
+  async refresh(user: User, response: Response): Promise<void> {
     const payload: JwtPayload = {
       sub: user.id.toString(),
       username: user.email,
@@ -222,12 +219,10 @@ export class AuthService {
       tokens.expiresRefreshToken,
     );
 
-    return {
-      success: true,
-    };
+    return;
   }
 
-  validateToken(): SuccessResponseDto {
-    return { success: true };
+  validateToken(): void {
+    return;
   }
 }

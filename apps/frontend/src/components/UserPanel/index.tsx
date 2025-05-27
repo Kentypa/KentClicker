@@ -27,7 +27,7 @@ export const UserPanel: FC = () => {
           <p className="text-body-large text-subtle-dark mb-0.5">
             {userInfo.username || userInfo.email}
           </p>
-          <div className="flex justify-end items-center w-full gap-0.5">
+          <div className="flex items-center w-full gap-0.5">
             <img
               src={SmallCoin}
               className="size-5 m-0.5 mr-2"

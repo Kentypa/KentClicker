@@ -59,22 +59,22 @@ export class UserController {
   @Delete()
   @ApiOperation({ summary: "Remove user from database" })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: "User removed successfully",
   })
-  @HttpCode(200)
+  @HttpCode(204)
   async removeUser(@UserDecorator() user: User) {
     return this.userService.remove(user.id);
   }
 
   @Patch("update")
   @ApiConsumes("multipart/form-data")
-  @HttpCode(200)
+  @HttpCode(204)
   @ApiOperation({
     summary: "Update user data from database, and uploads avatars to DB",
   })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: "User successfully updated",
   })
   @UseInterceptors(FileInterceptor("avatar", avatarStorage))

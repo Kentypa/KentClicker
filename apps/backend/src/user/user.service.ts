@@ -39,7 +39,7 @@ export class UserService {
   async remove(id: number) {
     const user = await this.getById(id);
 
-    return this.userRepository.remove(user);
+    await this.userRepository.remove(user);
   }
 
   async updateRefreshToken(id: number, refreshToken: string) {
@@ -52,7 +52,7 @@ export class UserService {
       refreshToken: newRefreshTokenHashed,
     });
 
-    return this.userRepository.save(updatedUser);
+    await this.userRepository.save(updatedUser);
   }
 
   async update(id: number, dto: UpdateUserDto, avatar?: Express.Multer.File) {
@@ -84,7 +84,7 @@ export class UserService {
         user.avatarUrl = path.join(avatar.path);
       }
 
-      return this.userRepository.save(user);
+      await this.userRepository.save(user);
     } catch {
       if (avatar && avatar.path && fs.existsSync(avatar.path)) {
         fs.unlinkSync(avatar.path);

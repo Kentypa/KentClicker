@@ -18,7 +18,6 @@ import { User } from "src/shared/entities/user.entity";
 import { RegisterUserDto } from "./dto/register-user.dto";
 import { JwtAuthGuard } from "src/shared/guards/jwt-auth.guard";
 import { JwtRefreshAuthGuard } from "src/shared/guards/jwt-refresh.guard";
-import { SuccessResponseDto } from "./dto/success.dto";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
 
 @ApiTags("auth")
@@ -47,15 +46,14 @@ export class AuthController {
   @Post("sign-in")
   @ApiOperation({ summary: "Login user" })
   @ApiResponse({
-    status: 201,
+    status: 204,
     description: "User logged successfully",
-    type: SuccessResponseDto,
   })
   @ApiBody({
     type: LoginUserDto,
     description: "User information",
   })
-  @HttpCode(201)
+  @HttpCode(204)
   async login(
     @Body() user: LoginUserDto,
     @Res({ passthrough: true }) response: Response,
@@ -67,11 +65,10 @@ export class AuthController {
   @Post("logout")
   @ApiOperation({ summary: "Logout user" })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: "User logout successfully",
-    type: SuccessResponseDto,
   })
-  @HttpCode(200)
+  @HttpCode(204)
   logout(@Res({ passthrough: true }) response: Response) {
     return this.authService.logout(response);
   }
@@ -80,11 +77,10 @@ export class AuthController {
   @Get("validate")
   @ApiOperation({ summary: "Validate user token" })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: "User token validated successfully",
-    type: SuccessResponseDto,
   })
-  @HttpCode(200)
+  @HttpCode(204)
   validate() {
     return this.authService.validateToken();
   }
@@ -93,13 +89,10 @@ export class AuthController {
   @Post("refresh")
   @ApiOperation({ summary: "Refresh user token" })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: "User token refreshed successfully",
-    type: SuccessResponseDto,
   })
-  @HttpCode(200)
-  @Post("refresh")
-  @HttpCode(200)
+  @HttpCode(204)
   async refreshToken(
     @Res({ passthrough: true }) response: Response,
     @UserDecorator() user: User,

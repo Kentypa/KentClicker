@@ -31,11 +31,11 @@ export class User {
   email: string;
 
   @ApiProperty({
-    example: "test@gmail.com",
-    description: "User email",
+    example: "Kentik",
+    description: "User name",
     type: "string",
   })
-  @Column({ type: "varchar", length: 60, unique: true, nullable: true })
+  @Column({ type: "varchar", length: 20, unique: true, nullable: true })
   username: string;
 
   @ApiProperty({
@@ -43,16 +43,16 @@ export class User {
     description: "User password",
     type: "string",
   })
-  @Column({ type: "varchar", length: 100 })
+  @Column({ type: "varchar", length: 512 })
   @Exclude()
   password: string;
 
   @ApiProperty({
-    example: "/usr/bin/backend/public/images/avatars/174364236-343243image.png",
+    example: "uploads/users/avatars/1748361610393-2ee0737ab7ef.gif",
     description: "Path to user avatar",
     type: "string",
   })
-  @Column({ type: "varchar", nullable: true })
+  @Column({ type: "varchar", length: 512, nullable: true })
   avatarUrl: string;
 
   @ApiProperty({
@@ -73,18 +73,18 @@ export class User {
   userCharacteristics: UserCharacteristics;
 
   @ApiProperty({
-    example: "2353reaswdEvc@#W3vAWv4AW$#ca4cAW$caw4vaWEcVAWC3a#Aw3c",
-    description: "Hashed refresh token",
-    type: "string",
+    example: "2025-05-27 15:23:48.941416",
+    description: "Date of user creating",
+    type: Date,
   })
   @CreateDateColumn()
   @Exclude()
   createdAt: Date;
 
   @ApiProperty({
-    example: "2353reaswdEvc@#W3vAWv4AW$#ca4cAW$caw4vaWEcVAWC3a#Aw3c",
-    description: "Hashed refresh token",
-    type: "string",
+    example: "2025-05-27 15:23:48.941416",
+    description: "Date of user data latest updates",
+    type: Date,
   })
   @UpdateDateColumn()
   @Exclude()

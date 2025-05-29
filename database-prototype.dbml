@@ -4,9 +4,20 @@ Table user {
     email varchar(320) [unique, not null]
     password varchar(512) [not null]
     avatar_url varchar(512)
+    created_at timestamp [default: `now()`]
+    updated_at timestamp
+}
+
+Table user_refresh_tokens {
+    device_id varchar(64) [unique]
+    user_id integer [ref: > user.id]
     refresh_token varchar(1024)
     created_at timestamp [default: `now()`]
     updated_at timestamp
+
+    indexes {
+        (user_id, device_id) [unique]
+    }
 }
 
 Table user_stats {
@@ -32,7 +43,7 @@ Table user_offer {
     user_id integer [ref: > user.id]
     coin_count integer [not null]
     price_per_coin integer [not null]
-    status offer_status [default: offer_status.active]
+    status offer_status [default: "active"]
     created_at timestamp [default: `now()`]
 }
 

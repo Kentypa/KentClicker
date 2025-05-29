@@ -7,6 +7,7 @@ import {
   HttpStatus,
   ParseFilePipeBuilder,
   Patch,
+  Res,
   UploadedFile,
   UseFilters,
   UseGuards,
@@ -26,7 +27,7 @@ import { User } from "src/shared/entities/user.entity";
 import { UserDecorator } from "src/shared/decorators/user.decorator";
 import { JwtAuthGuard } from "src/shared/guards/jwt-auth.guard";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { Express } from "express";
+import { Express, Response } from "express";
 import { avatarStorage } from "src/config/multer.config";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { FileMimeTypeValidator } from "src/shared/validators/file-mime-type.validator";
@@ -35,6 +36,7 @@ import {
   MAX_USER_AVATAR_SIZE_IN_BYTES,
   VALID_UPLOADS_MIME_TYPES,
 } from "./constants/validation-settings.constant";
+import { DeleteUserDto } from "./dto/delete-user.dto";
 
 @ApiBearerAuth()
 @ApiTags("user")
@@ -56,15 +58,19 @@ export class UserController {
     return this.userService.getSafeUser(user.id);
   }
 
-  @Delete()
+  @Delete("delete-account")
   @ApiOperation({ summary: "Remove user from database" })
   @ApiResponse({
     status: 204,
     description: "User removed successfully",
   })
   @HttpCode(204)
-  async removeUser(@UserDecorator() user: User) {
-    return this.userService.remove(user.id);
+  async deleteUser(
+    @UserDecorator() user: User,
+    @Body() passwordsDto: DeleteUserDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.userService.delete(user.id, passwordsDto, response);
   }
 
   @Patch("update")

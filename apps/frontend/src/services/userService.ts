@@ -3,7 +3,7 @@ import { DeleteAccountFormData } from "../types/delete-account-form-data";
 
 export function userService(url: string) {
   const deleteAccount = async (data: DeleteAccountFormData) => {
-    return api.delete(`${url}/delete`, { data }).catch((error) => {
+    return api.delete(`${url}/delete-account`, { data }).catch((error) => {
       console.log(error.toJSON());
       throw new Error(error.message);
     });

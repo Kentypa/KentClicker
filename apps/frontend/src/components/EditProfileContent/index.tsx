@@ -13,6 +13,13 @@ import { useUserAvatarChange } from "../../hooks/use-user-avatar-change";
 import { useEditableFields } from "../../hooks/use-editable-fields";
 import { PopupList } from "../UI/PopupList";
 import { PopupElement } from "../../types/popup-element";
+import { DeleteAccountModal } from "../DeleteAccountModal";
+import { useDeleteAccount } from "../../hooks/use-delete-account";
+
+/* TODO:
+ *  Makes button to save changes unavailable if any fields is empty
+ *  Refactor component, make more decomposition
+ */
 
 export const EditProfileContent: FC = () => {
   const { mutate: logoutMutate } = useLogout();
@@ -27,7 +34,6 @@ export const EditProfileContent: FC = () => {
   } = useUpdateUser(email, username);
 
   const initialState = useMemo(() => ({ email, username }), [email, username]);
-
   const { formState, handleChangeByValue, handleChange, handleSubmit } =
     useForm<ProfileForm>(initialState, handleUpdatedUser);
 
@@ -43,6 +49,15 @@ export const EditProfileContent: FC = () => {
     isError: avatarLoadingError,
     errorCount: avatarUploadsErrorCounter,
   } = useUserAvatarChange(handleChangeByValue, avatarUrl);
+
+  const {
+    formState: deleteAccountFormState,
+    handleChange: deleteAccountHandleChange,
+    handleSubmit: deleteAccountHandleSubmit,
+    isError: deleteAccountIsError,
+    toggleShowAccountModal,
+    showDeleteAccountModal,
+  } = useDeleteAccount();
 
   const popups: PopupElement[] = [
     {
@@ -68,11 +83,26 @@ export const EditProfileContent: FC = () => {
       show: avatarLoadingError,
       key: avatarUploadsErrorCounter,
     },
+    {
+      content: (
+        <h2 className="text-body-medium text-red-500">
+          User account can`t be deleted, try again.
+        </h2>
+      ),
+      show: deleteAccountIsError,
+    },
   ];
 
   return (
     <main className="my-10 flex w-full justify-center px-30 max-w-[1440px] gap-10">
       <PopupList popups={popups} />
+      <DeleteAccountModal
+        toggleModal={toggleShowAccountModal}
+        visible={showDeleteAccountModal}
+        formState={deleteAccountFormState}
+        handleChange={deleteAccountHandleChange}
+        handleSubmit={deleteAccountHandleSubmit}
+      />
       <form
         className="w-full max-w-200 justify-between items-center"
         onSubmit={handleSubmit}
@@ -107,7 +137,7 @@ export const EditProfileContent: FC = () => {
           />
           <EditProfileActionButtons
             handleLogout={logoutMutate}
-            handleDeleteAccount={() => {}}
+            handleDeleteAccount={toggleShowAccountModal}
           />
         </div>
       </form>

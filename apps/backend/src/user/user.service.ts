@@ -11,6 +11,9 @@ import {
 import { UpdateUserDto } from "./dto/update-user.dto";
 import * as fs from "fs";
 import * as path from "path";
+import { DeleteUserDto } from "./dto/delete-user.dto";
+import { Response } from "express";
+import { CookieService } from "src/shared/services/cookie.service";
 
 @Injectable()
 export class UserService {
@@ -18,6 +21,7 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private encryptionService: EncryptionService,
+    private cookieService: CookieService,
   ) {}
 
   async getSafeUser(id: number): Promise<GetUserDto> {
@@ -90,5 +94,30 @@ export class UserService {
         fs.unlinkSync(avatar.path);
       }
     }
+  }
+
+  async delete(id: number, dto: DeleteUserDto, response: Response) {
+    const user = await this.getById(id);
+
+    const { password, passwordRepeat } = dto;
+
+    const passwordIsMatch = password === passwordRepeat;
+
+    if (!passwordIsMatch) {
+      throw new BadRequestException("Passwords not match");
+    }
+
+    const isValid = await this.encryptionService.compare(
+      password,
+      user.password,
+    );
+
+    if (!isValid) {
+      throw new BadRequestException("Incorrect passwords");
+    }
+
+    await this.userRepository.remove(user);
+
+    this.cookieService.clearAuthCookies(response);
   }
 }

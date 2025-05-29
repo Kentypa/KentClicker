@@ -18,6 +18,7 @@ import { JwtPayload } from "./types/jwt-payload.type";
 import { RegisterUserDto } from "./dto/register-user.dto";
 import { calculateTokenExpires } from "./functions/calculate-token-expires.function";
 import { UserAccountService } from "src/user/user-account.service";
+import { CookieService } from "src/shared/services/cookie.service";
 
 @Injectable()
 export class AuthService {
@@ -29,6 +30,7 @@ export class AuthService {
     private userService: UserService,
     private userAccountService: UserAccountService,
     private encryptionService: EncryptionService,
+    private cookieService: CookieService,
   ) {}
 
   private generateTokens(payload: JwtPayload): {
@@ -70,26 +72,6 @@ export class AuthService {
     };
   }
 
-  private setAuthCookies(
-    response: Response,
-    accessToken: string,
-    refreshToken: string,
-    accessExpires: Date,
-    refreshExpires: Date,
-  ): void {
-    response.cookie("Authentication", accessToken, {
-      httpOnly: true,
-      secure: false,
-      expires: accessExpires,
-    });
-
-    response.cookie("Refresh", refreshToken, {
-      httpOnly: true,
-      secure: false,
-      expires: refreshExpires,
-    });
-  }
-
   async validateUser(email: string, password: string): Promise<User> {
     const user = await this.authRepository.findOneBy({ email });
 
@@ -126,7 +108,7 @@ export class AuthService {
 
     await this.userService.updateRefreshToken(user.id, tokens.refreshToken);
 
-    this.setAuthCookies(
+    this.cookieService.setAuthCookies(
       response,
       tokens.accessToken,
       tokens.refreshToken,
@@ -185,22 +167,6 @@ export class AuthService {
     return user;
   }
 
-  logout(response: Response): void {
-    response.clearCookie("Authentication", {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    });
-
-    response.clearCookie("Refresh", {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    });
-
-    return;
-  }
-
   async refresh(user: User, response: Response): Promise<void> {
     const payload: JwtPayload = {
       sub: user.id.toString(),
@@ -211,7 +177,7 @@ export class AuthService {
 
     await this.userService.updateRefreshToken(user.id, tokens.refreshToken);
 
-    this.setAuthCookies(
+    this.cookieService.setAuthCookies(
       response,
       tokens.accessToken,
       tokens.refreshToken,
@@ -220,6 +186,10 @@ export class AuthService {
     );
 
     return;
+  }
+
+  logout(response: Response) {
+    this.cookieService.clearAuthCookies(response);
   }
 
   validateToken(): void {

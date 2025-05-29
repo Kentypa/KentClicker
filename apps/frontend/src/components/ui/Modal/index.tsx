@@ -1,5 +1,5 @@
-import { createPortal } from 'react-dom';
-import { ComponentWithChildren } from '../../../types/component-with-children';
+import { createPortal } from "react-dom";
+import { ComponentWithChildren } from "../../../types/component-with-children";
 
 type ModalProps = {
   visible: boolean;
@@ -21,12 +21,12 @@ export const Modal: ComponentWithChildren<ModalProps> = ({
             className={backgroundClassName}
             onClick={toggleModal}>
             <div
-              className='contents'
+              className="contents"
               onClick={(e) => e.stopPropagation()}>
               {children}
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </>
   );

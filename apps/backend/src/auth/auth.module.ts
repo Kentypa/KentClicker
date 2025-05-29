@@ -10,6 +10,7 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
 import { EncryptionService } from "src/shared/services/encryption.service";
 import { LocalStrategy } from "./strategies/local.strategy";
 import { JwtRefreshStrategy } from "./strategies/jwt-refresh.strategy";
+import { CookieService } from "src/shared/services/cookie.service";
 
 @Module({
   imports: [
@@ -25,6 +26,8 @@ import { JwtRefreshStrategy } from "./strategies/jwt-refresh.strategy";
     JwtStrategy,
     JwtRefreshStrategy,
     EncryptionService,
+    CookieService,
   ],
+  exports: [AuthService],
 })
 export class AuthModule {}

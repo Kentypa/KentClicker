@@ -7,8 +7,9 @@ import {
   UseGuards,
   Res,
   Get,
+  Req,
 } from "@nestjs/common";
-import { Response } from "express";
+import { Response, Request } from "express";
 import { HttpExceptionFilter } from "src/shared/filters/http-exception.filter";
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from "@nestjs/swagger";
 import { LoginUserDto } from "./dto/login-user.dto";
@@ -57,8 +58,14 @@ export class AuthController {
   async login(
     @Body() user: LoginUserDto,
     @Res({ passthrough: true }) response: Response,
+    @Req() request: Request,
   ) {
-    return await this.authService.login(user.email, user.password, response);
+    return await this.authService.login(
+      user.email,
+      user.password,
+      request,
+      response,
+    );
   }
 
   @UseGuards(JwtAuthGuard)
@@ -69,8 +76,11 @@ export class AuthController {
     description: "User logout successfully",
   })
   @HttpCode(204)
-  logout(@Res({ passthrough: true }) response: Response) {
-    return this.authService.logout(response);
+  logout(
+    @Req() request: Request,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.authService.logout(request, response);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -94,9 +104,10 @@ export class AuthController {
   })
   @HttpCode(204)
   async refreshToken(
+    @Req() request: Request,
     @Res({ passthrough: true }) response: Response,
     @UserDecorator() user: User,
   ) {
-    return this.authService.refresh(user, response);
+    return this.authService.refresh(user, request, response);
   }
 }

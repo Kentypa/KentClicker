@@ -11,7 +11,7 @@ import { compare } from "bcrypt";
 import { JwtService, JwtSignOptions } from "@nestjs/jwt";
 import { User } from "src/shared/entities/user.entity";
 import { ConfigService } from "@nestjs/config";
-import { Response } from "express";
+import { Response, Request } from "express";
 import { UserService } from "src/user/user.service";
 import { EncryptionService } from "src/shared/services/encryption.service";
 import { JwtPayload } from "./types/jwt-payload.type";
@@ -19,6 +19,7 @@ import { RegisterUserDto } from "./dto/register-user.dto";
 import { calculateTokenExpires } from "./functions/calculate-token-expires.function";
 import { UserAccountService } from "src/user/user-account.service";
 import { CookieService } from "src/shared/services/cookie.service";
+import { UserRefreshTokenService } from "./refresh-token.service";
 
 @Injectable()
 export class AuthService {
@@ -29,9 +30,14 @@ export class AuthService {
     private configService: ConfigService,
     private userService: UserService,
     private userAccountService: UserAccountService,
+    private userRefreshTokenService: UserRefreshTokenService,
     private encryptionService: EncryptionService,
     private cookieService: CookieService,
   ) {}
+
+  private getDeviceId(request: Request): string {
+    return request.headers["device-id"] as string;
+  }
 
   private generateTokens(payload: JwtPayload): {
     accessToken: string;
@@ -91,6 +97,7 @@ export class AuthService {
   async login(
     email: string,
     password: string,
+    request: Request,
     response: Response,
   ): Promise<void> {
     const user = await this.validateUser(email, password);
@@ -99,6 +106,8 @@ export class AuthService {
       throw new UnauthorizedException("Invalid credentials");
     }
 
+    const deviceId = this.getDeviceId(request);
+
     const payload: JwtPayload = {
       sub: user.id.toString(),
       username: user.email,
@@ -106,7 +115,12 @@ export class AuthService {
 
     const tokens = this.generateTokens(payload);
 
-    await this.userService.updateRefreshToken(user.id, tokens.refreshToken);
+    await this.userRefreshTokenService.updateRefreshToken(
+      user.id,
+      deviceId,
+      tokens.refreshToken,
+      tokens.expiresRefreshToken,
+    );
 
     this.cookieService.setAuthCookies(
       response,
@@ -120,19 +134,18 @@ export class AuthService {
   }
 
   async verifyUserRefreshToken(
+    user: User,
+    deviceId: string,
     refreshToken: string,
-    userId: number,
   ): Promise<User> {
-    const user = await this.getById(userId);
+    const isValid = await this.userRefreshTokenService.verifyRefreshToken(
+      user,
+      deviceId,
+      refreshToken,
+    );
 
-    if (!user) {
-      throw new NotFoundException("User not found");
-    }
-
-    const authenticated = await compare(refreshToken, user.refreshToken);
-
-    if (!authenticated) {
-      throw new UnauthorizedException();
+    if (!isValid) {
+      throw new UnauthorizedException("Invalid refresh token");
     }
 
     return user;
@@ -167,7 +180,13 @@ export class AuthService {
     return user;
   }
 
-  async refresh(user: User, response: Response): Promise<void> {
+  async refresh(
+    user: User,
+    request: Request,
+    response: Response,
+  ): Promise<void> {
+    const deviceId = this.getDeviceId(request);
+
     const payload: JwtPayload = {
       sub: user.id.toString(),
       username: user.email,
@@ -175,7 +194,12 @@ export class AuthService {
 
     const tokens = this.generateTokens(payload);
 
-    await this.userService.updateRefreshToken(user.id, tokens.refreshToken);
+    await this.userRefreshTokenService.updateRefreshToken(
+      user.id,
+      deviceId,
+      tokens.refreshToken,
+      tokens.expiresRefreshToken,
+    );
 
     this.cookieService.setAuthCookies(
       response,
@@ -188,7 +212,10 @@ export class AuthService {
     return;
   }
 
-  logout(response: Response) {
+  async logout(request: Request, response: Response): Promise<void> {
+    const deviceId = this.getDeviceId(request);
+
+    await this.userRefreshTokenService.deleteRefreshTokenByDevice(deviceId);
     this.cookieService.clearAuthCookies(response);
   }
 

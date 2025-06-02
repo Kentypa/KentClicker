@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import "./interceptors/authRefresh";
+import "./interceptors/userUUID";
 import "./App.css";
 
 const queryClient = new QueryClient();

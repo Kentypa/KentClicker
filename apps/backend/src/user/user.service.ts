@@ -46,19 +46,6 @@ export class UserService {
     await this.userRepository.remove(user);
   }
 
-  async updateRefreshToken(id: number, refreshToken: string) {
-    const user = await this.getById(id);
-
-    const newRefreshTokenHashed =
-      await this.encryptionService.hashData(refreshToken);
-
-    const updatedUser = this.userRepository.merge(user, {
-      refreshToken: newRefreshTokenHashed,
-    });
-
-    await this.userRepository.save(updatedUser);
-  }
-
   async update(id: number, dto: UpdateUserDto, avatar?: Express.Multer.File) {
     try {
       const user = await this.getById(id);

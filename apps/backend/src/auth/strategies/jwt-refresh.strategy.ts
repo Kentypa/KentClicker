@@ -31,11 +31,20 @@ export class JwtRefreshStrategy extends PassportStrategy(
   async validate(request: Request, payload: JwtPayload) {
     const refreshToken = cookieExtractor(request);
     if (!refreshToken) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException("Refresh token not found");
     }
+
+    const deviceId = request.headers["device-id"] as string;
+    if (!deviceId) {
+      throw new UnauthorizedException("Device ID not found");
+    }
+
+    const user = await this.authService.getById(parseInt(payload.sub));
+
     return this.authService.verifyUserRefreshToken(
+      user,
+      deviceId,
       refreshToken,
-      parseInt(payload.sub),
     );
   }
 }

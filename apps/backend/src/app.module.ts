@@ -12,6 +12,7 @@ import { AuthModule } from "./auth/auth.module";
 import { UserStats } from "./shared/entities/user-stats.entity";
 import { User } from "./shared/entities/user.entity";
 import { UserCharacteristics } from "./shared/entities/user-characteristics.entity";
+import { UserRefreshToken } from "./shared/entities/user-refresh-tokens.entity";
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { UserCharacteristics } from "./shared/entities/user-characteristics.enti
         username: configService.get<string>("database.user"),
         password: configService.get<string>("database.password"),
         database: configService.get<string>("database.name"),
-        entities: [User, UserStats, UserCharacteristics],
+        entities: [User, UserStats, UserCharacteristics, UserRefreshToken],
         synchronize: true,
         // migrations: ["dist/migrations/*.js"],
         // migrationsRun: true,

@@ -4,13 +4,14 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  JoinColumn,
   OneToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { UserStats } from "./user-stats.entity";
 import { UserCharacteristics } from "./user-characteristics.entity";
+import { UserRefreshToken } from "./user-refresh-tokens.entity";
 
 @Entity()
 export class User {
@@ -27,7 +28,7 @@ export class User {
     description: "User email",
     type: "string",
   })
-  @Column({ type: "varchar", length: 60, unique: true })
+  @Column({ type: "varchar", length: 320, unique: true })
   email: string;
 
   @ApiProperty({
@@ -55,22 +56,26 @@ export class User {
   @Column({ type: "varchar", length: 512, nullable: true })
   avatarUrl: string;
 
-  @ApiProperty({
-    example: "2353reaswdEvc@#W3vAWv4AW$#ca4cAW$caw4vaWEcVAWC3a#Aw3c",
-    description: "Hashed refresh token",
-    type: "string",
+  @OneToOne(() => UserStats, (stats) => stats.user, {
+    eager: true,
+    cascade: true,
   })
-  @Column({ type: "varchar", length: 1024, nullable: true })
-  @Exclude()
-  refreshToken: string;
-
-  @OneToOne(() => UserStats, { eager: true, cascade: true })
-  @JoinColumn()
   userStats: UserStats;
 
-  @OneToOne(() => UserCharacteristics, { eager: true, cascade: true })
-  @JoinColumn()
+  @OneToOne(
+    () => UserCharacteristics,
+    (characteristics) => characteristics.user,
+    {
+      eager: true,
+      cascade: true,
+    },
+  )
   userCharacteristics: UserCharacteristics;
+
+  @OneToMany(() => UserRefreshToken, (token) => token.user, {
+    cascade: true,
+  })
+  refreshTokens: UserRefreshToken[];
 
   @ApiProperty({
     example: "2025-05-27 15:23:48.941416",

@@ -4,16 +4,23 @@ Table user {
     email varchar(320) [unique, not null]
     password varchar(512) [not null]
     avatar_url varchar(512)
+    account_state account_state [default: "active"]
     created_at timestamp [default: `now()`]
     updated_at timestamp
 }
 
+enum account_state {
+  active
+  deleted
+}
+
 Table user_refresh_tokens {
-    device_id varchar(64) [unique]
+    device_id uuid [unique]
     user_id integer [ref: > user.id]
-    refresh_token varchar(1024)
+    refresh_token varchar(512)
     created_at timestamp [default: `now()`]
     updated_at timestamp
+    expires_date timestamp
 
     indexes {
         (user_id, device_id) [unique]

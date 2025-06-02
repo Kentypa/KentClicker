@@ -11,6 +11,7 @@ export class UserFactory {
     user.password = hashedPassword;
     user.userStats = new UserStats();
     user.userCharacteristics = new UserCharacteristics();
+    user.refreshTokens = [];
     return user;
   }
 }

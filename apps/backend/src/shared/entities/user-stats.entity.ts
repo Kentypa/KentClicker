@@ -1,6 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Exclude } from "class-transformer";
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  OneToOne,
+} from "typeorm";
+import { User } from "./user.entity";
 
 @Entity()
 export class UserStats {
@@ -12,6 +19,10 @@ export class UserStats {
   @PrimaryGeneratedColumn()
   @Exclude()
   id: number;
+
+  @OneToOne(() => User, (user) => user.userStats, { onDelete: "CASCADE" })
+  @JoinColumn()
+  user: User;
 
   @ApiProperty({
     example: "124",

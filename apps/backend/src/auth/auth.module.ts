@@ -11,12 +11,14 @@ import { EncryptionService } from "src/shared/services/encryption.service";
 import { LocalStrategy } from "./strategies/local.strategy";
 import { JwtRefreshStrategy } from "./strategies/jwt-refresh.strategy";
 import { CookieService } from "src/shared/services/cookie.service";
+import { UserRefreshTokenService } from "./refresh-token.service";
+import { UserRefreshToken } from "src/shared/entities/user-refresh-tokens.entity";
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, UserRefreshToken]),
     JwtModule,
   ],
   controllers: [AuthController],
@@ -27,6 +29,7 @@ import { CookieService } from "src/shared/services/cookie.service";
     JwtRefreshStrategy,
     EncryptionService,
     CookieService,
+    UserRefreshTokenService,
   ],
   exports: [AuthService],
 })

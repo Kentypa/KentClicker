@@ -3,13 +3,29 @@ import { Queries } from "../enums/queriesKeys";
 import { ServiceNames } from "../enums/serviceNames";
 import { userService } from "../services/userService";
 import { ProfileForm } from "../types/profile-form";
+import { useAppDispatch } from "./redux";
+import { changeByData } from "../stores/user/userSlice";
+import { UserData } from "../types/user-data";
 
 export const useUpdateUser = (email?: string, username?: string) => {
   const { updateUserData } = userService(ServiceNames.USER);
   const queryClient = useQueryClient();
-  const { mutate, ...otherOptions } = useMutation({
+  const dispatch = useAppDispatch();
+  const { mutate, isSuccess, ...otherOptions } = useMutation<
+    UserData,
+    Error,
+    FormData
+  >({
     mutationFn: updateUserData,
-    onSuccess: () => {
+    onSuccess: (updatedUser) => {
+      dispatch(
+        changeByData({
+          ...updatedUser,
+          avatarUrl: updatedUser.avatarUrl
+            ? `http://localhost:3000/${updatedUser.avatarUrl}`
+            : "",
+        })
+      );
       queryClient.refetchQueries({ queryKey: [Queries.USER] });
     },
   });
@@ -29,5 +45,5 @@ export const useUpdateUser = (email?: string, username?: string) => {
     mutate(formData);
   };
 
-  return { handleUpdatedUser, ...otherOptions };
+  return { handleUpdatedUser, isSuccess, ...otherOptions };
 };

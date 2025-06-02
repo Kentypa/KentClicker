@@ -75,7 +75,7 @@ export class UserService {
         user.avatarUrl = path.join(avatar.path);
       }
 
-      await this.userRepository.save(user);
+      return await this.userRepository.save(user);
     } catch {
       if (avatar && avatar.path && fs.existsSync(avatar.path)) {
         fs.unlinkSync(avatar.path);

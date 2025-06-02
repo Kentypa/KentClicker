@@ -106,7 +106,8 @@ export const EditProfileContent: FC = () => {
       <form
         className="w-full max-w-200 justify-between items-center"
         onSubmit={handleSubmit}
-        encType="multipart/form-data">
+        encType="multipart/form-data"
+      >
         <div className="border border-subtle-light rounded-xl p-3 gap-4 flex flex-col">
           <EditableField
             label="Email"

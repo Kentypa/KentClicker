@@ -75,12 +75,12 @@ export class UserController {
 
   @Patch("update")
   @ApiConsumes("multipart/form-data")
-  @HttpCode(204)
+  @HttpCode(200)
   @ApiOperation({
     summary: "Update user data from database, and uploads avatars to DB",
   })
   @ApiResponse({
-    status: 204,
+    status: 200,
     description: "User successfully updated",
   })
   @UseInterceptors(FileInterceptor("avatar", avatarStorage))

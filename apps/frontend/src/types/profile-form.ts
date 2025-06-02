@@ -1,5 +1,5 @@
 export type ProfileForm = {
-  email: string;
+  email?: string;
   username?: string;
   avatar?: File;
   oldPassword?: string;

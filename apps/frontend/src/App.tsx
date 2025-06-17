@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import "./interceptors/authRefresh";
 import "./interceptors/userUUID";
 import "./App.css";
+import { PopupList } from "./components/PopupsList";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ApplicationRoutes />
+          <PopupList />
         </BrowserRouter>
       </QueryClientProvider>
     </Provider>

@@ -14,9 +14,7 @@ export const EditProfileActionButtons: FC<EditProfileActionButtonsProps> = ({
 }) => {
   return (
     <div className="flex justify-between">
-      <Button
-        type="submit"
-        className="p-3 bg-primary rounded-2xl text-white">
+      <Button type="submit" className="p-3 bg-primary rounded-2xl text-white">
         Save Changes
       </Button>
       <div className="flex gap-3">

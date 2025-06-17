@@ -140,6 +140,10 @@ body {
   line-height: 24px;
 }
 
-button {
+button:enabled {
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }

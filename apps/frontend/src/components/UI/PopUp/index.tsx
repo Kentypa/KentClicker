@@ -1,63 +1,74 @@
-import { useState } from "react";
-import { ComponentWithChildren } from "../../../types/component-with-children";
-import { createPortal } from "react-dom";
+import { FC, useCallback, useEffect, useState } from "react";
+import { PopupsOptions } from "../../../enums/popupsOptions";
+import { useAppDispatch } from "../../../hooks/redux";
+import { popupsListRemove } from "../../../stores/popupsList/popupsListSlice";
 import styles from "./styles.module.css";
 import CrossIcon from "../../../assets/icons/cross.svg";
+import { PopupMessageType } from "../../../enums/popupMessageType";
 
 type PopupProps = {
   classname?: string;
   duration?: number;
+  message: string;
+  messageType?: PopupMessageType;
 };
 
-export const Popup: ComponentWithChildren<PopupProps> = ({
+export const Popup: FC<PopupProps & { popupKey: string | number }> = ({
   classname = "",
-  children,
-  duration = 5000,
+  duration = PopupsOptions.POPUP_DURATION,
+  popupKey,
+  message,
+  messageType = PopupMessageType.INFORMATION,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isClosing, setIsClosing] = useState(false);
 
-  const startCloseAnimation = () => {
+  const dispatch = useAppDispatch();
+
+  const startCloseAnimation = useCallback(() => {
     setIsClosing(true);
-    setTimeout(() => setIsVisible(false), 500);
-  };
+    setTimeout(() => {
+      setIsVisible(false);
+      dispatch(popupsListRemove(popupKey));
+    }, 500);
+  }, [dispatch, popupKey]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startCloseAnimation();
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [duration, startCloseAnimation]);
 
   if (!isVisible) return null;
 
-  return createPortal(
+  return (
     <div
-      className={`fixed bottom-6 right-6 z-50 bg-surface border border-subtle-light rounded-2xl shadow-lg w-[320px] p-2 flex flex-col gap-3 ${
+      className={`bg-surface border border-subtle-light rounded-2xl shadow-lg w-[320px] p-2 flex flex-col gap-3 ${
         isClosing ? styles["animate-slide-down"] : styles["animate-slide-up"]
-      } ${classname}`}>
+      } ${classname}`}
+    >
       <div className="relative">
         <button
-          onClick={() => {
-            startCloseAnimation();
-          }}
-          className="absolute top-0 right-0 text-gray-400 hover:text-gray-700">
-          <img
-            src={CrossIcon}
-            alt="Close"
-            className="w-4 h-4"
-          />
+          onClick={startCloseAnimation}
+          className="absolute top-0 right-0 text-gray-400 hover:text-gray-700"
+        >
+          <img src={CrossIcon} alt="Close" className="w-4 h-4" />
         </button>
         <div className="h-2" />
       </div>
 
       <hr className="border-t border-subtle-light my-1" />
 
-      <div>{children}</div>
+      <h3 className={messageType}>{message}</h3>
 
       <div className="h-2 w-full bg-subtle-light rounded-full overflow-hidden mt-2">
         <div
           className={`${styles["animate-progress"]} bg-primary h-full`}
-          style={{
-            animationDuration: `${duration}ms`,
-          }}
-          onAnimationEnd={startCloseAnimation}
+          style={{ animationDuration: `${duration}ms` }}
         />
       </div>
-    </div>,
-    document.body,
+    </div>
   );
 };

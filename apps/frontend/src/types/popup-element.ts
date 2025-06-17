@@ -1,7 +1,9 @@
-import { ReactNode } from "react";
+import { PopupMessageType } from "../enums/popupMessageType";
 
 export type PopupElement = {
-  content: ReactNode;
+  message: string;
+  messageType?: PopupMessageType;
   key?: string | number;
-  show: boolean;
+  duration?: number;
+  show?: boolean;
 };

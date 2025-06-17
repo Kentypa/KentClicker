@@ -41,9 +41,7 @@ export const SignInForm: FC = () => {
         Welcome to KentClicker
       </Title>
       <p className="text-headline-small mb-8">Sign in</p>
-      <form
-        className="container text-subtle-dark"
-        onSubmit={handleSubmit}>
+      <form className="container text-subtle-dark" onSubmit={handleSubmit}>
         <div className={`mb-6 flex flex-col`}>
           <Input
             className="p-2.75 rounded-lg border border-subtle-light"
@@ -61,24 +59,21 @@ export const SignInForm: FC = () => {
           handleChange={handleChange}
         />
         <div className="container flex justify-end mb-8">
-          <Link
-            to="/"
-            className="text-body-large underline text-primary">
+          <Link to="/" className="text-body-large underline text-primary">
             Forgot password?
           </Link>
         </div>
         <Button
           type="submit"
-          className="container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 ">
+          className="container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 "
+        >
           Sign in
         </Button>
       </form>
       <div className="text-body-large container flex justify-center mb-8">
         <p>
           Already have an account?{" "}
-          <Link
-            to={`/sign-up`}
-            className="underline">
+          <Link to={`/sign-up`} className="underline">
             Sign up
           </Link>
         </p>

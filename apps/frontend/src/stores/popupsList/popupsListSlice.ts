@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PopupElement } from "../../types/popup-element";
+import { PopupElement } from "@custom-types/popup-element";
 
 const initialState: PopupElement[] = [];
 

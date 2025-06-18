@@ -1,4 +1,4 @@
-import { PopupMessageType } from "../enums/popupMessageType";
+import { PopupMessageType } from "@enums/popupMessageType";
 
 export type PopupElement = {
   message: string;

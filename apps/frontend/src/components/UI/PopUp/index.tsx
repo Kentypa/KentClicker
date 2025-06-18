@@ -1,10 +1,10 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { PopupsOptions } from "../../../enums/popupsOptions";
-import { useAppDispatch } from "../../../hooks/redux";
-import { popupsListRemove } from "../../../stores/popupsList/popupsListSlice";
+import { PopupsOptions } from "@enums/popupsOptions";
+import { useAppDispatch } from "@hooks/redux";
+import { popupsListRemove } from "@stores/popupsList/popupsListSlice";
+import { PopupMessageType } from "@enums/popupMessageType";
 import styles from "./styles.module.css";
-import CrossIcon from "../../../assets/icons/cross.svg";
-import { PopupMessageType } from "../../../enums/popupMessageType";
+import CrossIcon from "@icons/cross.svg";
 
 type PopupProps = {
   classname?: string;

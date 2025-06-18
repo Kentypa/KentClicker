@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { ComponentWithChildren } from "../../../types/component-with-children";
+import { ComponentWithChildren } from "@custom-types/component-with-children";
 
 type ModalProps = {
   visible: boolean;
@@ -17,16 +17,12 @@ export const Modal: ComponentWithChildren<ModalProps> = ({
     <>
       {visible &&
         createPortal(
-          <div
-            className={backgroundClassName}
-            onClick={toggleModal}>
-            <div
-              className="contents"
-              onClick={(e) => e.stopPropagation()}>
+          <div className={backgroundClassName} onClick={toggleModal}>
+            <div className="contents" onClick={(e) => e.stopPropagation()}>
               {children}
             </div>
           </div>,
-          document.body,
+          document.body
         )}
     </>
   );

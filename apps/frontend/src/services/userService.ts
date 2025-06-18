@@ -1,6 +1,6 @@
-import api from "../config/axios";
-import { DeleteAccountFormData } from "../types/delete-account-form-data";
-import { UserData } from "../types/user-data";
+import api from "@config/axios";
+import { DeleteAccountFormData } from "@custom-types/delete-account-form-data";
+import { UserData } from "@custom-types/user-data";
 
 export function userService(url: string) {
   const deleteAccount = async (data: DeleteAccountFormData) => {

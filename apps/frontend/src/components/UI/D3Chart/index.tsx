@@ -1,7 +1,7 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import * as d3 from 'd3';
-import { drawGridLines } from '../../../utils/drawGridLines';
-import { drawLineChart } from '../../../utils/drawLineChart';
+import { FC, useEffect, useRef, useState } from "react";
+import { drawGridLines } from "@utils/drawGridLines";
+import { drawLineChart } from "@utils/drawLineChart";
+import * as d3 from "d3";
 
 type D3ChartProps = {
   linesCountX: number;
@@ -45,31 +45,37 @@ export const D3Chart: FC<D3ChartProps> = ({
 
     const svg = d3.select(svgRef.current);
 
-    svg.selectAll('*').remove();
+    svg.selectAll("*").remove();
 
-    const gridXScale = d3.scaleLinear().domain([0, linesCountX]).range([0, width]);
-    const gridYScale = d3.scaleLinear().domain([0, linesCountY]).range([height, 0]);
+    const gridXScale = d3
+      .scaleLinear()
+      .domain([0, linesCountX])
+      .range([0, width]);
+    const gridYScale = d3
+      .scaleLinear()
+      .domain([0, linesCountY])
+      .range([height, 0]);
 
     drawGridLines({
       svg,
       scale: gridXScale,
-      orientation: 'horizontal',
+      orientation: "horizontal",
       linesCount: linesCountX,
       width,
       height,
       strokeWidth: 1,
-      strokeColor: '#e0e0e0',
+      strokeColor: "#e0e0e0",
     });
 
     drawGridLines({
       svg,
       scale: gridYScale,
-      orientation: 'vertical',
+      orientation: "vertical",
       linesCount: linesCountY,
       width,
       height,
       strokeWidth: 1,
-      strokeColor: '#e0e0e0',
+      strokeColor: "#e0e0e0",
     });
 
     const dataXScale = d3
@@ -84,15 +90,10 @@ export const D3Chart: FC<D3ChartProps> = ({
       data,
       xScale: dataXScale,
       yScale: dataYScale,
-      color: '#616C7C',
+      color: "#616C7C",
       strokeWidth: 4,
     });
   }, [linesCountX, linesCountY, data, yDomain, width, height]);
 
-  return (
-    <svg
-      ref={svgRef}
-      className={className}
-    />
-  );
+  return <svg ref={svgRef} className={className} />;
 };

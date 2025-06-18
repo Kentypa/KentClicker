@@ -1,5 +1,5 @@
-import { formObject } from "../types/form-object";
-import api from "../config/axios";
+import { formObject } from "@custom-types/form-object";
+import api from "@config/axios";
 
 export function authService(url: string) {
   const signInUser = async (formState: formObject) => {

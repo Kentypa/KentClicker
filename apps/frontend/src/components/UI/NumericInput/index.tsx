@@ -1,11 +1,11 @@
 import { ChangeEvent, FC } from "react";
-import { Input, InputProps } from "../Input";
-import { Button } from "../Button";
-import { Label } from "../Label";
-import { validateNumbers } from "../../../utils/number-validator";
-import LeftArrow from "../../../assets/icons/simple-arrow-left.svg";
-import RightArrow from "../../../assets/icons/simple-arrow-right.svg";
-import { OfferFormFields } from "../../../types/offer-form-fields";
+import { Input, InputProps } from "@ui/Input";
+import { Button } from "@ui/Button";
+import { Label } from "@ui/Label";
+import { validateNumbers } from "@utils/number-validator";
+import { OfferFormFields } from "@custom-types/offer-form-fields";
+import LeftArrow from "@icons/simple-arrow-left.svg";
+import RightArrow from "@icons/simple-arrow-right.svg";
 
 type NumericInputProps = InputProps & {
   name: keyof OfferFormFields;
@@ -50,19 +50,15 @@ export const NumericInput: FC<NumericInputProps> = ({
         />
         <Button
           handleClick={decrementValue}
-          className="absolute left-1 top-1/2 transform -translate-y-1/2">
-          <img
-            src={LeftArrow}
-            alt="arrow-left"
-          />
+          className="absolute left-1 top-1/2 transform -translate-y-1/2"
+        >
+          <img src={LeftArrow} alt="arrow-left" />
         </Button>
         <Button
           handleClick={incrementValue}
-          className="absolute right-1 top-1/2 transform -translate-y-1/2">
-          <img
-            src={RightArrow}
-            alt="arrow-right"
-          />
+          className="absolute right-1 top-1/2 transform -translate-y-1/2"
+        >
+          <img src={RightArrow} alt="arrow-right" />
         </Button>
       </div>
     </div>

@@ -1,0 +1,19 @@
+{
+  "@": "",
+  "@assets": "assets",
+  "@components": "components",
+  "@icons": "assets/icons",
+  "@fonts": "assets/fonts",
+  "@images": "assets/images",
+  "@config": "config",
+  "@enums": "enums",
+  "@hooks": "hooks",
+  "@interceptors": "interceptors",
+  "@services": "services",
+  "@stores": "stores",
+  "@custom-types": "types",
+  "@utils": "utils",
+  "@ui": "components/UI",
+  "@selectors": "stores/selectors",
+  "@screens": "screens"
+}

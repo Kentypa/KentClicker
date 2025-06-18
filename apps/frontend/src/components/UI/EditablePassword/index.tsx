@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Button } from "../Button";
-import { Input } from "../Input";
-import { Label } from "../Label";
-import EditIcon from "../../../assets/icons/edit.svg";
+import { Button } from "@ui/Button";
+import { Input } from "@ui/Input";
+import { Label } from "@ui/Label";
+import EditIcon from "@icons/edit.svg";
 
 type EditablePasswordProps = {
   oldPassword?: string;
@@ -42,14 +42,8 @@ export const EditablePassword: FC<EditablePasswordProps> = ({
         />
       </div>
     )}
-    <Button
-      type="button"
-      handleClick={onToggle}
-      className="mt-1">
-      <img
-        src={EditIcon}
-        className="size-6"
-      />
+    <Button type="button" handleClick={onToggle} className="mt-1">
+      <img src={EditIcon} className="size-6" />
     </Button>
   </div>
 );

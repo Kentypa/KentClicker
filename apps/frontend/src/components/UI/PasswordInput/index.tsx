@@ -1,8 +1,8 @@
 import { ChangeEvent, FC, useState } from "react";
-import { Input } from "../Input";
-import { Label } from "../Label";
-import eyeOpened from "../../../assets/icons/eye-open.svg";
-import eyeClosed from "../../../assets/icons/eye-closed.svg";
+import { Input } from "@ui/Input";
+import { Label } from "@ui/Label";
+import eyeOpened from "@icons/eye-open.svg";
+import eyeClosed from "@icons/eye-closed.svg";
 
 type PasswordInputProps = {
   className?: string;

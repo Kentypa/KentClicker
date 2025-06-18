@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { UserProfile } from "../../components/UserProfile";
-import { MainContentWrapper } from "../../components/UI/MainContentWrapper";
+import { UserProfile } from "../../features/ProfilePage/components/UserProfile";
+import { MainContentWrapper } from "@ui/MainContentWrapper";
 
 export const ProfilePage: FC = () => {
   return (

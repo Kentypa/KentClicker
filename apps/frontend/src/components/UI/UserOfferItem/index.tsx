@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { UserOffer } from "../../../types/user-offer";
-import { Button } from "../Button";
-import CoinIcon from "../../../assets/icons/coin-small.svg";
+import { UserOffer } from "@custom-types/user-offer";
+import { Button } from "@ui/Button";
+import CoinIcon from "@icons/coin-small.svg";
 
 type UserOfferItemProps = {
   offer: UserOffer;

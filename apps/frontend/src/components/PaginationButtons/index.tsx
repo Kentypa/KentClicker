@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Button } from "../UI/Button";
+import { Button } from "@ui/Button";
 import { useLocation, useNavigate } from "react-router";
-import ArrowLeft from "../../assets/icons/arrow-left.svg";
-import ArrowRight from "../../assets/icons/arrow-right.svg";
+import ArrowLeft from "@icons/arrow-left.svg";
+import ArrowRight from "@icons/arrow-right.svg";
 
 type PaginationButtonsProps = {
   currentPage: number;
@@ -30,10 +30,7 @@ export const PaginationButtons: FC<PaginationButtonsProps> = ({
   return (
     <div className="flex flex-row items-center justify-center mt-8">
       <Button handleClick={() => handleSetPage(currentPage - 1)}>
-        <img
-          src={ArrowLeft}
-          alt="Previous page"
-        />
+        <img src={ArrowLeft} alt="Previous page" />
       </Button>
       <div className="mx-6 flex flex-row items-center justify-center gap-2">
         {Array.from({ length: totalPages }).map((_, index) => (
@@ -42,16 +39,14 @@ export const PaginationButtons: FC<PaginationButtonsProps> = ({
             handleClick={() => handleSetPage(index + 1)}
             className={`size-12 text-body-large ${
               index + 1 === currentPage ? "bg-background rounded-full" : ""
-            }`}>
+            }`}
+          >
             {index + 1}
           </Button>
         ))}
       </div>
       <Button handleClick={() => handleSetPage(currentPage + 1)}>
-        <img
-          src={ArrowRight}
-          alt="Next page"
-        />
+        <img src={ArrowRight} alt="Next page" />
       </Button>
     </div>
   );

@@ -1,13 +1,13 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import api from "../config/axios";
-import { ServiceNames } from "../enums/serviceNames";
+import api from "@config/axios";
+import { ServiceNames } from "@enums/serviceNames";
 import { store } from "../store";
 import {
   changeAuthLoading,
   changeIsAuthenticated,
-} from "../stores/user/userSlice";
-import { TokenValidatingStatus } from "../types/token-validating-status";
-import { delay } from "../utils/delay";
+} from "@stores/user/userSlice";
+import { TokenValidatingStatus } from "@custom-types/token-validating-status";
+import { delay } from "@utils/delay";
 
 let isRefreshing = false;
 
@@ -15,7 +15,7 @@ const retryValidate = async (
   countRetries: number,
   delayTime: number,
   isSuccess?: () => void,
-  isError?: () => void,
+  isError?: () => void
 ): Promise<TokenValidatingStatus> => {
   let validationStatus = TokenValidatingStatus.IN_PROCESS;
 
@@ -87,7 +87,7 @@ api.interceptors.response.use(
         3,
         1000,
         setSuccessRefresh,
-        setFailureRefresh,
+        setFailureRefresh
       );
 
       if (validationStatus === TokenValidatingStatus.SUCCESS) {
@@ -101,5 +101,5 @@ api.interceptors.response.use(
     } finally {
       isRefreshing = false;
     }
-  },
+  }
 );

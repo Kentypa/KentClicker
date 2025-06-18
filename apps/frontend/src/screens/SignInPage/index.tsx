@@ -1,5 +1,5 @@
-import { Logo } from "../../components/UI/Logo";
-import { SignInForm } from "../../components/SignInForm";
+import { Logo } from "@ui/Logo";
+import { SignInForm } from "../../features/SignInPage/components/SignInForm";
 import { FC } from "react";
 
 export const SignInPage: FC = () => {

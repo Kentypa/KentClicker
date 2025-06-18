@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { Queries } from "../enums/queriesKeys";
-import { ServiceNames } from "../enums/serviceNames";
-import { userService } from "../services/userService";
-import { changeByData } from "../stores/user/userSlice";
+import { Queries } from "@enums/queriesKeys";
+import { ServiceNames } from "@enums/serviceNames";
+import { userService } from "@services/userService";
+import { changeByData } from "@stores/user/userSlice";
 import { useAppDispatch } from "./redux";
 
 export const useUserData = (enabled: boolean = true) => {

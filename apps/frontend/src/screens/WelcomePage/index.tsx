@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { MainContentWrapper } from "../../components/UI/MainContentWrapper";
-import { Button } from "../../components/UI/Button";
+import { MainContentWrapper } from "@ui/MainContentWrapper";
+import { Button } from "@ui/Button";
 import { useNavigate } from "react-router";
-import { PagesEndponts } from "../../enums/pagesEndpoints";
+import { PagesEndponts } from "@enums/pagesEndpoints";
 
 export const WelcomePage: FC = () => {
   const nav = useNavigate();
@@ -21,7 +21,8 @@ export const WelcomePage: FC = () => {
         <div>
           <Button
             className="p-4 bg-subtle-light rounded-xl"
-            handleClick={handleClick}>
+            handleClick={handleClick}
+          >
             Sign in
           </Button>
         </div>

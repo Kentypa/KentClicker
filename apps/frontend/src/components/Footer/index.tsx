@@ -1,6 +1,6 @@
 import { FC } from "react";
-import Moon from "../../assets/icons/moon.svg";
-import { Navigation } from "../UI/Navigation";
+import { Navigation } from "@ui/Navigation";
+import Moon from "@icons/moon.svg";
 
 const menu = [
   { link: "/about-game", name: "About Game" },
@@ -15,11 +15,7 @@ export const Footer: FC = () => {
         <Navigation menuItems={menu} />
       </div>
       <div className="flex justify-center size-10 items-center rounded-xl border border-subtle-light">
-        <img
-          src={Moon}
-          alt="moon"
-          className="size-5"
-        />
+        <img src={Moon} alt="moon" className="size-5" />
       </div>
     </footer>
   );

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
-import { Popup } from "../UI/PopUp";
-import { useAppSelector } from "../../hooks/redux";
-import { popupsListSelector } from "../../stores/selectors/popupsListSelector";
+import { Popup } from "@ui/PopUp";
+import { useAppSelector } from "@hooks/redux";
+import { popupsListSelector } from "@selectors/popupsListSelector";
 
 export const PopupList: FC = () => {
   const popups = useAppSelector(popupsListSelector);

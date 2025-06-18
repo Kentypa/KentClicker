@@ -1,11 +1,11 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { Queries } from "../enums/queriesKeys";
-import { ServiceNames } from "../enums/serviceNames";
-import { userService } from "../services/userService";
-import { ProfileForm } from "../types/profile-form";
+import { Queries } from "@enums/queriesKeys";
+import { ServiceNames } from "@enums/serviceNames";
+import { userService } from "@services/userService";
+import { ProfileForm } from "@custom-types/profile-form";
 import { useAppDispatch } from "./redux";
-import { changeByData } from "../stores/user/userSlice";
-import { UserData } from "../types/user-data";
+import { changeByData } from "@stores/user/userSlice";
+import { UserData } from "@custom-types/user-data";
 
 export const useUpdateUser = (email?: string, username?: string) => {
   const { updateUserData } = userService(ServiceNames.USER);

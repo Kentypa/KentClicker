@@ -1,11 +1,11 @@
-import SmallCoin from "../../assets/icons/coin-small.svg";
 import { FC } from "react";
-import { textFormatter } from "../../utils/text-formatter.ts";
-import { Button } from "../UI/Button/index.tsx";
+import { textFormatter } from "@utils/text-formatter.ts";
+import { Button } from "@ui/Button/index.tsx";
 import { useNavigate } from "react-router";
-import { useAppSelector } from "../../hooks/redux.ts";
-import { userSelector } from "../../stores/selectors/userSelector.ts";
-import undefinedAvatar from "../../assets/icons/user-light.svg";
+import { useAppSelector } from "@hooks/redux.ts";
+import { userSelector } from "@selectors/userSelector.ts";
+import SmallCoin from "@icons/coin-small.svg";
+import undefinedAvatar from "@icons/user-light.svg";
 
 export const UserPanel: FC = () => {
   const userInfo = useAppSelector(userSelector);
@@ -15,7 +15,8 @@ export const UserPanel: FC = () => {
     <Button
       handleClick={() => {
         nav("/profile");
-      }}>
+      }}
+    >
       <div className="flex flex-row justify-between items-center">
         <img
           src={userInfo.avatarUrl || undefinedAvatar}

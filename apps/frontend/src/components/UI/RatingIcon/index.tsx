@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import FirstPlaceIcon from '../../../assets/icons/first-place.svg';
-import SecondPlaceIcon from '../../../assets/icons/second-place.svg';
-import ThirdPlaceIcon from '../../../assets/icons/third-place.svg';
+import { FC } from "react";
+import FirstPlaceIcon from "@icons/first-place.svg";
+import SecondPlaceIcon from "@icons/second-place.svg";
+import ThirdPlaceIcon from "@icons/third-place.svg";
 
 type RatingIconProps = {
   rating: number;
@@ -20,11 +20,5 @@ export const RatingIcon: FC<RatingIconProps> = ({ rating }) => {
     return null;
   }
 
-  return (
-    <img
-      src={Icon}
-      alt={`${rating} place`}
-      className='absolute left-0'
-    />
-  );
+  return <img src={Icon} alt={`${rating} place`} className="absolute left-0" />;
 };

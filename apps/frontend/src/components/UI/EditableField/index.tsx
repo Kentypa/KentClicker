@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Button } from "../Button";
-import { Input } from "../Input";
-import { Label } from "../Label";
-import EditIcon from "../../../assets/icons/edit.svg";
+import { Button } from "@ui/Button";
+import { Input } from "@ui/Input";
+import { Label } from "@ui/Label";
+import EditIcon from "@icons/edit.svg";
 
 type EditableFieldProps = {
   label: string;
@@ -34,13 +34,8 @@ export const EditableField: FC<EditableFieldProps> = ({
         className="p-1 border rounded-xl border-subtle-light"
       />
     )}
-    <Button
-      type="button"
-      handleClick={onToggle}>
-      <img
-        src={EditIcon}
-        className="size-6"
-      />
+    <Button type="button" handleClick={onToggle}>
+      <img src={EditIcon} className="size-6" />
     </Button>
   </div>
 );

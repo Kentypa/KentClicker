@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router';
-import { LinkItem } from '../../../types/link-item.ts';
-import { FC } from 'react';
+import { NavLink } from "react-router";
+import { LinkItem } from "@custom-types/link-item.ts";
+import { FC } from "react";
 
 type NavigationProps = {
   menuItems: LinkItem[];
@@ -15,8 +15,9 @@ export const Navigation: FC<NavigationProps> = ({ menuItems, className }) => {
           key={item.link}
           to={item.link}
           className={({ isActive }) =>
-            typeof className === 'function' ? className(isActive) : className
-          }>
+            typeof className === "function" ? className(isActive) : className
+          }
+        >
           {item.name}
         </NavLink>
       ))}

@@ -1,11 +1,11 @@
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
 import { PagesEndponts } from "@enums/pagesEndpoints";
 import { Queries } from "@enums/queriesKeys";
 import { ServiceNames } from "@enums/serviceNames";
+import { useAppDispatch } from "@hooks/redux";
 import { authService } from "@services/authService";
 import { logout } from "@stores/user/userSlice";
-import { useAppDispatch } from "@hooks/redux";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 
 export const useLogout = () => {
   const queryClient = useQueryClient();

@@ -1,12 +1,12 @@
-import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { Queries } from "@enums/queriesKeys";
 import { ServiceNames } from "@enums/serviceNames";
-import { logout } from "@stores/user/userSlice";
 import { useAppDispatch } from "@hooks/redux";
-import { userService } from "@services/userService";
-import { useMemo, useState } from "react";
 import { useForm } from "@hooks/use-form";
-import { DeleteAccountFormData } from "@custom-types/delete-account-form-data";
+import { userService } from "@services/userService";
+import { DeleteAccountFormData } from "@shared-types/delete-account-form-data";
+import { logout } from "@stores/user/userSlice";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { useState, useMemo } from "react";
 
 export const useDeleteAccount = () => {
   const [showDeleteAccountModal, setShowAccountModal] = useState(false);

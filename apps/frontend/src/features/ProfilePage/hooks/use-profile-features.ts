@@ -1,6 +1,6 @@
-import { userSelector } from "@selectors/userSelector";
 import { useAppSelector } from "@hooks/redux";
-import { FeatureItem } from "@custom-types/feature-item";
+import { FeatureItem } from "@shared-types/feature-item";
+import { userSelector } from "@selectors/userSelector";
 import undefinedIcon from "@icons/undefined.svg";
 
 export const useProfileFeatures = () => {

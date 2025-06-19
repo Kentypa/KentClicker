@@ -1,7 +1,7 @@
-import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { Queries } from "@enums/queriesKeys";
 import { ServiceNames } from "@enums/serviceNames";
 import { authService } from "@services/authService";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 export const useSignIn = () => {
   const { signInUser } = authService(ServiceNames.AUTH);

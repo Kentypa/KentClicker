@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { MainContentWrapper } from "@ui/MainContentWrapper";
-import { Button } from "@ui/Button";
-import { useNavigate } from "react-router";
 import { PagesEndponts } from "@enums/pagesEndpoints";
+import { MainContentWrapper } from "@layout/MainContentWrapper";
+import { Button } from "@ui/Button";
+import { FC } from "react";
+import { useNavigate } from "react-router";
 
 export const WelcomePage: FC = () => {
   const nav = useNavigate();

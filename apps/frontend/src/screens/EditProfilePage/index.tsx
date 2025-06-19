@@ -1,6 +1,6 @@
+import { MainContentWrapper } from "@layout/MainContentWrapper";
+import { EditProfileContent } from "features/EditProfilePage/components/layout/EditProfileContent";
 import { FC } from "react";
-import { EditProfileContent } from "../../features/EditProfilePage/components/EditProfileContent";
-import { MainContentWrapper } from "@ui/MainContentWrapper";
 
 export const EditProfilePage: FC = () => {
   return (

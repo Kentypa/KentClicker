@@ -1,6 +1,6 @@
+import { MainContentWrapper } from "@layout/MainContentWrapper";
+import { HomeContent } from "features/HomePage/components/layout/HomeContent";
 import { FC } from "react";
-import { HomeContent } from "../../features/HomePage/components/HomeContent";
-import { MainContentWrapper } from "@ui/MainContentWrapper";
 
 export const HomePage: FC = () => {
   return (

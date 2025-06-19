@@ -1,6 +1,6 @@
 import { Logo } from "@ui/Logo";
+import { SignUpForm } from "features/SignUpPage/components/forms/SignUpForm";
 import { FC } from "react";
-import { SignUpForm } from "../../features/SignUpPage/components/SignUpForm";
 
 export const SignUpPage: FC = () => {
   return (

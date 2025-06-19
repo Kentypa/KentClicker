@@ -1,7 +1,7 @@
-import { useState, ChangeEvent, useEffect } from "react";
-import { ProfileForm } from "@custom-types/profile-form";
-import { isValidMimeType } from "@utils/isValidMimeType";
 import { ImageMimeTypes } from "@enums/imageMimeTypes";
+import { ProfileForm } from "@shared-types/profile-form";
+import { useState, ChangeEvent, useEffect } from "react";
+import { isValidMimeType } from "../utils/isValidMimeType";
 
 const imageMimeTypes = [
   ImageMimeTypes.GIF,

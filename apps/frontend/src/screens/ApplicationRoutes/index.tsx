@@ -1,16 +1,16 @@
+import { useUserData } from "@hooks/use-user-data";
+import { useUserVerify } from "@hooks/use-user-validate";
+import { EditProfilePage } from "@screens/EditProfilePage";
+import { HomePage } from "@screens/HomePage";
+import { MarketPage } from "@screens/MarketPage";
+import { ProfilePage } from "@screens/ProfilePage";
+import { RatingPage } from "@screens/RatingPage";
+import { SignInPage } from "@screens/SignInPage";
+import { SignUpPage } from "@screens/SignUpPage";
+import { WelcomePage } from "@screens/WelcomePage";
+import { ProtectedRoute } from "@wrappers/ProtectedRoute";
 import { FC } from "react";
-import { Route, Routes } from "react-router";
-import { HomePage } from "@screens/HomePage/index.tsx";
-import { SignInPage } from "@screens/SignInPage/index.tsx";
-import { SignUpPage } from "@screens/SignUpPage/index.tsx";
-import { ProfilePage } from "@screens/ProfilePage/index.tsx";
-import { RatingPage } from "@screens/RatingPage/index.tsx";
-import { MarketPage } from "@screens/MarketPage/index.tsx";
-import { ProtectedRoute } from "@ui/ProtectedRoute/index.tsx";
-import { WelcomePage } from "@screens/WelcomePage/index.tsx";
-import { EditProfilePage } from "@screens/EditProfilePage/index.tsx";
-import { useUserData } from "@hooks/use-user-data.ts";
-import { useUserVerify } from "@hooks/use-user-validate.ts";
+import { Routes, Route } from "react-router";
 
 export const ApplicationRoutes: FC = () => {
   const { isSuccess: isAuthenticated } = useUserVerify();

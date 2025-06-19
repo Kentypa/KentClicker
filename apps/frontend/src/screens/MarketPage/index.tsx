@@ -1,6 +1,6 @@
+import { MainContentWrapper } from "@layout/MainContentWrapper";
+import { MarketContent } from "features/MarketPage/components/layout/MarketContent";
 import { FC } from "react";
-import { MarketContent } from "../../features/MarketPage/components/MarketContent";
-import { MainContentWrapper } from "@ui/MainContentWrapper";
 
 export const MarketPage: FC = () => {
   return (

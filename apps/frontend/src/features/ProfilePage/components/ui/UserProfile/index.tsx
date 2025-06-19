@@ -1,6 +1,6 @@
 import { useAppSelector } from "@hooks/redux";
 import { userSelector } from "@selectors/userSelector";
-import { useProfileFeatures } from "features/ProfilePage/hooks/use-profile-features";
+import { useProfileFeatures } from "@features/ProfilePage/hooks/use-profile-features";
 import { FC } from "react";
 import { EditProfileButton } from "../EditProfileButton";
 import { UserAchievements } from "../UserAchievements";

@@ -9,8 +9,8 @@ import { Button } from "@ui/Button";
 import { ContinueGoogleButton } from "@ui/ContinueGoogleButton";
 import { Divider } from "@ui/Divider";
 import { Title } from "@ui/Title";
-import { useSignIn } from "features/SignInPage/hooks/use-sign-in";
-import { useSignInPopups } from "features/SignInPage/hooks/use-sign-up-popups";
+import { useSignIn } from "@features/SignInPage/hooks/use-sign-in";
+import { useSignInPopups } from "@features/SignInPage/hooks/use-sign-up-popups";
 import { FC, useMemo } from "react";
 import { Link } from "react-router";
 

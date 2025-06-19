@@ -7,7 +7,7 @@ import {
 } from "@stores/user/userSlice";
 import { delay } from "@utils/delay";
 import { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-import { store } from "store";
+import { store } from "@stores/store";
 
 let isRefreshing = false;
 

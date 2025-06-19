@@ -1,6 +1,6 @@
 import { useAppSelector } from "@hooks/redux";
 import { LoadingWheel } from "@overlays/LoadingWheel";
-import { userSelector } from "@stores/selectors/userSelector";
+import { userSelector } from "@selectors/userSelector";
 import { FC } from "react";
 import { Navigate, Outlet } from "react-router";
 

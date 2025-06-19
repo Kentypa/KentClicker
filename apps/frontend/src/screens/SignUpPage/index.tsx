@@ -1,5 +1,5 @@
+import { SignUpForm } from "@features/SignUpPage/components/forms/SignUpForm";
 import { Logo } from "@ui/Logo";
-import { SignUpForm } from "features/SignUpPage/components/forms/SignUpForm";
 import { FC } from "react";
 
 export const SignUpPage: FC = () => {

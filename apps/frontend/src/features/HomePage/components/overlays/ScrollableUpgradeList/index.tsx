@@ -1,6 +1,6 @@
 import { FC, useRef, useState } from "react";
 import { GradientScrollButton } from "@ui/GradientScrollButton";
-import { ClickerUpgrade } from "features/HomePage/types/clicker-upgrade";
+import { ClickerUpgrade } from "@features/HomePage/types/clicker-upgrade";
 import { UpgradesList } from "../../forms/UpgradesList";
 import ArrowDown from "@icons/arrow-down.svg";
 import ArrowUp from "@icons/arrow-up.svg";

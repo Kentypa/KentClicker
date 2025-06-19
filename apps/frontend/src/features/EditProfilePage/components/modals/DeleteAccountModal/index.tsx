@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, FormEvent } from "react";
 import { Button } from "@ui/Button";
-import { DeleteAccountFormData } from "shared/types/delete-account-form-data";
+import { DeleteAccountFormData } from "@shared-types/delete-account-form-data";
 import { Input } from "@forms/Input";
 import { Modal } from "@modals/Modal";
 

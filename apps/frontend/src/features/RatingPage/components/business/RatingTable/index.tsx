@@ -1,6 +1,6 @@
 import { RatingIcon } from "@ui/RatingIcon";
 import { numberFormatter } from "@utils/number-formatter";
-import { MockUser } from "features/RatingPage/types/mock-user";
+import { MockUser } from "@features/RatingPage/types/mock-user";
 import { FC } from "react";
 
 type PlayerTableProps = {

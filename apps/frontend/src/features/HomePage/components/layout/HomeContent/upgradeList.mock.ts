@@ -1,4 +1,4 @@
-import { ClickerUpgrade } from "features/HomePage/types/clicker-upgrade";
+import { ClickerUpgrade } from "@features/HomePage/types/clicker-upgrade";
 import UndefinedIcon from "@icons/undefined.svg";
 
 export const upgradeList: ClickerUpgrade[] = [

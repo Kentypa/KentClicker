@@ -1,5 +1,5 @@
 import { PaginationButtons } from "@business/PaginationButtons";
-import { SortingType } from "features/RatingPage/types/sorting-types";
+import { SortingType } from "@features/RatingPage/types/sorting-types";
 import { FC, useState } from "react";
 import { useParams } from "react-router";
 import { PlayerTable } from "../../business/RatingTable";

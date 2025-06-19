@@ -1,4 +1,4 @@
-import { MockUser } from "features/RatingPage/types/mock-user";
+import { MockUser } from "@features/RatingPage/types/mock-user";
 import DarkAvatar from "@icons/user-dark.svg";
 
 export const users = {

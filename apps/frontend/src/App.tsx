@@ -3,7 +3,7 @@ import { ApplicationRoutes } from "@screens/ApplicationRoutes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router";
-import { store } from "store";
+import { store } from "./shared/stores/store";
 import "@interceptors/authRefresh";
 import "@interceptors/userUUID";
 import "./App.css";

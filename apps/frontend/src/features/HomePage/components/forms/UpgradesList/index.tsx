@@ -1,4 +1,4 @@
-import { ClickerUpgrade } from "features/HomePage/types/clicker-upgrade";
+import { ClickerUpgrade } from "@features/HomePage/types/clicker-upgrade";
 import { FC } from "react";
 import { UpgradeItem } from "../../ui/UpgradeItem";
 

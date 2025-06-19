@@ -1,6 +1,6 @@
 import { Button } from "@ui/Button";
 import { numberFormatter } from "@utils/number-formatter";
-import { ClickerUpgrade } from "features/HomePage/types/clicker-upgrade";
+import { ClickerUpgrade } from "@features/HomePage/types/clicker-upgrade";
 import { FC } from "react";
 import CoinIcon from "@icons/coin-small.svg";
 

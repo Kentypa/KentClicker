@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { useHomeFeatures } from "features/HomePage/hooks/use-home-features";
 import { UserStats } from "../../business/UserStats";
 import { ScrollableUpgradeList } from "../../overlays/ScrollableUpgradeList";
 import { TapButton } from "../../ui/TapButton";
 import { upgradeList } from "./upgradeList.mock";
+import { useHomeFeatures } from "@features/HomePage/hooks/use-home-features";
 import styles from "./HomeContent.module.css";
 
 export const HomeContent: FC = () => {

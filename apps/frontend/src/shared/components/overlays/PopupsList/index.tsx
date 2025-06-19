@@ -1,6 +1,6 @@
 import { useAppSelector } from "@hooks/redux";
 import { Popup } from "@modals/PopUp";
-import { popupsListSelector } from "@stores/selectors/popupsListSelector";
+import { popupsListSelector } from "@selectors/popupsListSelector";
 import { FC } from "react";
 import { createPortal } from "react-dom";
 

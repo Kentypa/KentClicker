@@ -2,7 +2,7 @@ import { UserPanel } from "@business/UserPanel";
 import { PagesEndponts } from "@enums/pagesEndpoints";
 import { useAppSelector } from "@hooks/redux";
 import { Navigation } from "@layout/Navigation";
-import { userSelector } from "@stores/selectors/userSelector";
+import { userSelector } from "@selectors/userSelector";
 import { Button } from "@ui/Button";
 import { Logo } from "@ui/Logo";
 import { FC } from "react";

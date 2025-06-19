@@ -1,6 +1,6 @@
 import { FeatureItem } from "@shared-types/feature-item";
 import { Title } from "@ui/Title";
-import { UserStats } from "features/HomePage/components/business/UserStats";
+import { UserStats } from "@features/HomePage/components/business/UserStats";
 import { FC } from "react";
 import undefinedAvatar from "@icons/user-dark.svg";
 

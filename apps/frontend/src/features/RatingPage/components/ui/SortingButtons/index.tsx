@@ -1,5 +1,5 @@
 import { Button } from "@ui/Button";
-import { SortingType } from "features/RatingPage/types/sorting-types";
+import { SortingType } from "@features/RatingPage/types/sorting-types";
 import { FC } from "react";
 
 type SortingButtonsProps = {

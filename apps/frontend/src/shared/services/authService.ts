@@ -5,7 +5,7 @@ export function authService(url: string) {
   const signInUser = async (formState: formObject) => {
     return api.post(`${url}/sign-in`, formState).catch((error) => {
       console.log(error.toJSON());
-      throw new Error(error.message);
+      throw error;
     });
   };
 

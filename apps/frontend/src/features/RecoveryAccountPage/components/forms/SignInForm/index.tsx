@@ -4,17 +4,14 @@ import { PasswordInput } from "@forms/PasswordInput";
 import { useForm } from "@hooks/use-form";
 import { useNavigateOnSuccess } from "@hooks/use-navigate-on-success";
 import { Button } from "@ui/Button";
-import { ContinueGoogleButton } from "@ui/ContinueGoogleButton";
-import { Divider } from "@ui/Divider";
 import { Title } from "@ui/Title";
-import { useSignUp } from "@features/SignUpPage/hooks/use-sign-up";
-import { useSignUpPopups } from "@features/SignUpPage/hooks/use-sign-up-popups";
 import { FC, useMemo } from "react";
-import { Link } from "react-router";
 import { useIsNotSubmitable } from "@hooks/use-is-not-submitable";
+import { useRecoveryAccount } from "@features/RecoveryAccountPage/hooks/use-recovery-account";
+import { useRecoveryAccountPopups } from "@features/RecoveryAccountPage/hooks/use-sign-up-popups";
 
-export const SignUpForm: FC = () => {
-  const { isSuccess, mutate, isError: userSignUpIsError } = useSignUp();
+export const RecoveryAccountForm: FC = () => {
+  const { isError, isSuccess, mutate } = useRecoveryAccount();
 
   const initialState = useMemo(() => ({ email: "", password: "" }), []);
   const { formState, handleChange, handleSubmit } = useForm(
@@ -23,7 +20,8 @@ export const SignUpForm: FC = () => {
       mutate(formState);
     }
   );
-  const signUpIsNotSubmitable = useIsNotSubmitable({
+
+  const signInIsNotSubmitable = useIsNotSubmitable({
     allRequired: true,
     initialState,
     state: formState,
@@ -31,15 +29,14 @@ export const SignUpForm: FC = () => {
 
   useNavigateOnSuccess(isSuccess, PagesEndponts.SIGN_IN);
 
-  useSignUpPopups({ userSignUpIsError });
+  useRecoveryAccountPopups({ isError });
 
   return (
-    <main className={`container flex max-w-100 flex-col items-center`}>
-      <Title className="text-display-small mb-12 font-normal text-nowrap">
-        Welcome to KentClicker
+    <main className="container flex max-w-100 flex-col items-center">
+      <Title className="text-display-small mb-12 text-nowrap">
+        Account Recovery
       </Title>
-      <p className="text-headline-small mb-8">Sign up</p>
-      <form className="container text-subtle-dark mb-6" onSubmit={handleSubmit}>
+      <form className="container text-subtle-dark" onSubmit={handleSubmit}>
         <div className={`mb-6 flex flex-col`}>
           <Input
             className="p-2.75 rounded-lg border border-subtle-light"
@@ -58,22 +55,12 @@ export const SignUpForm: FC = () => {
         />
         <Button
           type="submit"
-          disabled={signUpIsNotSubmitable}
+          disabled={signInIsNotSubmitable}
           className="container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 "
         >
-          Sign up
+          Recovery
         </Button>
       </form>
-      <div className="text-body-large container flex justify-center mb-8">
-        <p>
-          Don’t have account yet?{" "}
-          <Link to={`/sign-in`} className="underline">
-            Sign in
-          </Link>
-        </p>
-      </div>
-      <Divider className="mb-8 text-body-medium">or</Divider>
-      <ContinueGoogleButton />
     </main>
   );
 };

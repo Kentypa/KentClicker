@@ -13,17 +13,28 @@ import { useSignIn } from "@features/SignInPage/hooks/use-sign-in";
 import { useSignInPopups } from "@features/SignInPage/hooks/use-sign-up-popups";
 import { FC, useMemo } from "react";
 import { Link } from "react-router";
+import { useIsNotSubmitable } from "@hooks/use-is-not-submitable";
 
 export const SignInForm: FC = () => {
   const {
     isError: userSignInIsError,
     isSuccess: authIsSuccess,
     mutate,
+    isForbiddenError,
   } = useSignIn();
 
   const initialState = useMemo(() => ({ email: "", password: "" }), []);
-  const { handleChange, handleSubmit } = useForm(initialState, (formState) => {
-    mutate(formState);
+  const { formState, handleChange, handleSubmit } = useForm(
+    initialState,
+    (formState) => {
+      mutate(formState);
+    }
+  );
+
+  const signInIsNotSubmitable = useIsNotSubmitable({
+    allRequired: true,
+    initialState,
+    state: formState,
   });
 
   const { isSuccess: userVerifyIsSuccess } = useUserVerify(authIsSuccess);
@@ -58,12 +69,23 @@ export const SignInForm: FC = () => {
           handleChange={handleChange}
         />
         <div className="container flex justify-end mb-8">
-          <Link to="/" className="text-body-large underline text-primary">
-            Forgot password?
-          </Link>
+          <div className="flex flex-col gap-4">
+            <Link to="/" className="text-body-large underline text-primary">
+              Forgot password?
+            </Link>
+            {isForbiddenError && (
+              <Link
+                className="text-body-large underline text-dangerous"
+                to={"/recovery-account"}
+              >
+                Wanna recovery your account?
+              </Link>
+            )}
+          </div>
         </div>
         <Button
           type="submit"
+          disabled={signInIsNotSubmitable}
           className="container p-3 bg-primary text-white text-label-large gap-1.5 rounded-2xl mb-6 "
         >
           Sign in

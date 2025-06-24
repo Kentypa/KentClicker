@@ -5,6 +5,7 @@ import { HomePage } from "@screens/HomePage";
 import { MarketPage } from "@screens/MarketPage";
 import { ProfilePage } from "@screens/ProfilePage";
 import { RatingPage } from "@screens/RatingPage";
+import { RecoveryAccountPage } from "@screens/RecoveryAccountPage";
 import { SignInPage } from "@screens/SignInPage";
 import { SignUpPage } from "@screens/SignUpPage";
 import { WelcomePage } from "@screens/WelcomePage";
@@ -24,6 +25,7 @@ export const ApplicationRoutes: FC = () => {
       />
       <Route path="sign-in" element={<SignInPage />} />
       <Route path="sign-up" element={<SignUpPage />} />
+      <Route path="recovery-account" element={<RecoveryAccountPage />} />
       <Route element={<ProtectedRoute />}>
         <Route path="profile">
           <Route path="" element={<ProfilePage />} />

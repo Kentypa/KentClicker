@@ -3,6 +3,7 @@ import { Label } from "@forms/Label";
 import { ChangeEvent, FC, useState } from "react";
 import eyeOpened from "@icons/eye-open.svg";
 import eyeClosed from "@icons/eye-closed.svg";
+import { Button } from "@ui/Button";
 
 type PasswordInputProps = {
   className?: string;
@@ -27,14 +28,14 @@ export const PasswordInput: FC<PasswordInputProps> = ({
           autoComplete="on"
           handleChange={handleChange}
         />
-        <img
-          src={isPasswordVisible ? eyeOpened : eyeClosed}
-          alt="eyeIcon"
-          className="absolute mr-3 size-6 "
-          onClick={() => {
+        <Button
+          handleClick={() => {
             setIsPasswordVisible(!isPasswordVisible);
           }}
-        />
+          className="absolute mr-3 size-6"
+        >
+          <img src={isPasswordVisible ? eyeOpened : eyeClosed} alt="eyeIcon" />
+        </Button>
       </div>
     </div>
   );

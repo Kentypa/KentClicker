@@ -1,9 +1,9 @@
 import { Input } from "@forms/Input";
 import { Label } from "@forms/Label";
 import { ChangeEvent, FC, useState } from "react";
+import { Button } from "@ui/Button";
 import eyeOpened from "@icons/eye-open.svg";
 import eyeClosed from "@icons/eye-closed.svg";
-import { Button } from "@ui/Button";
 
 type PasswordInputProps = {
   className?: string;
